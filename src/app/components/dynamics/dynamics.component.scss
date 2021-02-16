@@ -1,0 +1,17 @@
+.dynamics {
+  border-radius: 9px;
+  display: inline-block;
+  height: 14px;
+  padding: 0 8px;
+  color: var(--font-color-default);
+  font-size: 1rem;
+  line-height: (14 / 10);
+}
+
+.dynamics--positive {
+  background: var(--foreground-tertiary);
+}
+
+.dynamics--negative {
+  background: var(--foreground-tertiary);
+}

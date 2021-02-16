@@ -1,0 +1,38 @@
+@import "pallete";
+
+:root {
+  /* Тёмная тема */
+  /* Colors */
+  --foreground-default: var(--color-black-70);
+  --foreground-secondary: var(--color-black-80);
+  --foreground-tertiary: #4C4558;
+  --foreground-quaternary: var(--color-black-90);
+  --foreground-light: #41474d;
+
+  --background-default: var(--color-black-90);
+  --background-secondary: var(--color-purple-90);
+  --background-tertiary: var(--color-purple-80);
+  --background-light: #ffffff;
+
+  --primary-default: #5dfdcb;
+  --primary-dark: #24b286;
+  --primary-light: #b2ffe7;
+
+  --error-default: #ef3e36;
+  --error-dark: #800600;
+  --error-light: #ffcecc;
+
+  /* Shadows */
+  --background-tertiary-shadow: 0 1px 3px 0 rgba(92, 125, 153, 0.5);
+
+  --font-family-default: 'Roboto', sans-serif;
+  --font-size-default: 1.2rem;
+
+  --line-height-default: 1.5;
+
+  --font-color-default: var(--color-gray-20);
+  --font-color-secondary: var(--color-gray-40);
+  --font-color-tertiary: var(--color-gray-80);
+
+  --font-color-quaternary: var(--color-blue-70);
+}
