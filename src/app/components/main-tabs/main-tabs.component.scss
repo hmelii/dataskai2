@@ -20,11 +20,11 @@
   padding: 0;
   font-size: 1.3rem;
   line-height: (32 / 13);
-  color: var(--font-color-default);
+  color: var(--text-color-default);
 }
 
 .main-tabs-item--active {
-  background: var(--background-tertiary);
+  background: var(--foreground-secondary);
   border-radius: 2px 2px 0 0;
 }
 

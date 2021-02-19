@@ -9,6 +9,8 @@ import { ContentComponent } from "../../components/content/content.component";
 import { IconComponent } from '../../components/icon/icon.component';
 import { TableComponent } from "../../components/table/table.component";
 import { DynamicsComponent } from "../../components/dynamics/dynamics.component";
+import { LoaderComponent } from '../../components/loader/loader.component';
+import { IconSpriteModule } from "ng-svg-icon-sprite";
 
 
 
@@ -21,12 +23,15 @@ import { DynamicsComponent } from "../../components/dynamics/dynamics.component"
     ContentComponent,
     IconComponent,
     TableComponent,
-    DynamicsComponent
+    DynamicsComponent,
+    LoaderComponent,
 
   ],
   imports: [
     CommonModule,
     ProjectPageRoutingModule,
+    IconSpriteModule,
+
     // AppModule,
 
   ],
@@ -36,9 +41,12 @@ import { DynamicsComponent } from "../../components/dynamics/dynamics.component"
     AuthorsFilterComponent,
     ContentComponent,
     SearchComponent,
-    IconComponent,
+     IconComponent,
     TableComponent,
-    DynamicsComponent
+
+    DynamicsComponent,
+    LoaderComponent,
+
 
   ]
 })

@@ -1,0 +1,16 @@
+
+.loader {
+  background: url("../../../assets/images/loader/loader.svg") no-repeat;
+  width: 17px;
+  height: 17px;
+  animation: LoaderAnimation 1s steps(9) infinite;
+}
+
+@keyframes LoaderAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -207px 0;
+  }
+}

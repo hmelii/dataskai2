@@ -11,7 +11,9 @@ import { ThemesSwitcherComponent } from './components/themes-switcher/themes-swi
 import { MainTabsComponent } from './components/main-tabs/main-tabs.component';
 import { ProjectPageModule } from "./pages/project-page/project-page.module";
 import { IconSpriteModule } from "ng-svg-icon-sprite";
-
+import { NoFoundComponent } from './components/no-found/no-found.component';
+// import { SubmitsModule } from "./components/submits/submits.module";
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,15 +23,20 @@ import { IconSpriteModule } from "ng-svg-icon-sprite";
     ProjectNameComponent,
     ThemesSwitcherComponent,
     MainTabsComponent,
+    NoFoundComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ProjectPageModule,
-    IconSpriteModule
+    IconSpriteModule,
+    // SubmitsModule,
   ],
   providers: [],
   exports: [
+    MainLayoutComponent
+
   ],
   bootstrap: [AppComponent]
 })

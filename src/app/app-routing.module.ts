@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { NoFoundComponent } from "./components/no-found/no-found.component";
 
 
 const routes: Routes = [
@@ -17,6 +18,8 @@ const routes: Routes = [
       breadcrumb: 'Project'
     }
   },
+  {path: '**', component: NoFoundComponent}
+
 ];
 
 @NgModule({

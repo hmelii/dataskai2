@@ -3,11 +3,17 @@
   top: 10px;
   left: 24px;
 }
+.author-filter-btn-ico {
+  display: inline-block;
+  margin-right: 7px;
+  width: 10px;
+  height: 10px;
+}
 .authors-filter-btn {
   position: relative;
   display: inline-block;
   padding-right: 16px;
-  color: var(--font-color-default);
+  color: var(--text-color-default);
   font-size: 1.3rem;
   line-height: (20 / 13);
   text-decoration: none;
@@ -18,7 +24,7 @@
     height: 0;
     border-style: solid;
     border-width: 3.9px 3.645px 0 3.645px;
-    border-color: var(--font-color-default) transparent transparent transparent;
+    border-color: var(--text-color-default) transparent transparent transparent;
     margin: auto;
     position: absolute;
     top: 0;

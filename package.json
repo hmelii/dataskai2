@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pages": "ng deploy --base-href=https://hmelii.github.io/dataskai2"
+    "pages": "ng deploy --base-href=https://hmelii.github.io/dataskai2",
+    "generate:svg-sprite": "svg2sprite src/assets/images/loader src/assets/icons/dark/sprites/loader.svg --stripAttrs fill --stripAttrs stroke --stripAttrs id"
+
   },
   "private": true,
   "dependencies": {

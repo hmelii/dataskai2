@@ -1,0 +1,64 @@
+
+
+.theme--light {
+  /* Светлая тема */
+  /* Colors */
+  --foreground-default: var(--color-violet-90);
+  --foreground-secondary: var(--color-violet-80);
+  --foreground-tertiary: var(--color-violet-60);
+
+  --background-default: var(--color-gray-40);
+  --background-secondary: var(--color-gray-30);
+  --background-tertiary: var(--color-gray-20);
+  --background-quaternary: var(--color-gray-10);
+  --background-quinary: var(--color-white-100);
+
+  --table-background-default: var(--color-gray-40);
+  --table-background-secondary: var(--color-gray-30);
+  --table-background-tertiary: var(--color-gray-10);
+  --table-background-quaternary: var(--color-gray-20);
+  --table-background-quinary: var(--color-blue-10);
+
+  --header-button-background-default: transparent;
+  --header-button-background-secondary: var(--color-violet-70);
+  --header-button-background-tertiary: var(--color-violet-60);
+  --header-button-background-disabled: transparent;
+
+  --table-button-background-default: var(--color-black-10);
+  --table-button-background-secondary: var(--color-violet-90);
+  --table-button-background-tertiary: var(--color-violet-70);
+  --table-button-background-disabled: var(--color-light-gray-80);
+
+  --primary-default: #5dfdcb;
+  --primary-dark: #24b286;
+  --primary-light: #b2ffe7;
+
+  --error-default: #ef3e36;
+  --error-dark: #800600;
+  --error-light: #ffcecc;
+
+  /* Shadows */
+  --background-tertiary-shadow: 0 1px 3px 0 rgba(92, 125, 153, 0.5);
+
+  --font-family-default: 'Roboto', sans-serif;
+  --font-size-default: 1.2rem;
+
+  --line-height-default: 1.5;
+
+  --text-color-default: var(--color-black-70);
+  --text-color-secondary: var(--color-purple-20);
+  --text-color-tertiary: var(--color-light-gray-80);
+
+  --button-color-default: var(--color-gray-40);
+  --button-color-secondary: var(--color-white-100);
+  --button-color-tertiary: var(--color-gray-10);
+  --button-color-quaternary: var(--color-black-20);
+
+  --accent-text-color-default: var(--color-green-90);
+  --accent-text-color-secondary: var(--color-red-100);
+  --accent-text-color-tertiary: var(--color-blue-100);
+  --accent-text-color-quaternary: var(--color-violet-90);
+  --accent-text-color-quinary: var(--color-violet-40);
+
+  --accent-text-color-link: var(--color-blue-100);
+}

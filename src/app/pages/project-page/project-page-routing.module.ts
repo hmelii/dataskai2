@@ -6,7 +6,14 @@ const routes: Routes = [
   {
     path: '',
     component: ProjectPageComponent
-  }
+  },
+  {
+    path: 'tasks',
+    loadChildren: () => import('./pages/tasks-page/tasks-page.module').then(m => m.TasksPageModule),
+    data: {
+      breadcrumb: 'tasks'
+    }
+  },
 ];
 
 @NgModule({

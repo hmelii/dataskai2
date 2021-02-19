@@ -1,6 +1,6 @@
 @import '~normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-@import "./scss/vars";
+@import "scss/vars";
 
 
 
@@ -15,7 +15,7 @@ html {
 body {
   font-family: var(--font-family-default);
   font-size: var(--font-size-default);
-  color: var(--font-color-default);
+  color: var(--text-color-default);
   line-height: var(--line-height-default);
 }
 
@@ -24,5 +24,5 @@ a, button {
 }
 
 a {
-  color: var(--font-color-quaternary);
+  color: var(--accent-text-color-link);
 }
