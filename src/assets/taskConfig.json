@@ -33,7 +33,7 @@
         "sortable": true
       },
       {
-        "id": "version",
+        "id": "model_version",
         "name": "version",
         "type": "field",
         "sortable": true
@@ -41,7 +41,7 @@
       {
         "id": "features",
         "name": "features",
-        "type": "field",
+        "type": "features",
         "sortable": true
       },
       {
