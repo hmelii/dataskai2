@@ -1,0 +1,88 @@
+{
+  "data": {
+    "task_name": "aero__fw_classification_v1",
+    "columns": [
+      {
+        "id": "favorite",
+        "name": "favorite",
+        "type": "field",
+        "sortable": true
+      },
+      {
+        "id": "mae",
+        "name": "mae",
+        "type": "metric",
+        "sortable": true
+      },
+      {
+        "id": "max_f1",
+        "name": "max_f1",
+        "type": "metric",
+        "sortable": true
+      },
+      {
+        "id": "roc",
+        "name": "roc",
+        "type": "metric",
+        "sortable": true
+      },
+      {
+        "id": "model_name",
+        "name": "model name",
+        "type": "field",
+        "sortable": true
+      },
+      {
+        "id": "model_version",
+        "name": "version",
+        "type": "field",
+        "sortable": true
+      },
+      {
+        "id": "features",
+        "name": "features",
+        "type": "features",
+        "sortable": true
+      },
+      {
+        "id": "author",
+        "name": "author",
+        "type": "field",
+        "sortable": true
+      },
+      {
+        "id": "feature_mining_comments",
+        "name": "feature mining comments",
+        "type": "field",
+        "sortable": true
+      },
+      {
+        "id": "attachments",
+        "name": "attachments",
+        "type": "files",
+        "sortable": true
+      },
+      {
+        "id": "actions",
+        "name": "actions",
+        "type": "field",
+        "sortable": false
+      },
+      {
+        "id": "comment",
+        "name": "comment",
+        "type": "field",
+        "sortable": true
+      },
+      {
+        "id": "created",
+        "name": "date of submit",
+        "type": "date",
+        "sortable": true
+      }
+    ],
+    "rows_per_page_values": [50, 100, 200, 500, 1000],
+    "rows_per_page_default": 100,
+    "description_language_default": "en"
+  }
+}
