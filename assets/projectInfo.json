@@ -1,0 +1,24 @@
+{
+  "data": {
+    "project_name": "aero",
+    "project_description": {
+      "en": "Aero project",
+      "ru": "проэкт Аэро"
+    },
+    "authors": [
+      "Eugene.Tcatcorin",
+      "Eugenia.Chibisova",
+      "Alexey.Savilov"
+    ],
+    "tasks": {
+      "count": 4,
+      "names": [
+        "aero__fw_classification_v1",
+        "aero__fw_classification_v1_legacy_features",
+        "aero__fw_clf_v1__ENG_1_FUEL_FILTER_CLOG__21",
+        "aero__fw_clf_v1__ENG_2_REV_PRESSURIZED__21"
+      ]
+    },
+    "favorite_submits": 23
+  }
+}
