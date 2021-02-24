@@ -4,3 +4,10 @@
   height: 40px;
   position: relative;
 }
+
+.header-task-selection {
+  position: absolute;
+  top: 12px;
+  left: 64px;
+  z-index: 2;
+}

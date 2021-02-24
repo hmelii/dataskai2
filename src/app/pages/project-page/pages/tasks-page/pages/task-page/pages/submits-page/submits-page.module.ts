@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SubmitsPageComponent } from "./submits-page.component";
 import { SubmitsPageRoutingModule } from "./submits-page-routing.module";
-import { SubmitsModule } from "../../../../../../../../components/submits/submits.module";
+import { ProjectPageModule } from "../../../../../../project-page.module";
 
 
 
@@ -17,7 +17,8 @@ import { SubmitsModule } from "../../../../../../../../components/submits/submit
     CommonModule,
     //SubmitsModule,
     SubmitsPageRoutingModule,
-    SubmitsModule,
+    ProjectPageModule,
+    // SubmitsModule,
 
     // AppModule,
 

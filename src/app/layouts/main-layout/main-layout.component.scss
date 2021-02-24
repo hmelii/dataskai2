@@ -1,0 +1,17 @@
+.wrapper {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.header {
+  flex: 0 1 auto;
+}
+
+.main {
+  flex: 1 1 auto;
+  position: relative;
+}

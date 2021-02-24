@@ -8,9 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pages": "ng deploy --base-href=https://hmelii.github.io/dataskai2",
-    "generate:svg-sprite": "svg2sprite src/assets/images/loader src/assets/icons/dark/sprites/loader.svg --stripAttrs fill --stripAttrs stroke --stripAttrs id"
-
+    "pages": "ng deploy --base-href=https://hmelii.github.io/dataskai2/",
+    "generate:svg-sprite": "svg2sprite src/assets/images/icons src/assets/images/sprites/sprite.svg --stripAttrs fill --stripAttrs stroke --stripAttrs id"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
     "ng-svg-icon-sprite": "^1.9.1",
+    "ngx-markdown": "^11.1.0",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

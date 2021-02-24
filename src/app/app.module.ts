@@ -12,9 +12,8 @@ import { MainTabsComponent } from './components/main-tabs/main-tabs.component';
 import { ProjectPageModule } from "./pages/project-page/project-page.module";
 import { IconSpriteModule } from "ng-svg-icon-sprite";
 import { NoFoundComponent } from './components/no-found/no-found.component';
-// import { SubmitsModule } from "./components/submits/submits.module";
 import { HttpClientModule } from '@angular/common/http';
-import { RowPerPageComponent } from './components/row-per-page/row-per-page.component';
+import { TaskSelectionComponent } from './components/task-selection/task-selection.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +24,8 @@ import { RowPerPageComponent } from './components/row-per-page/row-per-page.comp
     ThemesSwitcherComponent,
     MainTabsComponent,
     NoFoundComponent,
-    RowPerPageComponent,
+    TaskSelectionComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -37,7 +37,8 @@ import { RowPerPageComponent } from './components/row-per-page/row-per-page.comp
   ],
   providers: [],
   exports: [
-    MainLayoutComponent
+    MainLayoutComponent,
+
 
   ],
   bootstrap: [AppComponent]

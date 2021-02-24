@@ -9,6 +9,12 @@ export interface Config {
   completed: boolean;
 }
 
+export interface Info {
+  id?: number;
+  title: string;
+  completed: boolean;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,13 +24,43 @@ export class SubmitsPageService {
 
   fetchConfig(): Observable<Config[]> {
 
+    const params = new HttpParams({
+      fromObject: { _limit: '2'}
+    });
 
+    return this.http.get<Config[]>('/dataskai2/assets/taskConfig.json', { params })
+      .pipe(
+        delay(500), // исскуственная задержка
+        catchError(error => { // отлавливаем ошибку
+          console.log('Error: ', error.message);
+          return throwError(error);
+        })
+      );
+  }
+
+  fetchTaskInfo(): Observable<Info[]> {
 
     const params = new HttpParams({
       fromObject: { _limit: '2'}
     });
 
-    return this.http.get<Config[]>('/assets/taskConfig.json', { params })
+    return this.http.get<Config[]>('/dataskai2/assets/taskInfo.json', { params })
+      .pipe(
+        delay(500), // исскуственная задержка
+        catchError(error => { // отлавливаем ошибку
+          console.log('Error: ', error.message);
+          return throwError(error);
+        })
+      );
+  }
+
+  fetchProjectInfo(): Observable<Info[]> {
+
+    const params = new HttpParams({
+      fromObject: { _limit: '2'}
+    });
+
+    return this.http.get<Config[]>('/dataskai2/assets/projectInfo.json', { params })
       .pipe(
         delay(500), // исскуственная задержка
         catchError(error => { // отлавливаем ошибку
@@ -42,7 +78,7 @@ export class SubmitsPageService {
       fromObject: { _limit: '2'}
     });
 
-    return this.http.get<Config[]>('/assets/taskSubmits.json', { params })
+    return this.http.get<Config[]>('/dataskai2/assets/taskSubmits.json', { params })
       .pipe(
         delay(500), // исскуственная задержка
         catchError(error => { // отлавливаем ошибку

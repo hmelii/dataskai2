@@ -1,0 +1,39 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pagination-item {
+  display: block;
+  margin: 0 7px;
+  font-size: 1.3rem;
+  line-height: (18 / 13);
+}
+
+.pagination-item--active {
+  color: var(--accent-text-color-default);
+  font-weight: 700;
+
+}
+
+.pagination-link {
+  color: inherit;
+}
+
+.pagination-arrow {
+  display: block;
+  margin: 0 7px;
+  color: var(--text-color-default);
+}
+
+.pagination-arrow-ico {
+  display: block;
+  width: 11px;
+  height: 10px;
+  font-size: 0;
+}
+
+.pagination-arrow--next .pagination-arrow-ico {
+  transform: rotate(180deg);
+}

@@ -32,3 +32,38 @@
     right: 0;
   }
 }
+
+.select-list {
+  background: var(--background-tertiary);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 0;
+  padding: 2px 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  list-style: none;
+  transform: translate(0, 4px);
+}
+
+.select-item {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+  text-align: right;
+  white-space: nowrap;
+  line-height: (14 / 12);
+}
+.select-item--active {
+  color: var(--accent-text-color-default);
+  font-weight: 700;
+}
+
+
+.select-link {
+  display: block;
+  padding: 8px;
+  color: inherit;
+}

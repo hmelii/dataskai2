@@ -1,0 +1,15 @@
+.row-per-page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.row-per-page-label {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  line-height: (14 / 12);
+}
+
+.row-per-page-pagination {
+  margin-right: 26px;
+}

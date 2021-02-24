@@ -1,0 +1,11 @@
+<div class="select" (click)="handleClick()">
+  <div class="select-value">100</div>
+  <ul class="select-list" *ngIf="isShow">
+    <li class="select-item"><a class="select-link">50</a></li>
+    <li class="select-item select-item--active"><a class="select-link ">100</a></li>
+    <li class="select-item"><a class="select-link">200</a></li>
+    <li class="select-item"><a class="select-link">500</a></li>
+    <li class="select-item"><a class="select-link">1000</a></li>
+  </ul>
+  <div class="select-ico"><app-icon [type]="'triangle'"></app-icon></div>
+</div>

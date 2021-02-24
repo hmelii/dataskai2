@@ -1,0 +1,7 @@
+<div class="select" (click)="handleClick()">
+  <div class="select-value">{{ tasks[0] }}</div>
+  <ul class="select-list" *ngIf="isShow">
+    <li class="select-item" *ngFor="let task of tasks"><a class="select-link">{{ task }}</a></li>
+  </ul>
+  <div class="select-ico"><app-icon [type]="'triangle'"></app-icon></div>
+</div>

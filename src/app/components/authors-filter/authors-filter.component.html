@@ -1,6 +1,10 @@
-<div class="authors-filter">
-  <a class="authors-filter-btn" href="#">
+<div class="authors-filter" (click)="handleClick()">
+  <a class="authors-filter-btn">
     <span class="author-filter-btn-ico"><app-icon [type]="'man'"></app-icon></span>
     <span class="author-filter-btn-text">Authors filter</span>
   </a>
+  <ul class="select-list" *ngIf="isShow">
+    <li class="select-item" *ngFor="let author of authors"><a class="select-link">{{author}}</a></li>
+
+  </ul>
 </div>

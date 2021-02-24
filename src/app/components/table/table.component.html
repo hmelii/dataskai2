@@ -59,7 +59,7 @@
         <div class="table-tbody-td-sub-sub-heading">{{row[col.id] | date:'hh:mm' }}</div>
         <div class="table-tbody-td-sub-sub-heading">{{row[col.id] | date:'dd:MM:YYYY' }}</div>
       </div>
-      <div *ngIf="col.type === 'files' && row[col.id].files.length">
+      <div *ngIf="col.type === 'files' && row[col.id].files">
         <div *ngIf="row[col.id].notebook">Notebook</div>
         <div>{{row[col.id].files.length}} {{row[col.id].files.length>1 ? 'files' : 'file' }}</div>
       </div>

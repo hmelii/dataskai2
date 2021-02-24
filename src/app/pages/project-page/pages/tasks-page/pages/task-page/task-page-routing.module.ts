@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { TaskPageComponent } from "./task-page.component";
 
 const routes: Routes = [
@@ -7,11 +7,18 @@ const routes: Routes = [
     path: '',
     component: TaskPageComponent
   },
- {
+  {
     path: 'submits',
     loadChildren: () => import('./pages/submits-page/submits-page.module').then(m => m.SubmitsPageModule),
     data: {
       breadcrumb: 'submits'
+    }
+  },
+  {
+    path: 'info',
+    loadChildren: () => import('./pages/info-page/info-page.module').then(m => m.InfoPageModule),
+    data: {
+      breadcrumb: 'info'
     }
   }
 ];
@@ -21,6 +28,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class TaskPageRoutingModule {
-    constructor() {
-    }
+  constructor() {
+  }
 }

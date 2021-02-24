@@ -1,0 +1,72 @@
+.select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  height: 24px;
+  padding: 0 24px 0 8px;
+
+
+}
+
+.select-value {
+  display: block;
+  height: 24px;
+  font-size: 1.4rem;
+  line-height: (24 / 14);
+  max-width: 218px;
+  position: relative;
+  overflow: hidden;
+  color: var(--button-color-default);
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.select-list {
+  background: var(--background-tertiary);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 0;
+  padding: 2px 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  transform: translate(0, 4px);
+}
+
+.select-item {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+  text-align: right;
+  line-height: (14 / 12);
+  white-space: nowrap;
+}
+.select-item--active {
+  color: var(--accent-text-color-default);
+  font-weight: 700;
+}
+
+.select-ico {
+
+  width: 8px;
+  height: 4px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 12px;
+  color: var(--button-color-default);
+  font-size: 0;
+  line-height: 0;
+
+
+}
+
+.select-link {
+  display: block;
+  padding: 8px;
+  color: inherit;
+}
