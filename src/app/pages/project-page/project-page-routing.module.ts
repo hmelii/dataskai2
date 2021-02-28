@@ -1,26 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProjectPageComponent } from "./project-page.component";
+import { ProjectPageComponent } from './project-page.component';
+import { TasksEnum } from '../../enums/routes/tasks.enum';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProjectPageComponent
+    component: ProjectPageComponent,
   },
   {
-    path: 'tasks',
-    loadChildren: () => import('./pages/tasks-page/tasks-page.module').then(m => m.TasksPageModule),
+    path: TasksEnum.Tasks,
+    loadChildren: () =>
+      import('./pages/tasks-page/tasks-page.module').then(
+        (m) => m.TasksPageModule
+      ),
     data: {
-      breadcrumb: 'tasks'
-    }
+      id: 'projectTasks',
+      breadcrumb: 'tasks',
+    },
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ProjectPageRoutingModule  {
-    constructor() {
-    }
+export class ProjectPageRoutingModule {
+  constructor() {}
 }

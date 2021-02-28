@@ -1,0 +1,121 @@
+:host {
+  width: 330px;
+  position: absolute;
+  top: 12px;
+  left: 64px;
+  z-index: 2;
+}
+
+.select {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  height: 24px;
+
+
+}
+
+.select-value-text {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.select-value {
+  display: inline-block;
+  padding-right: 24px;
+  height: 24px;
+  font-size: 1.4rem;
+  line-height: (24 / 14);
+  max-width: 218px;
+  position: relative;
+  color: var(--button-color-default);
+  font-weight: 500;
+
+}
+
+.select-heading {
+  margin-bottom: 16px;
+  padding: 0 7px;
+  font-size: 1.6rem;
+  line-height: (24 / 16);
+  font-weight: 500;
+}
+
+.select-sub {
+  background: var(--background-secondary);
+  border-radius: 3px;
+  padding: 24px 8px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  transform: translate(0, 4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s ease;
+
+  .select--active & {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.select-list {
+  max-height: 170px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0 -8px 0 0;
+  padding: 0 8px 0 0;
+  list-style: none;
+
+}
+
+.select-item {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+  text-align: left;
+  line-height: (14 / 12);
+  white-space: nowrap;
+  transition: all .3s ease;
+
+  &:hover {
+    background: var(--foreground-quaternary);
+  }
+}
+
+.select-item--active {
+  background: var(--foreground-quaternary);
+}
+
+.select-ico {
+
+  width: 8px;
+  height: 4px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 12px;
+  color: var(--button-color-default);
+  font-size: 0;
+  line-height: 0;
+  transform: rotate(0deg);
+  transition: transform .3s ease;
+
+  .select--active & {
+    transform: rotate(-180deg);
+  }
+
+
+}
+
+.select-link {
+  display: block;
+  padding: 8px;
+  color: inherit;
+}

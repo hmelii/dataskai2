@@ -1,36 +1,21 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InfoPageComponent } from "./info-page.component";
-import { InfoPageRoutingModule } from "./info-page-routing.module";
-import { ProjectPageModule } from "../../../../../../project-page.module";
-import { AppModule } from "../../../../../../../../app.module";
-// import { SubmitsModule } from "../../../../../../../../components/submits/submits.module";
-
-
-
+import { InfoPageComponent } from './info-page.component';
+import { InfoPageRoutingModule } from './info-page-routing.module';
+import { MainModule } from '../../../../../../../../main.module';
+import { TaskInfoComponent } from '../../../../../../../../components/molecules/task-info/task-info.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
-  declarations: [
-    InfoPageComponent,
-
-
-  ],
+  declarations: [InfoPageComponent, TaskInfoComponent],
   imports: [
-    CommonModule,
     //SubmitsModule,
+    CommonModule,
     InfoPageRoutingModule,
-    ProjectPageModule,
-    // SubmitsModule,
-
-    // AppModule,
-
+    MainModule,
+    MarkdownModule.forRoot(),
   ],
-  exports: [
-
-    InfoPageComponent,
-
-
-
-  ]
+  exports: [],
+  schemas: [NO_ERRORS_SCHEMA],
 })
-export class InfoPageModule { }
+export class InfoPageModule {}

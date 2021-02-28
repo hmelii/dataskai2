@@ -1,1 +1,12 @@
-<app-submits [config]="config" [items]="submits"></app-submits>
+<app-main-layout>
+<app-header>
+  <header-body>
+    <app-task-selection></app-task-selection>
+  </header-body>
+</app-header>
+  <app-filters-panel></app-filters-panel>
+
+  <app-main>
+    <app-submits></app-submits>
+</app-main>
+</app-main-layout>

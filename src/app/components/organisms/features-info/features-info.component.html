@@ -1,0 +1,20 @@
+<div class="feature-info" *ngIf="isShown">
+  <a class="feature-info-close-btn" (click)="handleClose()">
+    <span class="feature-info-close-btn-ico">
+      <app-icon [type]="'close'"></app-icon>
+    </span>
+  </a>
+
+  <div class="feature-info-head">
+    <div class="feature-info-heading">Features</div>
+    <div class="feature-info-used">285 321 features used</div>
+  </div>
+  <div class="feature-info-body">
+    <ul class="feature-list">
+      <li class="feature-list-item" *ngFor="let feature of featuresNames">
+        <div class="feature-list-text">{{feature.name}}</div>
+        <div class="feature-list-bubble">{{feature.description}}</div>
+      </li>
+    </ul>
+  </div>
+</div>

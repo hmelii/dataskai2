@@ -1,0 +1,91 @@
+.themes-switcher {
+  background: var(--foreground-secondary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 28px;
+  width: 64px;
+  height: 32px;
+  position: absolute;
+  right: 24px;
+  top: 4px;
+
+  &:after {
+    content: '';
+    background: var(--foreground-tertiary);
+    width: 32px;
+    height: 32px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 28px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: left .3s ease;
+  }
+
+  &.theme--dark {
+    &:after {
+      left: 32px;
+    }
+
+    &.theme--light {
+      &:after {
+        left: 0;
+      }
+    }
+  }
+
+
+}
+
+.themes-switcher-ico {
+
+  position: absolute;
+
+  color: #fff;
+  z-index: 1;
+
+}
+
+.themes-switcher-ico--light {
+  width: 15px;
+  height: 15px;
+  left: 8px;
+  top: 8px;
+  transition: color .3s ease;
+
+  .theme--dark & {
+    color: var(--text-color-tertiary);
+  }
+
+  .theme--light & {
+    color: var(--text-color-quinary);
+  }
+
+}
+
+.themes-switcher-ico--dark {
+  width: 12px;
+  height: 13px;
+  right: 10px;
+  top: 9px;
+  transition: color .3s ease;
+
+  .theme--dark & {
+    color: var(--accent-text-color-link);
+  }
+
+  .theme--light & {
+    color: var(--text-color-quaternary);
+  }
+}
+
+.themes-switcher-btn {
+  display: block;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+
+}

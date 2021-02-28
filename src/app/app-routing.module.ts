@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { NoFoundComponent } from "./components/no-found/no-found.component";
-
+import { NoFoundComponent } from './components/organisms/no-found/no-found.component';
+import { ProjectEnum } from './enums/routes/project.enum';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/project/tasks/123/submits'
+    redirectTo: '/project/tasks/123/submits',
   },
   {
-    path: 'project',
-    component: MainLayoutComponent,
-    loadChildren: () => import('./pages/project-page/project-page.module').then(m => m.ProjectPageModule),
+    path: ProjectEnum.Project,
+    loadChildren: () =>
+      import('./pages/project-page/project-page.module').then(
+        (m) => m.ProjectPageModule
+      ),
     data: {
-      breadcrumb: 'Project'
-    }
+      id: 'project',
+      breadcrumb: 'Project',
+    },
   },
-  {path: '**', component: NoFoundComponent}
-
+  { path: '**', component: NoFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

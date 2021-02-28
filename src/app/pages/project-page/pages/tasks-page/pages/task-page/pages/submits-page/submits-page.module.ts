@@ -1,34 +1,23 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SubmitsPageComponent } from "./submits-page.component";
-import { SubmitsPageRoutingModule } from "./submits-page-routing.module";
-import { ProjectPageModule } from "../../../../../../project-page.module";
+import { SubmitsPageComponent } from './submits-page.component';
+import { SubmitsPageRoutingModule } from './submits-page-routing.module';
+import { SubmitsComponent } from '../../../../../../../../components/organisms/submits/submits.component';
 
-
-
+import { MainModule } from '../../../../../../../../main.module';
 
 @NgModule({
-  declarations: [
-    SubmitsPageComponent,
-
-
-  ],
-  imports: [
-    CommonModule,
-    //SubmitsModule,
-    SubmitsPageRoutingModule,
-    ProjectPageModule,
-    // SubmitsModule,
-
-    // AppModule,
-
-  ],
+  declarations: [SubmitsPageComponent, SubmitsComponent],
+  imports: [SubmitsPageRoutingModule, CommonModule, MainModule],
   exports: [
-
-    SubmitsPageComponent,
-
-
-
-  ]
+    //SubmitsPageComponent,
+    //FeaturesInfoComponent,
+    // SubmitsComponent,
+    //TableComponent,
+    //MetaPanelComponent,
+    //RowPerPageComponent,
+    //SelectComponent
+  ],
+  schemas: [NO_ERRORS_SCHEMA],
 })
-export class SubmitsPageModule { }
+export class SubmitsPageModule {}

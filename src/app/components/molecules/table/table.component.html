@@ -1,0 +1,723 @@
+<table class="table">
+  <thead class="table-thead">
+  <tr>
+    <th class="table-thead-th">
+      <div class="table-thead-th-heading">#</div>
+    </th>
+    <th class="table-thead-th" *ngFor="let col of cols; index as i; ">
+      <div class="table-thead-th-heading">{{col.name}}</div>
+    </th>
+    <!--<th class="table-thead-th">
+      <div class="table-thead-th-heading">metric</div>
+    </th>
+    <th class="table-thead-th">
+      <div class="table-thead-th-heading"><a class="">submits</a></div>
+    </th>
+    <th class="table-thead-th">
+      <div class="table-thead-th-heading"><a class="">date</a></div>
+      <div class="table-thead-th-sub-heading">of last submit</div>
+    </th>
+    <th class="table-thead-th">
+      <div class="table-thead-th-heading">features</div>
+    </th>
+    <th class="table-thead-th">
+      <div class="table-thead-th-heading">Authors</div>
+    </th>
+    <th class="table-thead-th">
+      <div class="table-thead-th-heading">comments</div>
+    </th>
+
+    <th class="table-thead-th">
+      <div class="table-thead-th-heading">favorites</div>
+    </th>
+
+    <th class="table-thead-th">
+      <div class="table-thead-th-heading">TRASH</div>
+    </th>
+    <th class="table-thead-th">
+      <div class="table-thead-th-heading">comment</div>
+      <div class="table-thead-th-sub-heading">to task</div>
+    </th>
+    <th class="table-thead-th">
+      <div class="table-thead-th-heading">metric service</div>
+    </th>-->
+  </tr>
+  </thead>
+  <tbody class="table-tbody">
+  <tr *ngFor="let row of rows; index as i; ">
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">{{i+1}}</div>
+    </th>
+    <td class="table-tbody-td" *ngFor="let col of cols; index as j; ">
+      <div class="table-tbody-td-heading" *ngIf="col.type === 'metric'">
+        <span *ngIf="row.metrics[col.id]">{{row.metrics[col.id].short_value}}</span>
+        <app-loader *ngIf="!row.metrics[col.id]"></app-loader>
+      </div>
+      <div class="table-tbody-td-heading" *ngIf="col.type === 'field'">{{row[col.id]}}</div>
+      <div *ngIf="col.type === 'date'">
+        <div class="table-tbody-td-sub-sub-heading">{{row[col.id] | date:'hh:mm' }}</div>
+        <div class="table-tbody-td-sub-sub-heading">{{row[col.id] | date:'dd:MM:YYYY' }}</div>
+      </div>
+      <div *ngIf="col.type === 'files' && row[col.id].files">
+        <div *ngIf="row[col.id].notebook">Notebook</div>
+        <div>{{row[col.id].files.length}} {{row[col.id].files.length>1 ? 'files' : 'file' }}</div>
+      </div>
+      <div *ngIf="col.type === 'features'">
+        <a (click)="featureHandleClick(row[col.id].names)">{{row[col.id].count}}</a>
+      </div>
+
+    </td>
+    <!--<th class="table-tbody-th">
+      <div class="table-tbody-th-heading">1</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">Lasso</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>-->
+  </tr>
+  <!--<tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">2</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Eugenia Chibisova</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <app-loader></app-loader>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">1</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">Lasso</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">2</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Eugenia Chibisova</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">1</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">Lasso</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">2</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Eugenia Chibisova</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">1</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">Lasso</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">2</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Eugenia Chibisova</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">1</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">Lasso</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">2</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Eugenia Chibisova</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">1</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">Lasso</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">2</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Eugenia Chibisova</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">1</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">Lasso</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>
+  <tr>
+    <th class="table-tbody-th">
+      <div class="table-tbody-th-heading">2</div>
+    </th>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">aero_eng_1_start_fault - ENG 1 START FAULT</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading table&#45;&#45;preline">
+        <div>ROC AUC</div>
+        <div>MAE</div>
+        <div>MAPE</div>
+        <div>RMSE...</div>
+
+      </div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">1 233 221</div>
+      <app-dynamics [number]="34"></app-dynamics>
+
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">11:44</div>
+      <div class="table-tbody-td-sub-sub-heading">18.06.2020</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">234</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Eugenia Chibisova</div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading">2</div>
+    </td>
+    <td class="table-tbody-td">
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-heading"><a href="#">3</a></div>
+    </td>
+    <td class="table-tbody-td">
+      <div class="table-tbody-td-sub-sub-heading">Awesome</div>
+    </td>
+    <td class="table-tbody-td">
+      <span class="table-status-ico"><app-icon [type]="'active'"></app-icon></span>
+    </td>
+  </tr>-->
+
+  </tbody>
+</table>
+

@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "name": "indicator__flights__VP-BHF",
+      "description": "indicator__flights - boolean value, was the flight made or not \n VP_BHF - aircraft number"
+    },
+    {
+      "name": "indicator__flights__VP-BHG",
+      "description": "indicator__flights - boolean value, was the flight made or not \n VP_BHG - aircraft number"
+    },
+    {
+      "name": "indicator__flights__VP-BHI",
+      "description": "indicator__flights - boolean value, was the flight made or not \n VP_BHI - aircraft number"
+    },
+    {
+      "name": "indicator__flights__VP-BHJ",
+      "description": "indicator__flights - boolean value, was the flight made or not \n VP_BHJ - aircraft number"
+    },
+    {
+      "name": "my_custom_feature",
+      "description": "Description not available"
+    }
+  ]
+}
