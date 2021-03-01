@@ -1,6 +1,5 @@
-<div class="row-per-page">
-  <app-pagination class="row-per-page-pagination"></app-pagination>
+<div class="row-per-page" *ngIf="rows && options">
   <div class="row-per-page-label">Rows per page</div>
-  <app-select class="row-per-page-select"></app-select>
+  <app-select class="row-per-page-select" [options]="options"></app-select>
 
 </div>

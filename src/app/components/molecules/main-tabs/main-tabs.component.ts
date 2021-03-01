@@ -16,6 +16,7 @@ export class MainTabsComponent implements OnInit {
   routeProject = ProjectEnum.Project;
   routeMain = MainEnum.Main;
   routeInfo = TaskEnum.Info;
+  routeComparison = TaskEnum.Comparison;
 
   constructor() {}
 

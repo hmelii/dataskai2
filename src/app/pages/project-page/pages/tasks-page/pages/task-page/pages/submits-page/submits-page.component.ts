@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./submits-page.component.scss'],
 })
 export class SubmitsPageComponent implements OnInit {
-  title = 'Task';
+  title = 'Submits';
 
   constructor() {}
 

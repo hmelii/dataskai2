@@ -67,6 +67,7 @@ export class SubmitsComponent implements OnInit {
     this.taskService.fetchTaskConfig().subscribe(
       (config) => {
         this.config = config;
+        this.taskService.updateTaskConfigMessage(config);
         this.loaded.taskConfig = true;
       },
       (error) => {

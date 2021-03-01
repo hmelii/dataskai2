@@ -28,4 +28,10 @@ export class TaskSelectionComponent implements OnInit {
   handleItemClick(i): void {
     this.selectedIndex = i;
   }
+
+  onClickedOutside($event: Event) {
+    if (this.isShow) {
+      this.isShow = false;
+    }
+  }
 }

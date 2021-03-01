@@ -1,0 +1,3 @@
+<div class="langs-switcher">
+ <a class="langs-switcher-item" [class]="{'langs-switcher-item--active': currentLang.id === lang.id}" *ngFor="let lang of langs;" (click)="handleChangeLang(lang.id)">{{lang.title}}</a>
+</div>

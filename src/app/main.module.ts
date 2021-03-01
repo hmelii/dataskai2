@@ -22,6 +22,13 @@ import { PaginationComponent } from './components/molecules/pagination/paginatio
 import { CommonModule } from '@angular/common';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { ProjectPageRoutingModule } from './pages/project-page/project-page-routing.module';
+import { LangsSwitcherComponent } from './components/molecules/langs-switcher/langs-switcher.component';
+import { CheckboxComponent } from './components/atoms/checkbox/checkbox/checkbox.component';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { AddToComparisonComponent } from './components/molecules/add-to-comparison/add-to-comparison.component';
+import { CopyLinkComponent } from './components/molecules/copy-link/copy-link.component';
+import { AddToBasketComponent } from './components/molecules/add-to-basket/add-to-basket.component';
+import { DynamicsComponent } from './components/molecules/dynamics/dynamics.component';
 @NgModule({
   declarations: [
     ProjectNameComponent,
@@ -44,11 +51,18 @@ import { ProjectPageRoutingModule } from './pages/project-page/project-page-rout
     PaginationComponent,
     MainComponent,
     MainLayoutComponent,
+    LangsSwitcherComponent,
+    CheckboxComponent,
+    AddToComparisonComponent,
+    CopyLinkComponent,
+    AddToBasketComponent,
+    DynamicsComponent,
   ],
   imports: [
     IconSpriteModule,
     CommonModule,
     ProjectPageRoutingModule,
+    ClickOutsideModule,
     // SubmitsModule,
   ],
   providers: [],
@@ -73,6 +87,7 @@ import { ProjectPageRoutingModule } from './pages/project-page/project-page-rout
     PaginationComponent,
     MainComponent,
     MainLayoutComponent,
+    LangsSwitcherComponent,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

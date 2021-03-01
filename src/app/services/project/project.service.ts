@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, delay } from 'rxjs/operators';
+import config from '../../config/config';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class ProjectService {
     });
 
     return this.http
-      .get<any[]>('/assets/projectInfo.json', { params })
+      .get<any[]>(config.API + '/assets/projectInfo.json', { params })
       .pipe(
         delay(500), // исскуственная задержка
         catchError((error) => {

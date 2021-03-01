@@ -16,13 +16,13 @@ export class FeaturesInfoService {
 
   constructor(private http: HttpClient) {}
 
-  updateFeaturesInfoMessage(message: []) {
+  updateFeaturesInfoMessage(message: string) {
     this.featuresInfoStageMessage.next(message);
   }
 
-  fetchFeaturesInfo(featuresNames: []) {
+  fetchFeaturesInfo(submitID: string) {
     const params = new HttpParams({
-      fromObject: { ids: featuresNames.join(',') },
+      fromObject: { id: submitID },
     });
 
     return this.http

@@ -1,2 +1,4 @@
-
-<div *ngIf="infos && infos['en']" [innerHtml]="infos['en'] | markdown"   ></div>
+<div class="task-info">
+  <h3 class="task-info-heading">{{projectDescriptionHeading}}</h3>
+  <div *ngIf="infos && infos[currentLang.id]" [innerHtml]="infos[currentLang.id] | markdown"></div>
+</div>

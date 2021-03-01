@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~11.1.2",
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
+    "ng-click-outside": "^7.0.1",
     "ng-svg-icon-sprite": "^1.9.1",
     "ngx-markdown": "^11.1.0",
     "normalize.css": "^8.0.1",

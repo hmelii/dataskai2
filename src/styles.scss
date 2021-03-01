@@ -10,6 +10,7 @@ html, body {
 
 html {
   font-size: 62.5%;
+  overflow-y: scroll;
 }
 
 body {
@@ -20,7 +21,7 @@ body {
   word-wrap: break-word;
 }
 
-a, button {
+a, button, label {
   cursor: pointer;
 }
 

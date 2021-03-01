@@ -95,10 +95,37 @@
   color: var(--accent-text-color-default);
 }
 
+.table-thead-th-link {
+  color: inherit;
+}
 
-.messages {
-  border: 1px solid red;
-  height: 220px;
-  overflow: auto;
-  overscroll-behavior-y: contain;
+.table-thead-th-link--sortable {
+  padding-right: 12px;
+  position: relative;
+}
+
+.table-thead-th-link-ico {
+  width: 7px;
+  height: 4px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  color: inherit;
+  font-size: 0;
+  line-height: 1;
+}
+
+.table-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }

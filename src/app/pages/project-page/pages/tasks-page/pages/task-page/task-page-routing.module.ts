@@ -20,6 +20,28 @@ const routes: Routes = [
     },
   },
   {
+    path: TaskEnum.Favorites,
+    loadChildren: () =>
+      import('./pages/favorites-page/favorites-page.module').then(
+        (m) => m.FavoritesPageModule
+      ),
+    data: {
+      id: 'projectTaskFavorites',
+      breadcrumb: 'favorites',
+    },
+  },
+  {
+    path: TaskEnum.Comparison,
+    loadChildren: () =>
+      import('./pages/comparison-page/comparison-page.module').then(
+        (m) => m.ComparisonPageModule
+      ),
+    data: {
+      id: 'projectTaskComparison',
+      breadcrumb: 'comparison',
+    },
+  },
+  {
     path: TaskEnum.Info,
     loadChildren: () =>
       import('./pages/info-page/info-page.module').then(

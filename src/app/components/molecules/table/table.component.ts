@@ -40,7 +40,8 @@ export class TableComponent implements OnInit {
     console.log(this.rows);
   }
 
-  featureHandleClick(featuresNames: []) {
-    this.featuresInfoService.updateFeaturesInfoMessage(featuresNames);
+  featureHandleClick(submitID: string) {
+    console.log(submitID);
+    this.featuresInfoService.updateFeaturesInfoMessage(submitID);
   }
 }

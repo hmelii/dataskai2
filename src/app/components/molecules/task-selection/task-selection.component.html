@@ -1,5 +1,5 @@
-<div class="select" (click)="handleClick()" [class]="{'select--active': isShow}" *ngIf="tasks.length">
-  <div class="select-value">
+<div class="select" (clickOutside)="onClickedOutside($event)" [class]="{'select--active': isShow}" *ngIf="tasks.length">
+  <div class="select-value"  (click)="handleClick()">
     <div class="select-value-text">{{ tasks[selectedIndex] }}</div>
     <div class="select-ico">
       <app-icon type="triangle"></app-icon>
