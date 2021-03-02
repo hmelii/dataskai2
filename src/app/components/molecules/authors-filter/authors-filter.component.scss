@@ -1,7 +1,5 @@
 .authors-filter {
-  position: absolute;
-  top: 10px;
-  left: 27px;
+  margin-right: 36px;
 }
 .author-filter-btn-ico {
   display: inline-block;
@@ -11,7 +9,8 @@
 }
 .authors-filter-btn {
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
   padding-right: 16px;
   color: var(--text-color-default);
   font-size: 1.3rem;
@@ -91,4 +90,8 @@
   flex-direction: row;
   align-items: center;
   color: inherit;
+}
+
+.author-filter-btn-text {
+  white-space: nowrap;
 }

@@ -21,7 +21,7 @@ import { MainComponent } from './layouts/blocks/main/main.component';
 import { PaginationComponent } from './components/molecules/pagination/pagination.component';
 import { CommonModule } from '@angular/common';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { ProjectPageRoutingModule } from './pages/project-page/project-page-routing.module';
+import { ProjectPageRoutingModule } from './pages/project/project-page-routing.module';
 import { LangsSwitcherComponent } from './components/molecules/langs-switcher/langs-switcher.component';
 import { CheckboxComponent } from './components/atoms/checkbox/checkbox/checkbox.component';
 import { ClickOutsideModule } from 'ng-click-outside';
@@ -29,6 +29,11 @@ import { AddToComparisonComponent } from './components/molecules/add-to-comparis
 import { CopyLinkComponent } from './components/molecules/copy-link/copy-link.component';
 import { AddToBasketComponent } from './components/molecules/add-to-basket/add-to-basket.component';
 import { DynamicsComponent } from './components/molecules/dynamics/dynamics.component';
+import { FavoriteComponent } from './components/atoms/favorite/favorite.component';
+import { SubmitsFilterComponent } from './components/molecules/submits-filter/submits-filter.component';
+import { MetricServiceInSubmitsComponent } from './components/molecules/metric-service-in-submits/metric-service-in-submits.component';
+import { CommentsInSubmitsComponent } from './components/molecules/comments-in-submits/comments-in-submits.component';
+import { TableColSwitcherComponent } from './components/molecules/table-col-switcher/table-col-switcher.component';
 @NgModule({
   declarations: [
     ProjectNameComponent,
@@ -57,6 +62,11 @@ import { DynamicsComponent } from './components/molecules/dynamics/dynamics.comp
     CopyLinkComponent,
     AddToBasketComponent,
     DynamicsComponent,
+    FavoriteComponent,
+    SubmitsFilterComponent,
+    MetricServiceInSubmitsComponent,
+    CommentsInSubmitsComponent,
+    TableColSwitcherComponent,
   ],
   imports: [
     IconSpriteModule,
@@ -88,6 +98,10 @@ import { DynamicsComponent } from './components/molecules/dynamics/dynamics.comp
     MainComponent,
     MainLayoutComponent,
     LangsSwitcherComponent,
+    SubmitsFilterComponent,
+    CommentsInSubmitsComponent,
+    MetricServiceInSubmitsComponent,
+    TableColSwitcherComponent,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

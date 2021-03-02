@@ -1,7 +1,9 @@
-<div class="select" *ngIf="options" (clickOutside)="onClickedOutside($event)">
-  <div class="select-value"  (click)="handleClick()">100</div>
+<div class="select" *ngIf="options" (clickOutside)="onClickedOutside($event)" (click)="handleClick()">
+  <div class="select-value">{{selectedOption.label}}</div>
   <ul class="select-list" *ngIf="isShow">
-    <li class="select-item"><a class="select-link" *ngFor="let option of options" [class]="{'select-item--active': option.value === selectedValue}">{{option.label}}</a></li>
+    <li class="select-item" *ngFor="let option of options" [class]="{'select-item--active': option.value === selectedOption.value}" (click)="handleChange(option)">
+      <a class="select-link">{{option.label}}</a>
+    </li>
     <!--<li class="select-item "><a class="select-link ">100</a></li>
     <li class="select-item"><a class="select-link">200</a></li>
     <li class="select-item"><a class="select-link">500</a></li>

@@ -1,0 +1,17 @@
+:host {
+  position: absolute;
+  right: 74px;
+}
+.table-col-switcher {
+  display: flex;
+  height: 20px;
+  align-items: center;
+  color: var(--button-color-default);
+  font-size: 1.3rem;
+}
+
+.table-col-switcher-ico {
+  width: 12px;
+  height: 12px;
+  font-size: 0;
+}

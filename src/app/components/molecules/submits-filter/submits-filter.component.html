@@ -1,0 +1,23 @@
+<ul class="submits-filter">
+  <li class="submits-filter-item " [routerLinkActive]="'submits-filter-item--active'">
+    <a class="submits-filter-link" [routerLink]="[routeMain, routeProject, routeTasks, routeTaskID, routeSubmits]">
+      <span class="submits-filter-text">Active submits</span>
+    </a>
+  </li>
+  <li class="submits-filter-item" [routerLinkActive]="'submits-filter-item--active'">
+    <a class="submits-filter-link" [routerLink]="[routeMain, routeProject, routeTasks, routeTaskID, routeFavorites]">
+      <span class="submits-filter-ico submits-filter-ico--star">
+        <app-icon type="star"></app-icon>
+      </span>
+      <span class="submits-filter-text">Favorites  3</span>
+    </a>
+  </li>
+  <li class="submits-filter-item" [routerLinkActive]="'submits-filter-item--active'">
+    <a class="submits-filter-link" [routerLink]="[routeMain, routeProject, routeTasks, routeTaskID, routeDeleted]">
+      <span class="submits-filter-ico submits-filter-ico--basket">
+        <app-icon type="basket"></app-icon>
+      </span>
+      <span class="submits-filter-text">1</span>
+    </a>
+  </li>
+</ul>

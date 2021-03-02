@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: ProjectEnum.Project,
     loadChildren: () =>
-      import('./pages/project-page/project-page.module').then(
+      import('./pages/project/project-page.module').then(
         (m) => m.ProjectPageModule
       ),
     data: {

@@ -52,8 +52,9 @@
 }
 
 .table-tbody-th-heading {
-  color: var(--text-color-tertiary);
-  font-size: 1rem;
+  color: var(--text-color-default);
+  font-size: 1.2rem;
+  line-height: (14 / 12);
 }
 
 .table-tbody-td-heading {
@@ -105,6 +106,14 @@
 }
 
 .table-thead-th-link-ico {
+
+  display: inline-block;
+  color: inherit;
+  font-size: 0;
+  line-height: 1;
+}
+
+.table-thead-th-link-ico--triangle {
   width: 7px;
   height: 4px;
   margin: auto;
@@ -112,9 +121,24 @@
   top: 0;
   right: 0;
   bottom: 0;
-  color: inherit;
-  font-size: 0;
-  line-height: 1;
+}
+
+.table-thead-th-link-ico--star {
+  width: 14px;
+  height: 13px;
+  margin-top: 4px;
+  position: relative;
+
+
+}
+
+.table-thead-th-link-ico-svg {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .table-actions {
@@ -128,4 +152,22 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+.table-link {
+  color: inherit;
+}
+
+.table-files {
+  padding-left: 21px;
+  position: relative;
+}
+
+.table-files-ico {
+  width: 10px;
+  height: 14px;
+  position: absolute;
+  top: 2px;
+  left: 0;
+  color: inherit;
 }

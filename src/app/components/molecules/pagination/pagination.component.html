@@ -1,8 +1,10 @@
-<div class="pagination">
+<div class="pagination" *ngIf="currentPage && totalPages">
   <a class="pagination-arrow pagination-arrow--prev">
     <span class="pagination-arrow-ico"><app-icon [type]="'arrow'"></app-icon></span>
   </a>
-  <div class="pagination-item pagination-item--active"><a class="pagination-link">1</a></div>
+  <div class="pagination-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class]="{'pagination-item--active': (i + 1) === currentPage}">
+      <a class="pagination-link">{{i + 1}}</a>
+  </div>
   <a class="pagination-arrow pagination-arrow--next">
     <span class="pagination-arrow-ico"><app-icon [type]="'arrow'"></app-icon></span>
   </a>

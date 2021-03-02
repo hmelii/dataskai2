@@ -5,7 +5,17 @@
       <div class="table-thead-th-heading">#</div>
     </th>
     <th class="table-thead-th" *ngFor="let col of cols; index as i; ">
-      <div class="table-thead-th-heading" *ngIf="col.sortable"><a class="table-thead-th-link table-thead-th-link--sortable">{{col.name}} <span class="table-thead-th-link-ico"><app-icon type="triangle"></app-icon></span> </a></div>
+      <div class="table-thead-th-heading" *ngIf="col.sortable">
+        <a class="table-thead-th-link table-thead-th-link--sortable">
+          <span [ngSwitch]="col.id">
+            <ng-template ngSwitchCase="favorite">
+              <span class="table-thead-th-link-ico table-thead-th-link-ico--star"><app-icon class="table-thead-th-link-ico-svg" type="star"></app-icon></span>
+            </ng-template>
+            <ng-template ngSwitchDefault>{{col.name}}</ng-template>
+          </span>
+          <span class="table-thead-th-link-ico table-thead-th-link-ico--triangle"><app-icon type="triangle"></app-icon></span>
+        </a>
+      </div>
       <div class="table-thead-th-heading" *ngIf="!col.sortable">{{col.name}}</div>
     </th>
     <!--<th class="table-thead-th">
@@ -58,23 +68,33 @@
         <app-loader *ngIf="!row.metrics[col.id]"></app-loader>
       </div>
       <div class="table-tbody-td-heading" *ngIf="col.type === 'field'">
-        <div class="table-actions" *ngIf="col.name === 'actions'">
-          <app-add-to-comparison></app-add-to-comparison>
-          <app-copy-link></app-copy-link>
-          <app-add-to-basket></app-add-to-basket>
+        <div [ngSwitch]="col.id">
+          <ng-template ngSwitchCase="actions">
+            <div class="table-actions">
+              <app-add-to-comparison></app-add-to-comparison>
+              <app-copy-link></app-copy-link>
+              <app-add-to-basket></app-add-to-basket>
+            </div>
+          </ng-template>
+          <ng-template ngSwitchCase="favorite">
+            <app-favorite *ngIf="row[col.id]"></app-favorite>
+          </ng-template>
+          <ng-template ngSwitchDefault>
+            {{row[col.id]}}
+          </ng-template>
         </div>
-        <div *ngIf="col.name !== 'actions'">{{row[col.id]}}</div>
       </div>
       <div *ngIf="col.type === 'date'">
         <div class="table-tbody-td-sub-sub-heading">{{row[col.id] | date:'hh:mm' }}</div>
         <div class="table-tbody-td-sub-sub-heading">{{row[col.id] | date:'dd:MM:YYYY' }}</div>
       </div>
-      <div *ngIf="col.type === 'files' && row[col.id].files">
+      <div class="table-files" *ngIf="col.type === 'files' && row[col.id].files">
+        <div class="table-files-ico"><app-icon type="download"></app-icon> </div>
         <div *ngIf="row[col.id].notebook">Notebook</div>
         <div>{{row[col.id].files.length}} {{row[col.id].files.length > 1 ? 'files' : 'file' }}</div>
       </div>
       <div *ngIf="col.type === 'features'">
-        <a (click)="featureHandleClick(row.id)">{{row[col.id].count}}</a>
+        <a class="table-link" (click)="featureHandleClick(row.id)">{{row[col.id].count}}</a>
       </div>
 
     </td>

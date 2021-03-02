@@ -1,0 +1,18 @@
+:host {
+  position: absolute;
+  right: 111px;
+}
+.metric-service-in-submits {
+  display: flex;
+  height: 20px;
+  align-items: center;
+  color: var(--button-color-default);
+  font-size: 1.3rem;
+}
+
+.metric-service-in-submits-ico {
+  width: 16px;
+  height: 16px;
+  font-size: 0;
+  margin-right: 4px;
+}

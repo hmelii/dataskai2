@@ -1,5 +1,19 @@
-.filters-panel {
+:host {
   background: var(--foreground-secondary);
   height: 40px;
+  padding: 0 27px;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+
+
+
+
 }
+
+
+
+

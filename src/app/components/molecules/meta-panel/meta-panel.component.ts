@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TaskService } from '../../../services/task/task.service';
 import { TaskConfigInterface } from '../../../interfaces/task/task.interface';
 
@@ -8,14 +8,20 @@ import { TaskConfigInterface } from '../../../interfaces/task/task.interface';
   styleUrls: ['./meta-panel.component.scss'],
 })
 export class MetaPanelComponent implements OnInit {
-  config: {} = null;
+  config: TaskConfigInterface = null;
   rows: number[] = null;
+  rowsDefault: number;
+
+  @Input() totalPages: number = null;
+  @Input() currentPage: number = null;
 
   constructor(private taskService: TaskService) {
     this.taskService.currentTaskConfigStageMessage.subscribe(
       (config: TaskConfigInterface) => {
+        this.config = config;
         if (config.data) {
-          return (this.rows = config.data.rows_per_page_values);
+          this.rows = config.data.rows_per_page_values;
+          this.rowsDefault = config.data.rows_per_page_default;
         }
       }
     );

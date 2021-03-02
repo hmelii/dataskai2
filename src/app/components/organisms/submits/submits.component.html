@@ -1,5 +1,5 @@
-<div class="submits">
+<div class="submits" *ngIf="submits">
   <app-table [config]="config" [items]="submits"></app-table>
-  <app-meta-panel></app-meta-panel>
+  <app-meta-panel [currentPage]="currentPage" [totalPages]="totalPages"></app-meta-panel>
   <app-features-info class="submits-features"></app-features-info>
 </div>

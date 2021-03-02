@@ -31,6 +31,8 @@ export class SubmitsComponent implements OnInit {
   projectInfo = null;
   taskInfo = null;
   config = null;
+  currentPage = null;
+  totalPages = null;
 
   constructor(
     private submitsService: SubmitsService,
@@ -49,8 +51,11 @@ export class SubmitsComponent implements OnInit {
   fetchSubmits() {
     this.loading.submits = true;
     this.submitsService.fetchSubmits().subscribe(
-      (submits) => {
+      (submits: any) => {
+        console.log('submits', submits);
         this.submits = submits;
+        this.currentPage = submits.meta.current_page;
+        this.totalPages = submits.meta.total_pages;
         this.loaded.submits = true;
       },
       (error) => {

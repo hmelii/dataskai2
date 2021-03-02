@@ -1,7 +1,8 @@
 export enum TaskEnum {
   Submits = 'submits',
   Info = 'info',
-  Self = ':id',
-  Favorites = 'favorites',
-  Comparison = 'comparison',
+  Self = ':taskID',
+  FavoriteSubmits = 'favorite-submits',
+  ComparedSubmits = 'compared-submits',
+  DeletedSubmits = 'deleted-submits',
 }

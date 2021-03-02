@@ -1,3 +1,3 @@
 export default {
-  API: '',
+  API: '/dataskai2',
 };
