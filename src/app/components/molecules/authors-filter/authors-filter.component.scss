@@ -29,7 +29,15 @@
     top: 0;
     bottom: 0;
     right: 0;
+    transform: rotate(0deg);
+    transition: all .3s ease;
+
+    .authors-filter-active & {
+      transform: rotate(-180deg);
+    }
   }
+
+
 }
 
 .authors-filter-sub {
@@ -93,5 +101,10 @@
 }
 
 .author-filter-btn-text {
+  display: block;
   white-space: nowrap;
+  max-width: 145px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
 }

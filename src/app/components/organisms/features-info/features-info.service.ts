@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, delay } from 'rxjs/operators';
+import config from '../../../config/config';
 
 export interface FeaturesInfo {
   data: [];
@@ -26,7 +27,9 @@ export class FeaturesInfoService {
     });
 
     return this.http
-      .get<FeaturesInfo>('/assets/taskFeaturesInfo.json', { params })
+      .get<FeaturesInfo>(config.API + '/assets/taskFeaturesInfo.json', {
+        params,
+      })
       .pipe(
         delay(500), // исскуственная задержка
         catchError((error) => {

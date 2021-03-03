@@ -1,5 +1,5 @@
 <label class="checkbox">
-  <input class="checkbox-input" type="checkbox" />
+  <input class="checkbox-input" type="checkbox" (change)="handleChange($event)" [checked]="checked" />
   <span class="checkbox-ico">
     <app-icon type="check"></app-icon>
   </span>

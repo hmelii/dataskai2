@@ -1,16 +1,24 @@
 
 .loader {
-  background: url("/assets/images/loader/loader.svg") no-repeat;
-  width: 17px;
-  height: 17px;
-  animation: LoaderAnimation 1s steps(9) infinite;
+  width: 16px;
+  height: 16px;
+}
+
+.loader-ico {
+
+  width: 16px;
+  height: 16px;
+  animation: LoaderAnimation 1s infinite linear;
+  transform: rotate(0deg);
+  will-change: transform;
+
 }
 
 @keyframes LoaderAnimation {
   0% {
-    background-position: 0 0;
+    transform: rotate(0deg);
   }
   100% {
-    background-position: -207px 0;
+    transform: rotate(360deg);
   }
 }

@@ -1,24 +1,25 @@
-<div class="authors-filter" (clickOutside)="handleClickedOutside($event)">
+<div class="authors-filter" (clickOutside)="handleClickedOutside($event)" [class]="{'authors-filter-active': isShow}">
   <a class="authors-filter-btn" (click)="handleClick()">
     <span class="author-filter-btn-ico"><app-icon [type]="'man'"></app-icon></span>
-    <span class="author-filter-btn-text">Authors filter</span>
+    <span class="author-filter-btn-text">{{selectedAuthors.length ? selectedAuthors.join(', ') : 'Authors filter'}}</span>
   </a>
+
   <div class="authors-filter-sub" *ngIf="isShow">
     <div class="authors-filter-heading">
       <label class="select-label">
-        <app-checkbox class="select-label-checkbox"></app-checkbox>
+        <app-checkbox class="select-label-checkbox" (onChange)="handleChange($event)" [checked]="all.checked"></app-checkbox>
         <span class="select-label-title">All</span>
       </label>
     </div>
-    <ul class="select-list">
 
+    <ul class="select-list">
       <li class="select-item" *ngFor="let author of authors">
         <label class="select-label">
-          <app-checkbox class="select-label-checkbox"></app-checkbox>
-          <span class="select-label-title">{{author}}</span>
+          <app-checkbox class="select-label-checkbox" (onChange)="handleChange($event, author)" [checked]="author.checked"></app-checkbox>
+          <span class="select-label-title">{{author.value}}</span>
         </label>
       </li>
-
     </ul>
   </div>
 </div>
+
