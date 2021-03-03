@@ -1,29 +1,48 @@
 .pagination {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .pagination-item {
   display: block;
-  margin: 0 7px;
-  font-size: 1.3rem;
-  line-height: (18 / 13);
+  margin: 0 5px;
+  font-size: 1.2rem;
+  line-height: (14 / 12);
+  transition: all .3s ease;
 }
 
 .pagination-item--active {
   color: var(--accent-text-color-default);
   font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 18 / 13;
+
 
 }
 
 .pagination-link {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
   color: inherit;
+  transition: all .3s ease;
+
+  .pagination-item--active & {
+    align-items: flex-end;
+
+  }
 }
 
 .pagination-arrow {
-  display: block;
-  margin: 0 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin: 0 5px;
   color: var(--text-color-default);
 }
 
