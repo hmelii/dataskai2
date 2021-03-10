@@ -1,10 +1,16 @@
 .add-to-comparison {
-  display: block;
   border-radius: 1px;
-  width: 16px;
-  height: 16px;
+  display: block;
+  width: 18px;
+  height: 18px;
   position: relative;
   color: inherit;
+  transition: all 0.3s ease;
+}
+
+.add-to-comparison--in-comparison {
+  color: var(--accent-text-color-sixfold);
+  background: var(--accent-text-color-positive);
 }
 
 .add-to-comparison-ico {
@@ -18,4 +24,3 @@
   bottom: 0;
   font-size: 0;
 }
-

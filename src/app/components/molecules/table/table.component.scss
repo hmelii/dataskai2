@@ -1,6 +1,6 @@
 .table {
   border: 0;
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
   width: 100%;
 }
@@ -20,8 +20,24 @@
   border-left: 1px solid var(--table-border-default);
   border-top: 1px solid var(--table-border-default);
   padding: 12px;
+  position: relative;
   vertical-align: top;
   text-align: left;
+  transition: all 0.3s ease;
+}
+
+.table-tbody-tr {
+  &:hover {
+    .table-tbody-td {
+      background: var(--table-background-tertiary);
+    }
+  }
+
+  .table-tbody-td--attachments {
+    &:hover {
+      background: var(--table-background-quaternary);
+    }
+  }
 }
 
 .table-thead-th-heading {
@@ -36,7 +52,6 @@
   text-overflow: ellipsis;
   max-width: 180px;
 
-
   a {
     color: inherit;
   }
@@ -45,7 +60,7 @@
 .table-thead-th-sub-heading {
   margin-top: 3px;
   color: var(--text-color-secondary);
-  font-size: .8rem;
+  font-size: 0.8rem;
   letter-spacing: 0.01em;
   line-height: 1;
   text-transform: uppercase;
@@ -66,7 +81,6 @@
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-
 }
 
 .table-tbody-td--sub-heading {
@@ -86,7 +100,6 @@
   * + & {
     margin-top: 4px;
   }
-
 }
 
 .table-status-ico {
@@ -100,27 +113,11 @@
   color: inherit;
 }
 
-.table-thead-th-link--sortable {
-  padding-right: 12px;
-  position: relative;
-}
-
 .table-thead-th-link-ico {
-
   display: inline-block;
   color: inherit;
   font-size: 0;
   line-height: 1;
-}
-
-.table-thead-th-link-ico--triangle {
-  width: 7px;
-  height: 4px;
-  margin: auto;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
 }
 
 .table-thead-th-link-ico--star {
@@ -128,8 +125,6 @@
   height: 13px;
   margin-top: 4px;
   position: relative;
-
-
 }
 
 .table-thead-th-link-ico-svg {
@@ -155,19 +150,5 @@
 }
 
 .table-link {
-  color: inherit;
-}
-
-.table-files {
-  padding-left: 21px;
-  position: relative;
-}
-
-.table-files-ico {
-  width: 10px;
-  height: 14px;
-  position: absolute;
-  top: 2px;
-  left: 0;
   color: inherit;
 }

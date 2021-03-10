@@ -1,4 +1,8 @@
-<a class="add-to-comparison">
+<a
+  class="add-to-comparison"
+  [class]="{ 'add-to-comparison--in-comparison': isInComparison }"
+  (click)="handleClick()"
+>
   <span class="add-to-comparison-ico">
     <app-icon type="comparison"></app-icon>
   </span>

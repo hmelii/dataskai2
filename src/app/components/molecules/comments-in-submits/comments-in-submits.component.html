@@ -1,6 +1,40 @@
-<a class="comments-in-submits">
-  <span class="comments-in-submits-ico">
-    <app-icon type="comment"></app-icon>
-  </span>
-  <span class="comments-in-submits-text">9</span>
-</a>
+<div
+  class="comments-in-submits"
+  *ngIf="taskSubmitsComments && taskSubmitsComments.length"
+>
+  <a class="comments-in-submits-trigger" (click)="handleToggle()">
+    <span class="comments-in-submits-ico">
+      <app-icon type="comment"></app-icon>
+    </span>
+    <span class="comments-in-submits-text">{{
+      taskSubmitsComments.length
+    }}</span>
+  </a>
+
+  <div class="comments-in-submits-sub" *ngIf="isActive">
+    <a class="comments-in-submits-sub-close" (click)="handleToggle()">
+      <span class="comments-in-submits-sub-close-ico">
+        <app-icon type="close"></app-icon>
+      </span>
+    </a>
+    <div class="comments-in-submits-sub-heading">Comments</div>
+    <div class="comments-in-submits-sub-search">
+      <input
+        class="comments-in-submits-sub-search-field"
+        type="search"
+        value=""
+      />
+      <div class="comments-in-submits-sub-search-ico">
+        <app-icon type="search"></app-icon>
+      </div>
+    </div>
+    <ul class="comments-in-submits-sub-list">
+      <li
+        class="comments-in-submits-sub-item"
+        *ngFor="let submit of taskSubmitsComments; let i = index"
+      >
+        {{ submit.comment }}
+      </li>
+    </ul>
+  </div>
+</div>

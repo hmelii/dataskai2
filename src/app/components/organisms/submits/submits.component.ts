@@ -1,8 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SubmitsService } from '../../../services/submits/submits.service';
 import { AuthorsService } from '../../../services/authors/authors.service';
 import { ProjectService } from '../../../services/project/project.service';
 import { TaskService } from '../../../services/task/task.service';
+import {
+  TaskConfigColumnInterface,
+  TaskConfigInterface,
+  TaskSubmitsInterface,
+} from '../../../interfaces/task/task.interface';
+import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
 
 @Component({
   selector: 'app-submits',
@@ -14,7 +19,7 @@ export class SubmitsComponent implements OnInit {
     projectInfo: false,
     taskInfo: false,
     taskConfig: false,
-    submits: false,
+    taskSubmits: false,
     config: false,
   };
 
@@ -22,57 +27,56 @@ export class SubmitsComponent implements OnInit {
     projectInfo: false,
     taskConfig: false,
     taskInfo: false,
-    submits: false,
+    taskSubmits: false,
     config: false,
   };
 
-  submits = null;
+  taskSubmits: SubmitInterface[] = null;
   error = null;
   projectInfo = null;
   taskInfo = null;
-  config = null;
+  taskConfigColumns: TaskConfigColumnInterface[] = null;
   currentPage = null;
   totalPages = null;
 
   constructor(
-    private submitsService: SubmitsService,
     private authorsService: AuthorsService,
     private projectService: ProjectService,
     private taskService: TaskService
   ) {}
 
   ngOnInit(): void {
-    this.fetchConfig();
+    this.fetchTaskConfig();
     this.fetchSubmits();
     this.fetchTaskInfo();
     this.fetchProjectInfo();
   }
 
   fetchSubmits() {
-    this.loading.submits = true;
-    this.submitsService.fetchSubmits().subscribe(
-      (submits: any) => {
-        console.log('submits', submits);
-        this.submits = submits;
-        this.currentPage = submits.meta.current_page;
-        this.totalPages = submits.meta.total_pages;
-        this.loaded.submits = true;
+    this.loading.taskSubmits = true;
+    this.taskService.fetchTaskSubmits().subscribe(
+      (taskSubmits: TaskSubmitsInterface) => {
+        this.taskService.updateTaskSubmitsMessage(taskSubmits);
+        this.taskSubmits = taskSubmits.data.submits;
+        this.currentPage = taskSubmits.meta.current_page;
+        this.totalPages = taskSubmits.meta.total_pages;
+        this.loaded.taskSubmits = true;
       },
       (error) => {
         this.error = error.message;
       },
       () => {
-        this.loading.submits = false;
+        this.loading.taskSubmits = false;
       }
     );
   }
 
-  fetchConfig() {
+  fetchTaskConfig() {
     this.loading.config = true;
     this.taskService.fetchTaskConfig().subscribe(
-      (config) => {
-        this.config = config;
-        this.taskService.updateTaskConfigMessage(config);
+      (taskConfig: TaskConfigInterface) => {
+        this.taskConfigColumns = taskConfig.data.columns;
+        this.taskService.updateTaskConfigMessage(taskConfig);
         this.loaded.taskConfig = true;
       },
       (error) => {

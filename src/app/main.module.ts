@@ -34,6 +34,8 @@ import { SubmitsFilterComponent } from './components/molecules/submits-filter/su
 import { MetricServiceInSubmitsComponent } from './components/molecules/metric-service-in-submits/metric-service-in-submits.component';
 import { CommentsInSubmitsComponent } from './components/molecules/comments-in-submits/comments-in-submits.component';
 import { TableColSwitcherComponent } from './components/molecules/table-col-switcher/table-col-switcher.component';
+import { TableAttachmentsComponent } from './components/molecules/table-attachments/table-attachments.component';
+import { TableColSortingComponent } from './components/molecules/table-col-sorting/table-col-sorting.component';
 @NgModule({
   declarations: [
     ProjectNameComponent,
@@ -67,6 +69,8 @@ import { TableColSwitcherComponent } from './components/molecules/table-col-swit
     MetricServiceInSubmitsComponent,
     CommentsInSubmitsComponent,
     TableColSwitcherComponent,
+    TableAttachmentsComponent,
+    TableColSortingComponent,
   ],
   imports: [
     IconSpriteModule,

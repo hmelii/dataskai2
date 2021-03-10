@@ -1,0 +1,27 @@
+.table-col-sorting-link {
+  padding-right: 12px;
+  position: relative;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.table-col-sorting-ico {
+  width: 7px;
+  height: 4px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 0;
+  transition: all 0.3s ease;
+
+  .table-col-sorting-link--asc & {
+    transform: rotate(-180deg);
+  }
+}
+
+.table-col-sorting-link--asc,
+.table-col-sorting-link--desc {
+  color: var(--table-button-background-quaternary);
+}

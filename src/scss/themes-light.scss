@@ -1,5 +1,3 @@
-
-
 .theme--light {
   /* Светлая тема */
   /* Colors */
@@ -12,6 +10,7 @@
   --background-tertiary: var(--color-gray-20);
   --background-quaternary: var(--color-gray-10);
   --background-quinary: var(--color-white-100);
+  --background-sixfold: var(--color-black-05);
 
   --table-background-default: var(--color-gray-40);
   --table-background-secondary: var(--color-gray-30);
@@ -27,6 +26,7 @@
   --table-button-background-default: var(--color-black-10);
   --table-button-background-secondary: var(--color-violet-90);
   --table-button-background-tertiary: var(--color-violet-70);
+  --table-button-background-quaternary: var(--color-green-40);
   --table-button-background-disabled: var(--color-light-gray-80);
 
   --primary-default: #5dfdcb;
@@ -40,7 +40,7 @@
   /* Shadows */
   --background-tertiary-shadow: 0 1px 3px 0 rgba(92, 125, 153, 0.5);
 
-  --font-family-default: 'Roboto', sans-serif;
+  --font-family-default: "Roboto", sans-serif;
   --font-size-default: 1.2rem;
 
   --line-height-default: 1.5;
@@ -64,6 +64,9 @@
   --accent-text-color-tertiary: var(--color-blue-100);
   --accent-text-color-quaternary: var(--color-violet-90);
   --accent-text-color-quinary: var(--color-violet-40);
+  --accent-text-color-sixfold: var(--color-dark-gray-40);
+  --accent-text-color-negative: var(--color-red-100);
+  --accent-text-color-positive: var(--color-green-60);
 
   --accent-text-color-link: var(--color-blue-100);
 }

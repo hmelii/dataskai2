@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorsService } from '../../../../../../../../services/authors/authors.service';
 import { TaskService } from '../../../../../../../../services/task/task.service';
-import { SubmitsService } from '../../../../../../../../services/submits/submits.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
@@ -20,7 +19,6 @@ export class InfoPageComponent implements OnInit {
   private subscription: Subscription;
 
   constructor(
-    private submitsService: SubmitsService,
     private authorsService: AuthorsService,
     private taskService: TaskService,
     private activateRoute: ActivatedRoute

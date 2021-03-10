@@ -2,7 +2,7 @@
   position: absolute;
   right: 111px;
 }
-.metric-service-in-submits {
+.metric-service-in-submits-selected {
   display: flex;
   height: 20px;
   align-items: center;
@@ -16,3 +16,73 @@
   font-size: 0;
   margin-right: 4px;
 }
+
+.authors-filter-sub {
+  width: 200px;
+
+  background: var(--background-secondary);
+  padding: 11px 8px;
+
+  border-radius: 3px;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, 4px);
+
+}
+
+.select-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0 -8px 0 0;
+  padding: 0 8px 0 0;
+
+  list-style: none;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.select-item {
+  margin: 0 0 16px;
+  padding: 0;
+  font-size: 1.2rem;
+  line-height: (14 / 12);
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+.authors-filter-heading {
+  border-bottom: 1px solid #494C50;
+  padding-bottom: 9px;
+  margin-bottom: 9px;
+}
+
+.select-item--active {
+  color: var(--accent-text-color-default);
+  font-weight: 700;
+}
+
+.select-label-checkbox {
+  margin-right: 8px;
+}
+
+.select-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: inherit;
+}
+
+.author-filter-btn-text {
+  display: block;
+  white-space: nowrap;
+  max-width: 145px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+}
+

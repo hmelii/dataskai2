@@ -1,10 +1,9 @@
-@import '~normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import "~normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 @import "scss/vars";
 
-
-
-html, body {
+html,
+body {
   background: var(--background-default);
 }
 
@@ -21,10 +20,16 @@ body {
   word-wrap: break-word;
 }
 
-a, button, label {
+a,
+button,
+label {
   cursor: pointer;
 }
 
 a {
   color: var(--accent-text-color-link);
+}
+
+* {
+  box-sizing: border-box;
 }

@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { SubmitsService } from '../../../services/submits/submits.service';
+import { Component, OnInit } from '@angular/core';
 import { AuthorsService } from '../../../services/authors/authors.service';
 import { ProjectService } from '../../../services/project/project.service';
 import { TaskService } from '../../../services/task/task.service';
+import { TaskSubmitsInterface } from '../../../interfaces/task/task.interface';
+import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
 
 @Component({
   selector: 'app-compared-submits',
@@ -14,7 +15,7 @@ export class ComparedSubmitsComponent implements OnInit {
     projectInfo: false,
     taskInfo: false,
     taskConfig: false,
-    submits: false,
+    taskSubmits: false,
     config: false,
   };
 
@@ -22,18 +23,17 @@ export class ComparedSubmitsComponent implements OnInit {
     projectInfo: false,
     taskConfig: false,
     taskInfo: false,
-    submits: false,
+    taskSubmits: false,
     config: false,
   };
 
-  submits = null;
+  taskSubmits: SubmitInterface[] = null;
   error = null;
   projectInfo = null;
   taskInfo = null;
   config = null;
 
   constructor(
-    private submitsService: SubmitsService,
     private authorsService: AuthorsService,
     private projectService: ProjectService,
     private taskService: TaskService
@@ -47,17 +47,17 @@ export class ComparedSubmitsComponent implements OnInit {
   }
 
   fetchSubmits() {
-    this.loading.submits = true;
-    this.submitsService.fetchSubmits().subscribe(
-      (submits) => {
-        this.submits = submits;
-        this.loaded.submits = true;
+    this.loading.taskSubmits = true;
+    this.taskService.fetchTaskSubmits().subscribe(
+      (taskSubmits: TaskSubmitsInterface) => {
+        this.taskSubmits = taskSubmits.data.submits;
+        this.loaded.taskSubmits = true;
       },
       (error) => {
         this.error = error.message;
       },
       () => {
-        this.loading.submits = false;
+        this.loading.taskSubmits = false;
       }
     );
   }

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FeaturesInfoService } from '../../organisms/features-info/features-info.service';
+import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
+import { TaskConfigColumnInterface } from '../../../interfaces/task/task.interface';
 
 @Component({
   selector: 'app-table',
@@ -7,41 +9,35 @@ import { FeaturesInfoService } from '../../organisms/features-info/features-info
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  @Input() config;
-  @Input() items;
+  @Input() colsItems;
+  @Input() rowsItems: SubmitInterface[];
 
-  cols: [] = [];
-  rows: [] = [];
-  headDict = {};
+  cols: TaskConfigColumnInterface[] = [];
+  rows: SubmitInterface[] = [];
 
   constructor(private featuresInfoService: FeaturesInfoService) {}
 
   ngOnInit(): void {}
 
   ngOnChanges(): void {
-    if (this.config) {
+    if (this.colsItems) {
       this.generateTableHead();
     }
 
-    if (this.items) {
+    if (this.rowsItems) {
       this.generateTableBody();
     }
   }
 
   generateTableHead() {
-    //console.log('this.config', this.config);
-    this.cols = this.config.data.columns;
-    console.log('this.config', this.config);
+    this.cols = this.colsItems;
   }
 
   generateTableBody() {
-    console.log('this.items', this.items);
-    this.rows = this.items.data.submits;
-    console.log(this.rows);
+    this.rows = this.rowsItems;
   }
 
   featureHandleClick(submitID: string) {
-    console.log(submitID);
     this.featuresInfoService.updateFeaturesInfoMessage(submitID);
   }
 }

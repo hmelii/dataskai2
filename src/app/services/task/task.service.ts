@@ -3,11 +3,18 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, delay } from 'rxjs/operators';
 import config from '../../config/config';
+import {
+  TaskConfigInterface,
+  TaskSubmitsInterface,
+} from '../../interfaces/task/task.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
+  private taskSubmitsStageMessage = new BehaviorSubject(null);
+  currentTaskSubmitsStageMessage = this.taskSubmitsStageMessage.asObservable();
+
   private taskInfoStageMessage = new BehaviorSubject([]);
   currentTaskInfoStageMessage = this.taskInfoStageMessage.asObservable();
 
@@ -18,10 +25,6 @@ export class TaskService {
 
   updateTaskInfoMessage(message: []) {
     this.taskInfoStageMessage.next(message);
-  }
-
-  updateTaskConfigMessage(message: {}) {
-    this.taskConfigStageMessage.next(message);
   }
 
   fetchTaskInfo(): Observable<any[]> {
@@ -41,13 +44,42 @@ export class TaskService {
       );
   }
 
-  fetchTaskConfig(): Observable<any[]> {
+  fetchTaskConfig(): Observable<TaskConfigInterface> {
     const params = new HttpParams({
       fromObject: { _limit: '2' },
     });
 
     return this.http
-      .get<any[]>(config.API + '/assets/taskConfig.json', { params })
+      .get<TaskConfigInterface>(config.API + '/assets/taskConfig.json', {
+        params,
+      })
+      .pipe(
+        delay(500), // исскуственная задержка
+        catchError((error) => {
+          // отлавливаем ошибку
+          console.log('Error: ', error.message);
+          return throwError(error);
+        })
+      );
+  }
+
+  updateTaskConfigMessage(message: TaskConfigInterface) {
+    this.taskConfigStageMessage.next(message);
+  }
+
+  updateTaskSubmitsMessage(taskSubmits: TaskSubmitsInterface) {
+    this.taskSubmitsStageMessage.next(taskSubmits);
+  }
+
+  fetchTaskSubmits(): Observable<TaskSubmitsInterface> {
+    const params = new HttpParams({
+      fromObject: { _limit: '2' },
+    });
+
+    return this.http
+      .get<TaskSubmitsInterface>(config.API + '/assets/taskSubmits.json', {
+        params,
+      })
       .pipe(
         delay(500), // исскуственная задержка
         catchError((error) => {

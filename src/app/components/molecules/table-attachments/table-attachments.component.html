@@ -1,0 +1,38 @@
+<div class="table-attachments" *ngIf="attachments && attachments.files">
+  <div class="table-attachments-heading">
+    <div class="table-attachments-ico">
+      <app-icon type="download"></app-icon>
+    </div>
+    <div *ngIf="attachments.notebook">Notebook</div>
+  </div>
+  <div>
+    {{ attachments.files.length }}
+    {{ attachments.files.length > 1 ? "files" : "file" }}
+  </div>
+  <div class="table-attachments-sub">
+    <div class="table-attachments-sub-in">
+      <ul class="table-attachments-sub-list">
+        <li
+          class="table-attachments-sub-item"
+          *ngFor="let file of attachments.files"
+        >
+          <a
+            class="table-attachments-sub-link"
+            [href]="file.download_path"
+            download
+          >
+            <span
+              class="table-attachments-sub-ico table-attachments-sub-ico--ipynb"
+            >
+              <app-icon type="ipynb"></app-icon>
+            </span>
+            <span class="table-attachments-sub-text">{{ file.name }}</span>
+            <span class="table-attachments-sub-ico">
+              <app-icon type="download"></app-icon>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
