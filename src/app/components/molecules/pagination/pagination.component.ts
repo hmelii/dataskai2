@@ -1,5 +1,11 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -9,14 +15,12 @@ import { Router } from '@angular/router';
 export class PaginationComponent implements OnInit, OnChanges {
   @Input() currentPage: number = null;
   @Input() totalPages: number = null;
+  @Output() onPageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.router.navigate(['/project/tasks/123/submits'], {
-      queryParams: { page: this.currentPage },
-      queryParamsHandling: 'merge',
-    });
+    this.handleChangePage();
   }
 
   ngOnChanges(): void {
@@ -30,15 +34,17 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   handlePageClick(i: number) {
-    if (i > 0 && i < this.totalPages) this.currentPage = i + 1;
+    if (i > -1 && i < this.totalPages) this.currentPage = i + 1;
+    this.handleChangePage();
   }
 
   handlePrevPageClick() {
     this.currentPage = this.currentPage > 1 ? this.currentPage - 1 : 1;
-    this.router.navigate(['/project/tasks/123/submits'], {
-      queryParams: { page: this.currentPage },
-      queryParamsHandling: 'merge',
-    });
+    this.handleChangePage();
+  }
+
+  handleChangePage() {
+    this.onPageChange.emit(this.currentPage);
   }
 
   handleNextPageClick() {
@@ -46,9 +52,6 @@ export class PaginationComponent implements OnInit, OnChanges {
       this.currentPage < this.totalPages
         ? this.currentPage + 1
         : this.totalPages;
-    this.router.navigate(['/project/tasks/123/submits'], {
-      queryParams: { page: this.currentPage },
-      queryParamsHandling: 'merge',
-    });
+    this.handleChangePage();
   }
 }

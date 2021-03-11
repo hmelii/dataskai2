@@ -1,5 +1,21 @@
 <div class="submits" *ngIf="taskSubmits">
-  <app-table [colsItems]="taskConfigColumns" [rowsItems]="taskSubmits"></app-table>
-  <app-meta-panel [currentPage]="currentPage" [totalPages]="totalPages"></app-meta-panel>
+  <app-table
+    [colsItems]="taskConfigColumns"
+    [rowsItems]="taskSubmits"
+  ></app-table>
+  <app-meta-panel [currentPage]="currentPage" [totalPages]="totalPages">
+    <app-pagination
+      class="meta-panel-pagination"
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (onPageChange)="pageChanged($event)"
+    ></app-pagination>
+
+    <app-row-per-page
+      [rows]="rows"
+      [rowsDefault]="rowsDefault"
+      *ngIf="rows"
+    ></app-row-per-page>
+  </app-meta-panel>
   <app-features-info class="submits-features"></app-features-info>
 </div>

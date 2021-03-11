@@ -8,6 +8,7 @@ import {
   TaskSubmitsInterface,
 } from '../../../interfaces/task/task.interface';
 import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-submits',
@@ -38,12 +39,24 @@ export class SubmitsComponent implements OnInit {
   taskConfigColumns: TaskConfigColumnInterface[] = null;
   currentPage = null;
   totalPages = null;
+  rows: number[] = null;
+  rowsDefault: number;
 
   constructor(
     private authorsService: AuthorsService,
     private projectService: ProjectService,
-    private taskService: TaskService
-  ) {}
+    private taskService: TaskService,
+    private router: Router
+  ) {
+    this.taskService.currentTaskConfigStageMessage.subscribe(
+      (taskConfig: TaskConfigInterface) => {
+        if (taskConfig.data) {
+          this.rows = taskConfig.data.rows_per_page_values;
+          this.rowsDefault = taskConfig.data.rows_per_page_default;
+        }
+      }
+    );
+  }
 
   ngOnInit(): void {
     this.fetchTaskConfig();
@@ -52,9 +65,9 @@ export class SubmitsComponent implements OnInit {
     this.fetchProjectInfo();
   }
 
-  fetchSubmits() {
+  fetchSubmits(params = {}) {
     this.loading.taskSubmits = true;
-    this.taskService.fetchTaskSubmits().subscribe(
+    this.taskService.fetchTaskSubmits(params).subscribe(
       (taskSubmits: TaskSubmitsInterface) => {
         this.taskService.updateTaskSubmitsMessage(taskSubmits);
         this.taskSubmits = taskSubmits.data.submits;
@@ -69,6 +82,15 @@ export class SubmitsComponent implements OnInit {
         this.loading.taskSubmits = false;
       }
     );
+  }
+
+  pageChanged(currentPage) {
+    this.router.navigate(['/project/tasks/123/submits'], {
+      queryParams: { page: currentPage },
+      queryParamsHandling: 'merge',
+    });
+    this.fetchSubmits({ start: currentPage * this.rowsDefault });
+    console.log('currentPage', currentPage);
   }
 
   fetchTaskConfig() {

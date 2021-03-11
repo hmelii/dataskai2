@@ -71,9 +71,9 @@ export class TaskService {
     this.taskSubmitsStageMessage.next(taskSubmits);
   }
 
-  fetchTaskSubmits(): Observable<TaskSubmitsInterface> {
+  fetchTaskSubmits(getTaskParams: {} = {}): Observable<TaskSubmitsInterface> {
     const params = new HttpParams({
-      fromObject: { _limit: '2' },
+      fromObject: { ...getTaskParams },
     });
 
     return this.http

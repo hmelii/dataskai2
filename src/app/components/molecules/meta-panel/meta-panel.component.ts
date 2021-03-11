@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TaskService } from '../../../services/task/task.service';
 import { TaskConfigInterface } from '../../../interfaces/task/task.interface';
 

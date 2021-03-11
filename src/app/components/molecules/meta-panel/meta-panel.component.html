@@ -1,5 +1,3 @@
 <div class="meta-panel" *ngIf="config">
-  <app-pagination class="meta-panel-pagination" [currentPage]="currentPage" [totalPages]="totalPages"></app-pagination>
-
-  <app-row-per-page [rows]="rows" [rowsDefault]="rowsDefault" *ngIf="rows"></app-row-per-page>
+  <ng-content></ng-content>
 </div>

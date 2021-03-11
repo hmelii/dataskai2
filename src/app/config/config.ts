@@ -1,4 +1,4 @@
 export default {
-  API: '/dataskai2',
-  // API: '',
+  // API: '/dataskai2',
+  API: '',
 };
