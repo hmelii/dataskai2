@@ -71,29 +71,30 @@
         [class]="'table-tbody-td--' + col.id"
         *ngFor="let col of cols; index as j"
       >
-        <div class="table-tbody-td-heading" *ngIf="col.type === 'metric'">
-          <div class="table-metric" *ngIf="row.metrics[col.id]">
-            <div>{{ row.metrics[col.id].short_value }}</div>
-            <app-dynamics [number]="row.metrics[col.id].delta"></app-dynamics>
-          </div>
+        <div *ngIf="col.type === 'metric'">
+          <app-table-metric
+            *ngIf="row.metrics[col.id]"
+            [metric]="row.metrics[col.id]"
+          ></app-table-metric>
+
           <app-loader *ngIf="!row.metrics[col.id]"></app-loader>
         </div>
-        <div class="table-tbody-td-heading" *ngIf="col.type === 'field'">
-          <div [ngSwitch]="col.id">
-            <ng-template ngSwitchCase="actions">
-              <div class="table-actions">
-                <app-add-to-comparison></app-add-to-comparison>
-                <app-copy-link></app-copy-link>
-                <app-add-to-basket></app-add-to-basket>
-              </div>
-            </ng-template>
-            <ng-template ngSwitchCase="favorite">
-              <app-favorite *ngIf="row[col.id]"></app-favorite>
-            </ng-template>
-            <ng-template ngSwitchDefault>
+        <div [ngSwitch]="col.id">
+          <ng-template ngSwitchCase="actions">
+            <div class="table-actions">
+              <app-add-to-comparison></app-add-to-comparison>
+              <app-copy-link></app-copy-link>
+              <app-add-to-basket></app-add-to-basket>
+            </div>
+          </ng-template>
+          <ng-template ngSwitchCase="favorite">
+            <app-favorite [isFavorite]="row[col.id]"></app-favorite>
+          </ng-template>
+          <ng-template ngSwitchDefault>
+            <div class="table-tbody-td-heading" *ngIf="col.type === 'field'">
               {{ row[col.id] }}
-            </ng-template>
-          </div>
+            </div>
+          </ng-template>
         </div>
         <div *ngIf="col.type === 'date'">
           <div class="table-tbody-td-sub-sub-heading">

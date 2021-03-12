@@ -15,13 +15,12 @@ export class SubmitsFilterComponent implements OnInit {
   routeSubmits = TaskEnum.Submits;
   routeTasks = TasksEnum.Tasks;
   routeProject = ProjectEnum.Project;
-  routeMain = MainEnum.Main;
+  routeMain = MainEnum.Self;
   routeInfo = TaskEnum.Info;
   routeFavorites = TaskEnum.FavoriteSubmits;
   routeDeleted = TaskEnum.DeletedSubmits;
 
   constructor(private activateRoute: ActivatedRoute) {
-    console.log(activateRoute);
     activateRoute.params.subscribe(
       (params) => (this.routeTaskID = params['taskID'])
     );

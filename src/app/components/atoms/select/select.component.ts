@@ -20,7 +20,6 @@ export class SelectComponent implements OnInit, OnChanges {
 
   handleClick() {
     this.isShow = !this.isShow;
-    console.log(this.isShow);
   }
 
   ngOnChanges(): void {

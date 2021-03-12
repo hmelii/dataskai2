@@ -37,15 +37,12 @@ export class FeaturesInfoComponent implements OnInit {
       (featuresInfo: FeaturesInfo) => {
         this.featuresInfo = featuresInfo;
         this.featuresNames = this.featuresInfo.data;
-        console.log('this.featuresNames', this.featuresNames);
         this.loading = false;
       },
       (error) => {
         this.error = error.message;
       },
-      () => {
-        console.log('Выполняется в конце стрима в любом случае');
-      }
+      () => {}
     );
   }
 

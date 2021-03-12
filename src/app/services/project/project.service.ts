@@ -23,7 +23,7 @@ export class ProjectService {
     });
 
     return this.http
-      .get<any[]>(config.API + '/assets/projectInfo.json', { params })
+      .get<any[]>(config.BASE_URL + '/assets/projectInfo.json', { params })
       .pipe(
         delay(500), // исскуственная задержка
         catchError((error) => {

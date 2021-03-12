@@ -1,0 +1,9 @@
+<div class="table-metric" *ngIf="metric">
+  <div class="table-metric-short-value">{{ metric.short_value }}</div>
+  <div class="table-metric-delta">
+    <app-dynamics [number]="metric.delta"></app-dynamics>
+  </div>
+  <div class="table-metric-value">
+    {{ metric.value }}
+  </div>
+</div>

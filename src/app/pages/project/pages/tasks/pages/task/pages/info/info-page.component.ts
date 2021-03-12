@@ -24,7 +24,6 @@ export class InfoPageComponent implements OnInit {
     private activateRoute: ActivatedRoute
   ) {
     this.subscription = activateRoute.params.subscribe((params) => {
-      console.log('params', activateRoute);
       //this.id = params['id'];
     });
   }
@@ -39,7 +38,6 @@ export class InfoPageComponent implements OnInit {
       (info) => {
         this.taskInfo = info;
         this.authorsService.updateAuthorsMessage(this.taskInfo.data.authors);
-        console.log(this.taskInfo.data);
         this.taskService.updateTaskInfoMessage(
           this.taskInfo.data.task_description
         );
@@ -48,9 +46,7 @@ export class InfoPageComponent implements OnInit {
       (error) => {
         this.error = error.message;
       },
-      () => {
-        console.log('Выполняется в конце стрима в любом случае');
-      }
+      () => {}
     );
   }
 }

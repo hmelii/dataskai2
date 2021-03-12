@@ -36,6 +36,7 @@ import { CommentsInSubmitsComponent } from './components/molecules/comments-in-s
 import { TableColSwitcherComponent } from './components/molecules/table-col-switcher/table-col-switcher.component';
 import { TableAttachmentsComponent } from './components/molecules/table-attachments/table-attachments.component';
 import { TableColSortingComponent } from './components/molecules/table-col-sorting/table-col-sorting.component';
+import { TableMetricComponent } from './components/molecules/table-metric/table-metric.component';
 @NgModule({
   declarations: [
     ProjectNameComponent,
@@ -71,6 +72,7 @@ import { TableColSortingComponent } from './components/molecules/table-col-sorti
     TableColSwitcherComponent,
     TableAttachmentsComponent,
     TableColSortingComponent,
+    TableMetricComponent,
   ],
   imports: [
     IconSpriteModule,

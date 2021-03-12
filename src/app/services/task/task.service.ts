@@ -12,7 +12,10 @@ import {
   providedIn: 'root',
 })
 export class TaskService {
-  private taskSubmitsStageMessage = new BehaviorSubject(null);
+  private taskSubmitsStageMessage = new BehaviorSubject({
+    loaded: false,
+    loading: false,
+  } as TaskSubmitsInterface);
   currentTaskSubmitsStageMessage = this.taskSubmitsStageMessage.asObservable();
 
   private taskInfoStageMessage = new BehaviorSubject([]);
@@ -33,9 +36,9 @@ export class TaskService {
     });
 
     return this.http
-      .get<any[]>(config.API + '/assets/taskInfo.json', { params })
+      .get<any[]>(config.BASE_URL + config.TASK_INFO_URL, { params })
       .pipe(
-        delay(500), // исскуственная задержка
+        delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
           // отлавливаем ошибку
           console.log('Error: ', error.message);
@@ -50,11 +53,11 @@ export class TaskService {
     });
 
     return this.http
-      .get<TaskConfigInterface>(config.API + '/assets/taskConfig.json', {
+      .get<TaskConfigInterface>(config.BASE_URL + config.TASK_CONFIG_URL, {
         params,
       })
       .pipe(
-        delay(500), // исскуственная задержка
+        delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
           // отлавливаем ошибку
           console.log('Error: ', error.message);
@@ -67,26 +70,50 @@ export class TaskService {
     this.taskConfigStageMessage.next(message);
   }
 
-  updateTaskSubmitsMessage(taskSubmits: TaskSubmitsInterface) {
-    this.taskSubmitsStageMessage.next(taskSubmits);
+  updateTaskSubmitsMessage(message) {
+    this.taskSubmitsStageMessage.next({
+      ...this.taskSubmitsStageMessage.getValue(),
+      ...message,
+    });
   }
 
-  fetchTaskSubmits(getTaskParams: {} = {}): Observable<TaskSubmitsInterface> {
+  fetchTaskSubmits(taskParams: {} = {}): Observable<TaskSubmitsInterface> {
     const params = new HttpParams({
-      fromObject: { ...getTaskParams },
+      fromObject: { ...taskParams },
     });
 
     return this.http
-      .get<TaskSubmitsInterface>(config.API + '/assets/taskSubmits.json', {
+      .get<TaskSubmitsInterface>(config.BASE_URL + config.TASK_SUBMITS_URL, {
         params,
       })
       .pipe(
-        delay(500), // исскуственная задержка
+        delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
           // отлавливаем ошибку
           console.log('Error: ', error.message);
           return throwError(error);
         })
       );
+  }
+
+  getSubmits(params = {}) {
+    this.updateTaskSubmitsMessage({ loading: true });
+
+    this.fetchTaskSubmits(params).subscribe(
+      (taskSubmits: TaskSubmitsInterface) => {
+        this.updateTaskSubmitsMessage({
+          ...taskSubmits,
+          loaded: true,
+        });
+      },
+      (error) => {
+        console.log(error.message);
+      },
+      () => {
+        this.updateTaskSubmitsMessage({
+          loading: false,
+        });
+      }
+    );
   }
 }

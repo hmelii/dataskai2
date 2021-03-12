@@ -19,7 +19,6 @@ export class CommentsInSubmitsComponent implements OnInit {
           this.taskSubmitsComments = taskSubmits.data.submits.filter(
             (submit) => submit.comment.length
           );
-          console.log(this.taskSubmitsComments);
         }
       }
     );

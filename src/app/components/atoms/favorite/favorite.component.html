@@ -1,3 +1,9 @@
-<a class="favorite">
-  <app-icon type="star"></app-icon>
+<a
+  class="favorite"
+  [class]="{ 'favorite-active': isFavorite }"
+  (click)="handleClick()"
+>
+  <span class="favorite-ico">
+    <app-icon type="star"></app-icon>
+  </span>
 </a>

@@ -1,3 +1,3 @@
 export enum MainEnum {
-  Main = '/',
+  Self = '/',
 }

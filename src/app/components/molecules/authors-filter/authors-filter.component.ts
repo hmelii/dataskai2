@@ -37,8 +37,6 @@ export class AuthorsFilterComponent implements OnInit {
   }
 
   handleClickedOutside($event: Event) {
-    console.log(this.authors);
-
     if (this.isShow) {
       this.isShow = false;
     }

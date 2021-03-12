@@ -13,9 +13,7 @@ export class RowPerPageComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('tess');
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(): void {
     if (this.rows && this.rowsDefault) {

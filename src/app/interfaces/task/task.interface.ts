@@ -38,4 +38,6 @@ export interface TaskSubmitsInterface {
     submits: SubmitInterface[];
   };
   meta: TaskSubmitsMeta;
+  loaded: boolean;
+  loading: boolean;
 }

@@ -26,7 +26,6 @@ export class TaskInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskInfoService.currentTaskInfoStageMessage.subscribe((infos) => {
-      console.log(infos);
       return (this.infos = infos);
     });
   }

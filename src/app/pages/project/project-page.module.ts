@@ -9,7 +9,5 @@ import { ProjectPageRoutingModule } from './project-page-routing.module';
   exports: [],
 })
 export class ProjectPageModule {
-  constructor() {
-    console.log('test');
-  }
+  constructor() {}
 }

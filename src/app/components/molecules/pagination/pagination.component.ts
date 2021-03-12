@@ -25,11 +25,6 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     if (this.currentPage && this.totalPages) {
-      console.log(
-        'this.currentPage && this.totalPages',
-        this.currentPage,
-        this.totalPages
-      );
     }
   }
 

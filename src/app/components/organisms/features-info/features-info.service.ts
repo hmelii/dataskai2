@@ -27,7 +27,7 @@ export class FeaturesInfoService {
     });
 
     return this.http
-      .get<FeaturesInfo>(config.API + '/assets/taskFeaturesInfo.json', {
+      .get<FeaturesInfo>(config.BASE_URL + '/assets/taskFeaturesInfo.json', {
         params,
       })
       .pipe(

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthorsService } from '../../../services/authors/authors.service';
 import { ProjectService } from '../../../services/project/project.service';
 import { TaskService } from '../../../services/task/task.service';
@@ -8,7 +8,11 @@ import {
   TaskSubmitsInterface,
 } from '../../../interfaces/task/task.interface';
 import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MainEnum } from '../../../enums/routes/main.enum';
+import { ProjectEnum } from '../../../enums/routes/project.enum';
+import { TaskEnum } from '../../../enums/routes/task.enum';
+import { TasksEnum } from '../../../enums/routes/tasks.enum';
 
 @Component({
   selector: 'app-submits',
@@ -20,7 +24,6 @@ export class SubmitsComponent implements OnInit {
     projectInfo: false,
     taskInfo: false,
     taskConfig: false,
-    taskSubmits: false,
     config: false,
   };
 
@@ -28,7 +31,6 @@ export class SubmitsComponent implements OnInit {
     projectInfo: false,
     taskConfig: false,
     taskInfo: false,
-    taskSubmits: false,
     config: false,
   };
 
@@ -41,13 +43,34 @@ export class SubmitsComponent implements OnInit {
   totalPages = null;
   rows: number[] = null;
   rowsDefault: number;
+  routeTaskID = null;
 
   constructor(
     private authorsService: AuthorsService,
     private projectService: ProjectService,
     private taskService: TaskService,
-    private router: Router
+    private router: Router,
+    private activateRoute: ActivatedRoute
   ) {
+    console.log('констркутор');
+    this.subscribeSubmitsUpdates();
+    this.subscribeTaskConfigUpdates();
+    this.subscribeRouteUpdate();
+  }
+
+  ngOnInit(): void {
+    this.fetchTaskConfig();
+    this.fetchTaskInfo();
+    this.fetchProjectInfo();
+  }
+
+  subscribeRouteUpdate() {
+    this.activateRoute.params.subscribe(
+      (params) => (this.routeTaskID = params['taskID'])
+    );
+  }
+
+  subscribeTaskConfigUpdates() {
     this.taskService.currentTaskConfigStageMessage.subscribe(
       (taskConfig: TaskConfigInterface) => {
         if (taskConfig.data) {
@@ -58,39 +81,52 @@ export class SubmitsComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    this.fetchTaskConfig();
-    this.fetchSubmits();
-    this.fetchTaskInfo();
-    this.fetchProjectInfo();
+  subscribeSubmitsUpdates() {
+    this.taskService.currentTaskSubmitsStageMessage.subscribe(
+      (taskSubmits: TaskSubmitsInterface) => {
+        const { loaded, loading, data, meta } = taskSubmits;
+
+        if (!loaded && !loading) {
+          this.taskService.getSubmits();
+        }
+
+        if (loaded && !loading) {
+          if (data) {
+            const { submits = [] } = data;
+            this.taskSubmits = submits;
+          }
+          if (meta) {
+            const { current_page = 1, total_pages = 1 } = meta;
+            this.currentPage = current_page;
+            this.totalPages = total_pages;
+          }
+        }
+      }
+    );
   }
 
-  fetchSubmits(params = {}) {
-    this.loading.taskSubmits = true;
-    this.taskService.fetchTaskSubmits(params).subscribe(
-      (taskSubmits: TaskSubmitsInterface) => {
-        this.taskService.updateTaskSubmitsMessage(taskSubmits);
-        this.taskSubmits = taskSubmits.data.submits;
-        this.currentPage = taskSubmits.meta.current_page;
-        this.totalPages = taskSubmits.meta.total_pages;
-        this.loaded.taskSubmits = true;
-      },
-      (error) => {
-        this.error = error.message;
-      },
-      () => {
-        this.loading.taskSubmits = false;
+  changeSubmitsRoute(currentPage) {
+    const routeMain = MainEnum.Self;
+    const routeProject = ProjectEnum.Project;
+    const routeTasks = TasksEnum.Tasks;
+    const routeSubmits = TaskEnum.Submits;
+
+    this.router.navigate(
+      [
+        `${routeMain}${routeProject}/${routeTasks}/${this.routeTaskID}/${routeSubmits}`,
+      ],
+      {
+        queryParams: { page: currentPage },
+        queryParamsHandling: 'merge',
       }
     );
   }
 
   pageChanged(currentPage) {
-    this.router.navigate(['/project/tasks/123/submits'], {
-      queryParams: { page: currentPage },
-      queryParamsHandling: 'merge',
-    });
-    this.fetchSubmits({ start: currentPage * this.rowsDefault });
-    console.log('currentPage', currentPage);
+    if (this.currentPage !== currentPage) {
+      this.changeSubmitsRoute(currentPage);
+      this.taskService.getSubmits({ start: currentPage * this.rowsDefault });
+    }
   }
 
   fetchTaskConfig() {

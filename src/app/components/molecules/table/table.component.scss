@@ -28,14 +28,9 @@
 
 .table-tbody-tr {
   &:hover {
+    .table-tbody-th,
     .table-tbody-td {
       background: var(--table-background-tertiary);
-    }
-  }
-
-  .table-tbody-td--attachments {
-    &:hover {
-      background: var(--table-background-quaternary);
     }
   }
 }
@@ -47,10 +42,10 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   white-space: nowrap;
-  position: relative;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 180px;
+  //position: relative;
+  //overflow: hidden;
+  //text-overflow: ellipsis;
+  //max-width: 180px;
 
   a {
     color: inherit;

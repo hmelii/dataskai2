@@ -1,0 +1,42 @@
+.table-metric {
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    &:before {
+      background: var(--table-background-quaternary);
+    }
+    .table-metric-value {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.table-metric-delta,
+.table-metric-short-value {
+  position: relative;
+  z-index: 1;
+}
+
+.table-metric-value {
+  background: var(--background-secondary);
+  border-radius: 4px;
+
+  width: 200px;
+  padding: 9px 8px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
