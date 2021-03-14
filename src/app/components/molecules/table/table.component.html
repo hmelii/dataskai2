@@ -93,7 +93,7 @@
             <div class="table-actions">
               <app-add-to-comparison></app-add-to-comparison>
               <app-table-copy-url [id]="row.id"></app-table-copy-url>
-              <app-add-to-basket></app-add-to-basket>
+              <app-add-to-basket [id]="row.id"></app-add-to-basket>
             </div>
           </ng-template>
           <ng-template ngSwitchCase="favorite">

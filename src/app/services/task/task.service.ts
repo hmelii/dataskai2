@@ -85,6 +85,18 @@ export class TaskService {
     });
   }
 
+  deleteTaskSubmitMessage(id) {
+    const oldStage = this.taskSubmitsStageMessage.getValue();
+    const newStage = {
+      ...oldStage,
+      data: {
+        ...oldStage.data,
+        submits: oldStage.data.submits.filter((submit) => submit.id !== id),
+      },
+    };
+    this.taskSubmitsStageMessage.next(newStage);
+  }
+
   fetchTaskSubmits(taskParams: {} = {}): Observable<TaskSubmitsInterface> {
     const params = new HttpParams({
       fromObject: { ...taskParams },
