@@ -44,6 +44,7 @@ export class SubmitsComponent implements OnInit {
   rows: number[] = null;
   rowsDefault: number;
   routeTaskID = null;
+  routeSubmitID = null;
 
   constructor(
     private authorsService: AuthorsService,
@@ -52,7 +53,6 @@ export class SubmitsComponent implements OnInit {
     private router: Router,
     private activateRoute: ActivatedRoute
   ) {
-    console.log('констркутор');
     this.subscribeSubmitsUpdates();
     this.subscribeTaskConfigUpdates();
     this.subscribeRouteUpdate();
@@ -65,9 +65,11 @@ export class SubmitsComponent implements OnInit {
   }
 
   subscribeRouteUpdate() {
-    this.activateRoute.params.subscribe(
-      (params) => (this.routeTaskID = params['taskID'])
-    );
+    this.activateRoute.params.subscribe((params) => {
+      this.routeTaskID = params['taskID'];
+      this.routeSubmitID = params['submitID'];
+      console.log('this.routeSubmitID', this.routeSubmitID);
+    });
   }
 
   subscribeTaskConfigUpdates() {

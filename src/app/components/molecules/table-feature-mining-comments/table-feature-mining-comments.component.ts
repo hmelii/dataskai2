@@ -21,9 +21,7 @@ export class TableFeatureMiningCommentsComponent implements OnInit, OnChanges {
     private tableService: TableService
   ) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
-  }
+  ngOnChanges(changes: SimpleChanges) {}
 
   ngOnInit(): void {}
 

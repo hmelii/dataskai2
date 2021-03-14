@@ -11,6 +11,7 @@ import { TaskConfigColumnInterface } from '../../../interfaces/task/task.interfa
 export class TableComponent implements OnInit {
   @Input() colsItems;
   @Input() rowsItems: SubmitInterface[];
+  @Input() selectRowWithID: string;
 
   cols: TaskConfigColumnInterface[] = [];
   rows: SubmitInterface[] = [];

@@ -62,7 +62,13 @@
     </tr>
   </thead>
   <tbody class="table-tbody">
-    <tr *ngFor="let row of rows; index as i" class="table-tbody-tr">
+    <tr
+      *ngFor="let row of rows; index as i"
+      class="table-tbody-tr"
+      [class]="{
+        'table-tbody-tr-selected': selectRowWithID && selectRowWithID === row.id
+      }"
+    >
       <th class="table-tbody-th">
         <div class="table-tbody-th-heading">{{ i + 1 }}</div>
       </th>

@@ -35,6 +35,13 @@
   }
 }
 
+.table-tbody-tr-selected {
+  .table-tbody-th,
+  .table-tbody-td {
+    background: var(--table-background-tertiary);
+  }
+}
+
 .table-thead-th-heading {
   color: var(--text-color-default);
   font-size: 1.4rem;
