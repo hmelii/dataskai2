@@ -1,1 +1,5 @@
-<a class="table-feature-minig-comments" (click)="handleClick()">{{ text }}</a>
+<div class="table-feature-minig-comments" *ngIf="text && text.length">
+  <a class="table-feature-minig-comments-link" (click)="handleClick()"
+    ><span class="table-feature-minig-comments-text">{{ text }}</span>
+  </a>
+</div>

@@ -83,7 +83,7 @@
           <ng-template ngSwitchCase="actions">
             <div class="table-actions">
               <app-add-to-comparison></app-add-to-comparison>
-              <app-copy-link></app-copy-link>
+              <app-table-copy-url [id]="row.id"></app-table-copy-url>
               <app-add-to-basket></app-add-to-basket>
             </div>
           </ng-template>

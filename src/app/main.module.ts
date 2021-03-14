@@ -26,7 +26,7 @@ import { LangsSwitcherComponent } from './components/molecules/langs-switcher/la
 import { CheckboxComponent } from './components/atoms/checkbox/checkbox/checkbox.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { AddToComparisonComponent } from './components/molecules/add-to-comparison/add-to-comparison.component';
-import { CopyLinkComponent } from './components/molecules/copy-link/copy-link.component';
+import { TableCopyUrlComponent } from './components/molecules/table-copy-url/table-copy-url.component';
 import { AddToBasketComponent } from './components/molecules/add-to-basket/add-to-basket.component';
 import { DynamicsComponent } from './components/molecules/dynamics/dynamics.component';
 import { FavoriteComponent } from './components/atoms/favorite/favorite.component';
@@ -66,7 +66,7 @@ import { ReplaceTabs } from './pipes/replace-tabs.pipe';
     LangsSwitcherComponent,
     CheckboxComponent,
     AddToComparisonComponent,
-    CopyLinkComponent,
+    TableCopyUrlComponent,
     AddToBasketComponent,
     DynamicsComponent,
     FavoriteComponent,

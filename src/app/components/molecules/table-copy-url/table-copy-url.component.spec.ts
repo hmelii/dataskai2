@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CopyLinkComponent } from './copy-link.component';
+import { TableCopyUrlComponent } from './table-copy-url.component';
 
 describe('CopyLinkComponent', () => {
-  let component: CopyLinkComponent;
-  let fixture: ComponentFixture<CopyLinkComponent>;
+  let component: TableCopyUrlComponent;
+  let fixture: ComponentFixture<TableCopyUrlComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CopyLinkComponent ]
-    })
-    .compileComponents();
+      declarations: [TableCopyUrlComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CopyLinkComponent);
+    fixture = TestBed.createComponent(TableCopyUrlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
