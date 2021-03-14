@@ -1,0 +1,115 @@
+.table-modal {
+  background: var(--background-quinary);
+  width: 470px;
+  position: absolute;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+
+  padding: 16px 0 16px 8px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.table-modal-head {
+  flex: 0 1 auto;
+  padding: 0 40px 5px;
+  color: var(--text-color-secondary);
+}
+
+.table-modal-body {
+  flex: 1 1 auto;
+  position: relative;
+  overflow-y: auto;
+  padding: 20px 0 0;
+}
+
+.table-modal-body-text {
+  padding: 0 74px 48px 40px;
+  counter-reset: numbers;
+}
+
+.table-modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+}
+
+.table-modal-close-btn-ico {
+  display: block;
+  width: 16px;
+  height: 16px;
+  color: var(--button-color-default);
+}
+
+.table-modal-heading {
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: (24 / 16);
+}
+
+.table-modal-used {
+  font-size: 1.2rem;
+  line-height: (14 / 12);
+}
+
+.table-modal-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: featureList;
+}
+
+.table-modal-list-item {
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 0;
+  padding: 6px 0;
+  position: relative;
+  color: var(--text-color-default);
+  font-size: 1.3rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--background-tertiary);
+
+    .table-modal-list-bubble {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &:before {
+    counter-increment: featureList;
+    content: counter(featureList);
+    color: var(--text-color-tertiary);
+    display: inline-block;
+    min-width: 32px;
+    font-size: 1rem;
+    margin-right: 8px;
+    text-align: right;
+  }
+}
+
+.table-modal-bubble {
+  background: var(--background-tertiary);
+  border-radius: 4px;
+  width: 300px;
+  padding: 8px;
+  position: absolute;
+  top: 100%;
+  right: 30px;
+  font-size: 1rem;
+  z-index: 1;
+  line-height: (14 / 10);
+  transform: translate(0, 2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}

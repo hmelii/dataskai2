@@ -90,6 +90,11 @@
           <ng-template ngSwitchCase="favorite">
             <app-favorite [isFavorite]="row[col.id]"></app-favorite>
           </ng-template>
+          <ng-template ngSwitchCase="feature_mining_comments">
+            <app-table-feature-mining-comments
+              [text]="row[col.id]"
+            ></app-table-feature-mining-comments>
+          </ng-template>
           <ng-template ngSwitchDefault>
             <div class="table-tbody-td-heading" *ngIf="col.type === 'field'">
               {{ row[col.id] }}

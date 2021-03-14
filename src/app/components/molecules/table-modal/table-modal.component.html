@@ -1,0 +1,28 @@
+<div class="table-modal" *ngIf="isShown">
+  <a class="table-modal-close-btn" (click)="handleClose()">
+    <span class="table-modal-close-btn-ico">
+      <app-icon [type]="'close'"></app-icon>
+    </span>
+  </a>
+
+  <div class="table-modal-head">
+    <div class="table-modal-heading" *ngIf="heading !== ''">
+      {{ heading }}
+    </div>
+    <!--<div class="table-modal-used">285 321 features used</div>-->
+  </div>
+  <div class="table-modal-body">
+    <div
+      class="table-modal-body-text block-with-line-numbers"
+      *ngIf="body !== ''"
+    >
+      <span [innerHTML]="body | replaceLineBreaks | replaceTabs"></span>
+    </div>
+    <!--<ul class="table-modal-list">
+        <li class="table-modal-list-item" *ngFor="let feature of featuresNames">
+          <div class="table-modal-list-text">{{feature.name}}</div>
+          <div class="table-modal-list-bubble">{{feature.description}}</div>
+        </li>
+      </ul>-->
+  </div>
+</div>

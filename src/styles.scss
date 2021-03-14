@@ -33,3 +33,29 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.block-with-line-numbers {
+  counter-reset: numbers;
+
+  span {
+    display: block;
+    min-height: calc(var(--line-height-default) * 10px);
+    position: relative;
+    counter-increment: numbers;
+
+    &:before {
+      content: counter(numbers);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 32px;
+      height: calc(var(--line-height-default) * 13px);
+      color: var(--text-color-tertiary);
+      font-size: 1rem;
+      position: absolute;
+      right: 100%;
+      top: 0;
+      transform: translate(-8px, 0);
+    }
+  }
+}

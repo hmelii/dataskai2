@@ -3,6 +3,7 @@
     [colsItems]="taskConfigColumns"
     [rowsItems]="taskSubmits"
   ></app-table>
+
   <app-meta-panel>
     <app-pagination
       class="meta-panel-pagination"
@@ -17,5 +18,6 @@
       *ngIf="rows"
     ></app-row-per-page>
   </app-meta-panel>
+  <app-table-modal></app-table-modal>
   <app-features-info class="submits-features"></app-features-info>
 </div>

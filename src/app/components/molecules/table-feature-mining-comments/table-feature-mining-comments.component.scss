@@ -1,0 +1,10 @@
+.table-feature-minig-comments {
+  color: var(--text-color-default);
+  font-size: 1.3rem;
+  max-width: 180px;
+  overflow: hidden;
+  position: relative;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
