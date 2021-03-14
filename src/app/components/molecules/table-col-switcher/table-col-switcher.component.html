@@ -1,24 +1,34 @@
-
-
-<div class="metric-service-in-submits" (clickOutside)="handleClickedOutside($event)" [class]="{'authors-filter-active': isShow}">
+<div
+  class="metric-service-in-submits"
+  (clickOutside)="handleClickedOutside($event)"
+  [class]="{ 'authors-filter-active': isShow }"
+>
   <a class="metric-service-in-submits-selected" (click)="handleClick()">
-     <span class="table-col-switcher-ico">
-    <app-icon type="table"></app-icon>
-  </span>
+    <span class="table-col-switcher-ico">
+      <app-icon type="table"></app-icon>
+    </span>
   </a>
   <div class="authors-filter-sub" *ngIf="isShow">
     <div class="authors-filter-heading">
       <label class="select-label">
-        <app-checkbox class="select-label-checkbox" (onChange)="handleChange($event)" [checked]="all.checked"></app-checkbox>
+        <app-checkbox
+          class="select-label-checkbox"
+          (onChange)="handleChange($event)"
+          [checked]="all.checked"
+        ></app-checkbox>
         <span class="select-label-title">All</span>
       </label>
     </div>
 
     <ul class="select-list">
-      <li class="select-item" *ngFor="let metric of metrics">
+      <li class="select-item" *ngFor="let column of columns">
         <label class="select-label">
-          <app-checkbox class="select-label-checkbox" (onChange)="handleChange($event, metric)" [checked]="metric.checked"></app-checkbox>
-          <span class="select-label-title">{{metric.value}}</span>
+          <app-checkbox
+            class="select-label-checkbox"
+            (onChange)="handleChange($event, column)"
+            [checked]="column.checked"
+          ></app-checkbox>
+          <span class="select-label-title">{{ column.label }}</span>
         </label>
       </li>
     </ul>

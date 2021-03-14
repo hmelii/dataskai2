@@ -4,7 +4,10 @@
       <th class="table-thead-th">
         <div class="table-thead-th-heading">#</div>
       </th>
-      <th class="table-thead-th" *ngFor="let col of cols; index as i">
+      <th
+        class="table-thead-th"
+        *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as i"
+      >
         <div class="table-thead-th-heading">
           <app-table-col-sorting *ngIf="col.sortable; else unsortable">
             <span [ngSwitch]="col.id">
@@ -75,7 +78,7 @@
       <td
         class="table-tbody-td"
         [class]="'table-tbody-td--' + col.id"
-        *ngFor="let col of cols; index as j"
+        *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as j"
       >
         <div *ngIf="col.type === 'metric'">
           <app-table-metric

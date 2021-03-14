@@ -10,15 +10,16 @@ import { TaskService } from '../../../services/task/task.service';
 })
 export class TableColSwitcherComponent implements OnInit {
   isShow: boolean;
-  metrics: CheckboxInterface[];
+  columns: CheckboxInterface[];
   config: TaskConfigInterface;
 
   all: CheckboxInterface = {
     value: 'all',
+    label: 'all',
     checked: false,
   };
 
-  selectedAuthors: (string | number)[] = [];
+  selectedColumns: (string | number)[] = [];
 
   constructor(private taskService: TaskService) {
     this.isShow = false;
@@ -27,10 +28,10 @@ export class TableColSwitcherComponent implements OnInit {
       (config: TaskConfigInterface) => {
         this.config = config;
         if (config.data) {
-          this.metrics = config.data.columns.map((column) => ({
-            value: column.name,
+          this.columns = config.data.columns.map((column) => ({
+            value: column.id,
             label: column.name,
-            checked: false,
+            checked: column.isHidden,
           }));
         }
       }
@@ -49,43 +50,54 @@ export class TableColSwitcherComponent implements OnInit {
     }
   }
 
-  handleChange($event: boolean, currentAuthor?: CheckboxInterface) {
-    if (!currentAuthor) {
+  handleChange($event: boolean, currentColumn?: CheckboxInterface) {
+    if (!currentColumn) {
       if ($event === true) {
         this.all.checked = true;
-        this.metrics = this.metrics.map((author) => ({
+        this.columns = this.columns.map((author) => ({
           ...author,
           checked: true,
         }));
-        this.selectedAuthors = this.metrics.map(
+        this.selectedColumns = this.columns.map(
           (author: CheckboxInterface) => author.value
         );
       } else {
         this.all.checked = false;
-        this.metrics = this.metrics.map((author) => ({
+        this.columns = this.columns.map((author) => ({
           ...author,
           checked: false,
         }));
-        this.selectedAuthors = [];
+        this.selectedColumns = [];
       }
     } else {
-      const findedSelectedAuthorIndex = this.selectedAuthors.findIndex(
-        (author) => author === currentAuthor.value
+      const findedSelectedAuthorIndex = this.selectedColumns.findIndex(
+        (author) => author === currentColumn.value
       );
       if ($event === true) {
         if (findedSelectedAuthorIndex < 0) {
-          this.selectedAuthors.push(currentAuthor.value);
+          this.selectedColumns.push(currentColumn.value);
         }
-        currentAuthor.checked = true;
+        currentColumn.checked = true;
       } else {
         this.all.checked = false;
-        this.selectedAuthors.splice(findedSelectedAuthorIndex, 1);
-        currentAuthor.checked = false;
+        this.selectedColumns.splice(findedSelectedAuthorIndex, 1);
+        currentColumn.checked = false;
       }
 
-      if (this.metrics.length === this.selectedAuthors.length) {
+      if (this.columns.length === this.selectedColumns.length) {
         this.all.checked = true;
       }
     }
+
+    this.taskService.updateTaskConfigMessage({
+      ...this.config,
+      data: {
+        ...this.config.data,
+        columns: this.config.data.columns.map((column) => ({
+          ...column,
+          isHidden: this.selectedColumns.includes(column.id),
+        })),
+      },
+    });
   }
 }

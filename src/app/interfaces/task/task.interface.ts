@@ -5,6 +5,7 @@ export interface TaskConfigColumnInterface {
   name: string;
   type: string;
   sortable: boolean;
+  isHidden: boolean;
 }
 
 export interface TaskConfigDataInterface {
@@ -17,6 +18,8 @@ export interface TaskConfigDataInterface {
 
 export interface TaskConfigInterface {
   data: TaskConfigDataInterface;
+  loading: boolean;
+  loaded: boolean;
 }
 
 export interface TaskSubmitsMetaSearchMatchesInterface {

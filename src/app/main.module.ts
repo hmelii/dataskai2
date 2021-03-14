@@ -39,8 +39,9 @@ import { TableColSortingComponent } from './components/molecules/table-col-sorti
 import { TableMetricComponent } from './components/molecules/table-metric/table-metric.component';
 import { TableFeatureMiningCommentsComponent } from './components/molecules/table-feature-mining-comments/table-feature-mining-comments.component';
 import { TableModalComponent } from './components/molecules/table-modal/table-modal.component';
-import { ReplaceLineBreaks } from './pipes/replace-line-breaks.pripe';
+import { ReplaceLineBreaks } from './pipes/replace-line-breaks.pipe';
 import { ReplaceTabs } from './pipes/replace-tabs.pipe';
+import { MatchesIsHiddenPipe } from './pipes/matches-is-hidden.pipe';
 @NgModule({
   declarations: [
     ProjectNameComponent,
@@ -81,6 +82,7 @@ import { ReplaceTabs } from './pipes/replace-tabs.pipe';
     TableModalComponent,
     ReplaceLineBreaks,
     ReplaceTabs,
+    MatchesIsHiddenPipe,
   ],
   imports: [
     IconSpriteModule,

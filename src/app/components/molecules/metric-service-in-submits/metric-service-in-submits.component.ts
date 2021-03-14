@@ -16,6 +16,7 @@ export class MetricServiceInSubmitsComponent implements OnInit {
   all: CheckboxInterface = {
     value: 'all',
     checked: false,
+    label: 'all',
   };
 
   selectedAuthors: (string | number)[] = [];

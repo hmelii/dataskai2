@@ -21,7 +21,10 @@ export class TaskService {
   private taskInfoStageMessage = new BehaviorSubject([]);
   currentTaskInfoStageMessage = this.taskInfoStageMessage.asObservable();
 
-  private taskConfigStageMessage = new BehaviorSubject({});
+  private taskConfigStageMessage = new BehaviorSubject({
+    loaded: false,
+    loading: false,
+  } as TaskConfigInterface);
   currentTaskConfigStageMessage = this.taskConfigStageMessage.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -47,9 +50,11 @@ export class TaskService {
       );
   }
 
-  fetchTaskConfig(): Observable<TaskConfigInterface> {
+  fetchTaskConfig(taskParams): Observable<TaskConfigInterface> {
     const params = new HttpParams({
-      fromObject: { _limit: '2' },
+      fromObject: {
+        ...taskParams,
+      },
     });
 
     return this.http
@@ -66,8 +71,11 @@ export class TaskService {
       );
   }
 
-  updateTaskConfigMessage(message: TaskConfigInterface) {
-    this.taskConfigStageMessage.next(message);
+  updateTaskConfigMessage(message) {
+    this.taskConfigStageMessage.next({
+      ...this.taskConfigStageMessage.getValue(),
+      ...message,
+    });
   }
 
   updateTaskSubmitsMessage(message) {
@@ -96,7 +104,7 @@ export class TaskService {
       );
   }
 
-  getSubmits(params = {}) {
+  getTaskSubmits(params = {}) {
     this.updateTaskSubmitsMessage({ loading: true });
 
     this.fetchTaskSubmits(params).subscribe(
@@ -111,6 +119,27 @@ export class TaskService {
       },
       () => {
         this.updateTaskSubmitsMessage({
+          loading: false,
+        });
+      }
+    );
+  }
+
+  getTaskConfig(params = {}) {
+    this.updateTaskConfigMessage({ loading: true });
+
+    this.fetchTaskConfig(params).subscribe(
+      (taskConfig: TaskConfigInterface) => {
+        this.updateTaskConfigMessage({
+          ...taskConfig,
+          loaded: true,
+        });
+      },
+      (error) => {
+        console.log(error.message);
+      },
+      () => {
+        this.updateTaskConfigMessage({
           loading: false,
         });
       }

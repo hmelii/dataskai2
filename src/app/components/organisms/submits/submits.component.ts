@@ -23,13 +23,11 @@ export class SubmitsComponent implements OnInit {
   loading = {
     projectInfo: false,
     taskInfo: false,
-    taskConfig: false,
     config: false,
   };
 
   loaded = {
     projectInfo: false,
-    taskConfig: false,
     taskInfo: false,
     config: false,
   };
@@ -59,7 +57,7 @@ export class SubmitsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchTaskConfig();
+    // this.fetchTaskConfig();
     this.fetchTaskInfo();
     this.fetchProjectInfo();
   }
@@ -75,9 +73,18 @@ export class SubmitsComponent implements OnInit {
   subscribeTaskConfigUpdates() {
     this.taskService.currentTaskConfigStageMessage.subscribe(
       (taskConfig: TaskConfigInterface) => {
-        if (taskConfig.data) {
-          this.rows = taskConfig.data.rows_per_page_values;
-          this.rowsDefault = taskConfig.data.rows_per_page_default;
+        const { loaded, loading, data } = taskConfig;
+
+        if (!loaded && !loading) {
+          this.taskService.getTaskConfig();
+        }
+
+        if (loaded && !loading) {
+          if (data) {
+            this.taskConfigColumns = taskConfig.data.columns;
+            this.rows = taskConfig.data.rows_per_page_values;
+            this.rowsDefault = taskConfig.data.rows_per_page_default;
+          }
         }
       }
     );
@@ -89,7 +96,7 @@ export class SubmitsComponent implements OnInit {
         const { loaded, loading, data, meta } = taskSubmits;
 
         if (!loaded && !loading) {
-          this.taskService.getSubmits();
+          this.taskService.getTaskSubmits();
         }
 
         if (loaded && !loading) {
@@ -127,25 +134,10 @@ export class SubmitsComponent implements OnInit {
   pageChanged(currentPage) {
     if (this.currentPage !== currentPage) {
       this.changeSubmitsRoute(currentPage);
-      this.taskService.getSubmits({ start: currentPage * this.rowsDefault });
+      this.taskService.getTaskSubmits({
+        start: currentPage * this.rowsDefault,
+      });
     }
-  }
-
-  fetchTaskConfig() {
-    this.loading.config = true;
-    this.taskService.fetchTaskConfig().subscribe(
-      (taskConfig: TaskConfigInterface) => {
-        this.taskConfigColumns = taskConfig.data.columns;
-        this.taskService.updateTaskConfigMessage(taskConfig);
-        this.loaded.taskConfig = true;
-      },
-      (error) => {
-        this.error = error.message;
-      },
-      () => {
-        this.loading.taskConfig = false;
-      }
-    );
   }
 
   fetchTaskInfo() {

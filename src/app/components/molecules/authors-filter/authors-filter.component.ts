@@ -13,6 +13,7 @@ export class AuthorsFilterComponent implements OnInit {
   all: CheckboxInterface = {
     value: 'all',
     checked: false,
+    label: 'all',
   };
 
   selectedAuthors: (string | number)[] = [];
@@ -27,6 +28,7 @@ export class AuthorsFilterComponent implements OnInit {
         return (this.authors = authors.map((author) => ({
           value: author,
           checked: false,
+          label: author,
         })));
       }
     );
