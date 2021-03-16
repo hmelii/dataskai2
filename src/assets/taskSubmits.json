@@ -1213,19 +1213,20 @@
     "total_pages": 6,
     "current_page": 2,
     "per_page": 200,
-    "sort_order": "-roc",
-    "submits_search_matches": [
+    "sort_column": "roc",
+    "sort_order": "asc",
+    "search_matches": [
       {
-        "submit_id": "6017b6b376a8c74ef40b47d6",
+        "matched_row": { "id": "6017b6b376a8c74ef40b47d6"},
         "matched_columns": [
-          "model name",
-          "date of submit"
+          "model_name",
+          "date_of_submit"
         ]
       },
       {
-        "submit_id": "000000000000000000000000",
+        "matched_row": { "id": "000000000000000000000000"},
         "matched_columns": [
-          "date of submit"
+          "date_of_submit"
         ]
       }
     ]

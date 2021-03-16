@@ -32,6 +32,7 @@ export interface TaskSubmitsMeta {
   current_page: number;
   per_page: number;
   sort_order: string;
+  sort_column: string;
   submits_search_matches: TaskSubmitsMetaSearchMatchesInterface[];
 }
 

@@ -9,7 +9,13 @@
         *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as i"
       >
         <div class="table-thead-th-heading">
-          <app-table-col-sorting *ngIf="col.sortable; else unsortable">
+          <app-table-col-sorting
+            *ngIf="col.sortable; else unsortable"
+            [colID]="col.id"
+            [sortCol]="sortCol"
+            [sortOrder]="sortOrder"
+            (onSortChange)="handleSortChange($event)"
+          >
             <span [ngSwitch]="col.id">
               <ng-template ngSwitchCase="favorite">
                 <span

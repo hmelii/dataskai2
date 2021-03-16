@@ -13,6 +13,7 @@ import { MainEnum } from '../../../enums/routes/main.enum';
 import { ProjectEnum } from '../../../enums/routes/project.enum';
 import { TaskEnum } from '../../../enums/routes/task.enum';
 import { TasksEnum } from '../../../enums/routes/tasks.enum';
+import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/table-col-sorting.interface';
 
 @Component({
   selector: 'app-submits',
@@ -43,6 +44,8 @@ export class SubmitsComponent implements OnInit {
   rowsDefault: number;
   routeTaskID = null;
   routeSubmitID = null;
+  sortColumn = null;
+  sortOrder = null;
 
   constructor(
     private authorsService: AuthorsService,
@@ -105,16 +108,23 @@ export class SubmitsComponent implements OnInit {
             this.taskSubmits = submits;
           }
           if (meta) {
-            const { current_page = 1, total_pages = 1 } = meta;
+            const {
+              current_page = 1,
+              total_pages = 1,
+              sort_column = null,
+              sort_order = null,
+            } = meta;
             this.currentPage = current_page;
             this.totalPages = total_pages;
+            this.sortColumn = sort_column;
+            this.sortOrder = sort_order;
           }
         }
       }
     );
   }
 
-  changeSubmitsRoute(currentPage) {
+  changeSubmitsRoute() {
     const routeMain = MainEnum.Self;
     const routeProject = ProjectEnum.Project;
     const routeTasks = TasksEnum.Tasks;
@@ -125,7 +135,7 @@ export class SubmitsComponent implements OnInit {
         `${routeMain}${routeProject}/${routeTasks}/${this.routeTaskID}/${routeSubmits}`,
       ],
       {
-        queryParams: { page: currentPage },
+        queryParams: { page: this.currentPage },
         queryParamsHandling: 'merge',
       }
     );
@@ -133,11 +143,17 @@ export class SubmitsComponent implements OnInit {
 
   pageChanged(currentPage) {
     if (this.currentPage !== currentPage) {
-      this.changeSubmitsRoute(currentPage);
-      this.taskService.getTaskSubmits({
-        start: currentPage * this.rowsDefault,
-      });
+      this.currentPage = currentPage;
+      this.changeSubmitsRoute();
+      this.fetchTaskSubmits();
     }
+  }
+
+  fetchTaskSubmits() {
+    this.taskService.getTaskSubmits({
+      start: this.currentPage * this.rowsDefault,
+      sort: `${this.sortOrder === 'asc' ? '-' : '+'}${this.sortColumn}`,
+    });
   }
 
   fetchTaskInfo() {
@@ -177,5 +193,13 @@ export class SubmitsComponent implements OnInit {
         this.loading.projectInfo = false;
       }
     );
+  }
+
+  handleSortChange({ sortOrder, colID }: TableColSortingInterface) {
+    console.log(sortOrder, colID);
+    this.taskService.getTaskSubmits();
+    this.sortOrder = sortOrder;
+    this.sortColumn = colID;
+    this.fetchTaskSubmits();
   }
 }

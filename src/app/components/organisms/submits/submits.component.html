@@ -2,7 +2,10 @@
   <app-table
     [colsItems]="taskConfigColumns"
     [rowsItems]="taskSubmits"
+    [sortCol]="sortColumn"
+    [sortOrder]="sortOrder"
     [selectRowWithID]="routeSubmitID"
+    (onSortChange)="handleSortChange($event)"
   ></app-table>
 
   <app-meta-panel>

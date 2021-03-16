@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FeaturesInfoService } from '../../organisms/features-info/features-info.service';
 import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
 import { TaskConfigColumnInterface } from '../../../interfaces/task/task.interface';
+import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/table-col-sorting.interface';
 
 @Component({
   selector: 'app-table',
@@ -12,6 +13,11 @@ export class TableComponent implements OnInit {
   @Input() colsItems;
   @Input() rowsItems: SubmitInterface[];
   @Input() selectRowWithID: string;
+  @Input() sortCol: string;
+  @Input() sortOrder: string;
+  @Output() onSortChange: EventEmitter<
+    TableColSortingInterface
+  > = new EventEmitter<TableColSortingInterface>();
 
   cols: TaskConfigColumnInterface[] = [];
   rows: SubmitInterface[] = [];
@@ -40,5 +46,9 @@ export class TableComponent implements OnInit {
 
   featureHandleClick(submitID: string) {
     this.featuresInfoService.updateFeaturesInfoMessage(submitID);
+  }
+
+  handleSortChange($event: TableColSortingInterface) {
+    this.onSortChange.emit($event);
   }
 }
