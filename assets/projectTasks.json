@@ -1,0 +1,66 @@
+{
+  "data": {
+    "project_name": "aero",
+    "tasks": [
+      {
+        "task_name": "aero__fw_classification_v1",
+        "features": 345,
+        "submits_active": 1233221,
+        "submits_new": 34,
+        "submits_favorite": 3,
+        "trash": 3,
+        "comments_to_submits": 2,
+        "metrics": [
+          "roc",
+          "public max f1",
+          "mae",
+          "rmse"
+        ],
+        "authors": [
+          "Eugene.Tcatcorin",
+          "Eugenia.Chibisova",
+          "Alexey.Savilov"
+        ],
+        "date_of_last_submit": "2020-07-21T12:09:00+00:00",
+        "comment_to_task": "Awesome",
+        "metrics_service_status": "OK"
+      },
+      {
+        "task_name": "aero__fw_classification_v2",
+        "features": 0,
+        "submits_active": 0,
+        "submits_new": 0,
+        "submits_favorite": 0,
+        "trash": 0,
+        "comments_to_submits": 0,
+        "metrics": null,
+        "authors": null,
+        "date_of_last_submit": null,
+        "comment_to_task": null,
+        "metrics_service_status": null
+      }
+    ]
+  },
+  "meta": {
+    "total_pages": 1,
+    "current_page": 1,
+    "per_page": 100,
+    "sort_column": "submits_active",
+    "sort_order": "asc",
+    "search_matches": [
+      {
+        "matched_row": {"task_name": "aero__fw_classification_v1"},
+        "matched_columns": [
+          "metrics",
+          "authors"
+        ]
+      },
+      {
+        "matched_row": {"task_name": "aero__fw_classification_v2"},
+        "matched_columns": [
+          "comment_to_task"
+        ]
+      }
+    ]
+  }
+}
