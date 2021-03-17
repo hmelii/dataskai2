@@ -6,6 +6,7 @@ import { ThemesSwitcherComponent } from './components/molecules/themes-switcher/
 import { MainTabsComponent } from './components/molecules/main-tabs/main-tabs.component';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { FiltersPanelComponent } from './components/molecules/filters-panel/filters-panel.component';
+
 import { AuthorsFilterComponent } from './components/molecules/authors-filter/authors-filter.component';
 import { IconComponent } from './components/atoms/icon/icon.component';
 import { SearchComponent } from './components/molecules/search/search.component';
