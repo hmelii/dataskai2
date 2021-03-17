@@ -16,7 +16,7 @@ export class TableColSwitcherComponent implements OnInit {
   all: CheckboxInterface = {
     value: 'all',
     label: 'all',
-    checked: false,
+    checked: true,
   };
 
   selectedColumns: (string | number)[] = [];
@@ -31,7 +31,7 @@ export class TableColSwitcherComponent implements OnInit {
           this.columns = config.data.columns.map((column) => ({
             value: column.id,
             label: column.name,
-            checked: column.isHidden,
+            checked: !column.isHidden,
           }));
         }
       }
@@ -52,11 +52,11 @@ export class TableColSwitcherComponent implements OnInit {
 
   handleChange($event: boolean, currentColumn?: CheckboxInterface) {
     if (!currentColumn) {
-      if ($event === true) {
-        this.all.checked = true;
+      if ($event === false) {
+        this.all.checked = false;
         this.columns = this.columns.map((author) => ({
           ...author,
-          checked: true,
+          checked: false,
         }));
         this.selectedColumns = this.columns.map(
           (author: CheckboxInterface) => author.value
@@ -73,19 +73,20 @@ export class TableColSwitcherComponent implements OnInit {
       const findedSelectedAuthorIndex = this.selectedColumns.findIndex(
         (author) => author === currentColumn.value
       );
-      if ($event === true) {
+      if ($event === false) {
         if (findedSelectedAuthorIndex < 0) {
           this.selectedColumns.push(currentColumn.value);
         }
         currentColumn.checked = true;
       } else {
-        this.all.checked = false;
+        // this.all.checked = false;
         this.selectedColumns.splice(findedSelectedAuthorIndex, 1);
         currentColumn.checked = false;
       }
-
-      if (this.columns.length === this.selectedColumns.length) {
+      if (this.selectedColumns.length === 0) {
         this.all.checked = true;
+      } else {
+        this.all.checked = false;
       }
     }
 

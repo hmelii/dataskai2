@@ -52,7 +52,7 @@ const routes: Routes = [
       breadcrumb: 'deleted submits',
     },
   },
-  {
+  /*{
     path: TaskEnum.Info,
     loadChildren: () =>
       import('./pages/info/info-page.module').then((m) => m.InfoPageModule),
@@ -60,7 +60,7 @@ const routes: Routes = [
       id: 'projectTaskInfo',
       breadcrumb: 'info',
     },
-  },
+  },*/
 ];
 
 @NgModule({

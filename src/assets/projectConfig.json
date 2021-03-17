@@ -1,0 +1,77 @@
+{
+  "data": {
+    "project_name": "aero",
+    "columns": [
+      {
+        "id": "task_name",
+        "name": "task name",
+        "type": "field",
+        "sortable": false
+      },
+      {
+        "id": "metrics",
+        "name": "metrics",
+        "type": "field",
+        "sortable": false
+      },
+      {
+        "id": "submits_active",
+        "name": "submits active",
+        "type": "field",
+        "sortable": true
+      },
+      {
+        "id": "date_of_last_submit",
+        "name": "date of last submit",
+        "type": "date",
+        "sortable": true
+      },
+      {
+        "id": "features",
+        "name": "features",
+        "type": "features",
+        "sortable": false
+      },
+      {
+        "id": "authors",
+        "name": "authors",
+        "type": "field",
+        "sortable": false
+      },
+      {
+        "id": "comments_to_submits",
+        "name": "comments to submits",
+        "type": "field",
+        "sortable": false
+      },
+
+      {
+        "id": "submits_favorite",
+        "name": "submits favorite",
+        "type": "field",
+        "sortable": true
+      },
+      {
+        "id": "trash",
+        "name": "trash",
+        "type": "field",
+        "sortable": false
+      },
+      {
+        "id": "comment_to_task",
+        "name": "comment to task",
+        "type": "field",
+        "sortable": false
+      },
+      {
+        "id": "metric_service",
+        "name": "metric service",
+        "type": "field",
+        "sortable": false
+      }
+    ],
+    "rows_per_page_values": [50, 100, 200, 500, 1000],
+    "rows_per_page_default": 100,
+    "description_language_default": "en"
+  }
+}

@@ -10,6 +10,7 @@ import { MainModule } from '../../../../../../../../main.module';
   declarations: [SubmitsPageComponent, SubmitsComponent],
   imports: [SubmitsPageRoutingModule, CommonModule, MainModule],
   exports: [
+    SubmitsComponent,
     //SubmitsPageComponent,
     //FeaturesInfoComponent,
     // SubmitsComponent,

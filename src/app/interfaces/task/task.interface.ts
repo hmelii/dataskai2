@@ -45,3 +45,18 @@ export interface TaskSubmitsInterface {
   loaded: boolean;
   loading: boolean;
 }
+
+export interface TaskInterface {
+  task_name: string;
+  features: number;
+  submits_active: number;
+  submits_new: number;
+  submits_favorite: number;
+  trash: number;
+  comments_to_submits: number;
+  metrics: string[];
+  authors: string[];
+  date_of_last_submit: string;
+  comment_to_task: string;
+  metrics_service_status: string;
+}

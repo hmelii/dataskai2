@@ -1,8 +1,8 @@
 .table {
   border: 0;
+  width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  width: 100%;
 }
 
 .table-thead-th {
@@ -12,6 +12,8 @@
   padding: 12px;
   text-align: left;
   vertical-align: top;
+  /*overflow: hidden;
+  resize: horizontal;*/
 }
 
 .table-tbody-th,
