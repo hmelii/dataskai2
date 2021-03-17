@@ -19,7 +19,7 @@ const routes: Routes = [
       breadcrumb: 'submits',
     },
   },
-  {
+  /*{
     path: TaskEnum.FavoriteSubmits,
     loadChildren: () =>
       import('./pages/favorite-submits/favorite-submits-page.module').then(
@@ -29,7 +29,7 @@ const routes: Routes = [
       id: 'projectTaskFavoriteSubmits',
       breadcrumb: 'favorite submits',
     },
-  },
+  },*/
   {
     path: TaskEnum.ComparedSubmits,
     loadChildren: () =>
@@ -41,7 +41,7 @@ const routes: Routes = [
       breadcrumb: 'comparises submits',
     },
   },
-  {
+  /*{
     path: TaskEnum.DeletedSubmits,
     loadChildren: () =>
       import('./pages/deleted-submits/deleted-submits-page.module').then(
@@ -51,7 +51,7 @@ const routes: Routes = [
       id: 'projectTaskDeletedSubmits',
       breadcrumb: 'deleted submits',
     },
-  },
+  },*/
   /*{
     path: TaskEnum.Info,
     loadChildren: () =>
