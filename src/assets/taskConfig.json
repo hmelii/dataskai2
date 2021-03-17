@@ -2,12 +2,7 @@
   "data": {
     "task_name": "aero__fw_classification_v1",
     "columns": [
-      {
-        "id": "favorite",
-        "name": "favorite",
-        "type": "field",
-        "sortable": true
-      },
+
       {
         "id": "mae",
         "name": "mae",
@@ -68,12 +63,7 @@
         "type": "field",
         "sortable": false
       },
-      {
-        "id": "comment",
-        "name": "comment",
-        "type": "field",
-        "sortable": true
-      },
+
       {
         "id": "created",
         "name": "date of submit",

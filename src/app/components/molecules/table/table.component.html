@@ -89,19 +89,17 @@
       >
         <div *ngIf="col.type === 'metric'">
           <app-table-metric
-            *ngIf="row.metrics[col.id]"
+            *ngIf="row.metrics && row.metrics[col.id]; else noMetrics"
             [metric]="row.metrics[col.id]"
           ></app-table-metric>
-
-          <app-loader *ngIf="!row.metrics[col.id]"></app-loader>
+          <ng-template #noMetrics>
+            <app-loader></app-loader>
+          </ng-template>
         </div>
+
         <div [ngSwitch]="col.id">
           <ng-template ngSwitchCase="actions">
-            <div class="table-actions">
-              <app-add-to-comparison></app-add-to-comparison>
-              <app-table-copy-url [id]="row.id"></app-table-copy-url>
-              <!--<app-add-to-basket [id]="row.id"></app-add-to-basket>-->
-            </div>
+            <app-table-actions [id]="row.id"></app-table-actions>
           </ng-template>
           <ng-template ngSwitchCase="favorite">
             <app-favorite [isFavorite]="row[col.id]"></app-favorite>
@@ -133,7 +131,7 @@
 
         <div *ngIf="col.type === 'features'">
           <a class="table-link" (click)="featureHandleClick(row.id)">{{
-            row[col.id].count
+            row[col.id]
           }}</a>
         </div>
       </td>

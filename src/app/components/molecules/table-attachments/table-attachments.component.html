@@ -12,8 +12,11 @@
     <div *ngIf="attachments.notebook">Notebook</div>
   </div>
   <div>
-    <div class="table-attachments-summary">
-      + {{ attachments.files.length - 1 }}
+    <div
+      class="table-attachments-summary"
+      *ngIf="attachments.other_files && attachments.other_files > 0"
+    >
+      <span *ngIf="attachments.notebook">+</span> {{ attachments.other_files }}
       {{ attachments.files.length > 2 ? "files" : "file" }}
     </div>
     <div class="table-attachments-sub">
