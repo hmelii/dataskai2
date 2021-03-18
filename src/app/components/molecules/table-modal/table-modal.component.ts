@@ -17,7 +17,10 @@ export class TableModalComponent implements OnInit {
 
   tableServicesSubscribeUpdates() {
     this.tableService.currentModalShownStageMessage.subscribe((isShown) => {
-      this.isShown = isShown;
+      setTimeout(() => {
+        // этот таймаут нужен, для того чтобы не ложно не срабатывал клик вне попапа
+        this.isShown = isShown;
+      }, 100);
     });
 
     this.tableService.currentModalHeadingStageMessage.subscribe((heading) => {
@@ -35,5 +38,11 @@ export class TableModalComponent implements OnInit {
     this.tableService.updateModalShownMessage(false);
     this.tableService.updateModalBodyMessage('');
     this.tableService.updateModalHeadingMessage('');
+  }
+
+  handleClickedOutside($event: Event) {
+    if (this.isShown) {
+      this.handleClose();
+    }
   }
 }

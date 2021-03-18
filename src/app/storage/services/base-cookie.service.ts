@@ -8,7 +8,9 @@ import {
   CookieServiceSetOptions,
 } from '../interfaces/cookie-service.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class BaseCookieService implements CookieService {
   private readonly documentIsAccessible: boolean;
 
@@ -70,7 +72,7 @@ export class BaseCookieService implements CookieService {
     name: string,
     value: string,
     options: Partial<CookieServiceSetOptions> = {
-      sameSite: 'none',
+      sameSite: 'None',
       secure: true,
     }
   ): void {
@@ -78,7 +80,9 @@ export class BaseCookieService implements CookieService {
       encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';';
 
     if (options.expires) {
-      cookieString += 'expires=' + options.expires.toUTCString() + ';';
+      // тут добавил new Date, так как ругался Type
+      cookieString +=
+        'expires=' + new Date(options.expires).toUTCString() + ';';
     }
 
     if (options.path) {

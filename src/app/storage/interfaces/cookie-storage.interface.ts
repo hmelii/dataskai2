@@ -1,6 +1,6 @@
 import { AbstractStorage } from './abstract-storage.interface';
 
-import { CookieServiceSetOptions } from '../services/cookie-service.interface';
+import { CookieServiceSetOptions } from './cookie-service.interface';
 
 /**
  * Cookie Storage

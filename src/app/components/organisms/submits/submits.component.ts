@@ -14,7 +14,6 @@ import { ProjectEnum } from '../../../enums/routes/project.enum';
 import { TaskEnum } from '../../../enums/routes/task.enum';
 import { TasksEnum } from '../../../enums/routes/tasks.enum';
 import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/table-col-sorting.interface';
-
 @Component({
   selector: 'app-submits',
   templateUrl: './submits.component.html',
@@ -69,7 +68,6 @@ export class SubmitsComponent implements OnInit {
     this.activateRoute.params.subscribe((params) => {
       this.routeTaskID = params['taskID'];
       this.routeSubmitID = params['submitID'];
-      console.log('this.routeSubmitID', this.routeSubmitID);
     });
   }
 

@@ -20,11 +20,12 @@ export class FeaturesInfoComponent implements OnInit {
   ngOnInit(): void {
     this.featuresInfoService.currentFeatureInfoStageMessage.subscribe(
       (submitID) => {
-        this.isShown = !!submitID;
-        //return this.authors = authors
-        // this.featuresNames = featuresNames
+        setTimeout(() => {
+          // этот таймаут нужен, для того чтобы не срабатывал ложный клик вне окна
+          this.isShown = !!submitID;
+        }, 100);
 
-        if (this.isShown) {
+        if (submitID) {
           this.fetchFeaturesInfo(submitID);
         }
       }
@@ -32,6 +33,7 @@ export class FeaturesInfoComponent implements OnInit {
   }
 
   fetchFeaturesInfo(submitID: string) {
+    console.log(submitID);
     this.loading = true;
     this.featuresInfoService.fetchFeaturesInfo(submitID).subscribe(
       (featuresInfo: FeaturesInfo) => {
@@ -48,5 +50,11 @@ export class FeaturesInfoComponent implements OnInit {
 
   handleClose() {
     this.featuresInfoService.updateFeaturesInfoMessage(null);
+  }
+
+  handleClickedOutside($event: Event) {
+    if (this.isShown) {
+      this.handleClose();
+    }
   }
 }

@@ -18,7 +18,7 @@
   text-decoration: none;
 
   &:after {
-    content: '';
+    content: "";
     width: 0;
     height: 0;
     border-style: solid;
@@ -30,14 +30,12 @@
     bottom: 0;
     right: 0;
     transform: rotate(0deg);
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     .authors-filter-active & {
       transform: rotate(-180deg);
     }
   }
-
-
 }
 
 .authors-filter-sub {
@@ -51,9 +49,8 @@
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1;
+  z-index: 100;
   transform: translate(0, 4px);
-
 }
 
 .select-list {
@@ -79,7 +76,7 @@
 }
 
 .authors-filter-heading {
-  border-bottom: 1px solid #494C50;
+  border-bottom: 1px solid #494c50;
   padding-bottom: 9px;
   margin-bottom: 9px;
 }

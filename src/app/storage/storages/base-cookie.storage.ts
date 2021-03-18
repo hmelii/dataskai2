@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import {
   CookieService,
   CookieServiceSetOptions,
-} from './interfaces/cookie-service.interface';
-import { CookieStorage } from './interfaces/cookie-storage.interface';
+} from '../interfaces/cookie-service.interface';
+import { CookieStorage } from '../interfaces/cookie-storage.interface';
 
 @Injectable()
 export class BaseCookieStorage implements CookieStorage {

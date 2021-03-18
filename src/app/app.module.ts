@@ -25,6 +25,7 @@ import { TaskSelectionComponent } from './components/molecules/task-selection/ta
 import { HeaderComponent } from './layouts/blocks/header/header.component';
 import { MainComponent } from './layouts/blocks/main/main.component';
 import { PaginationComponent } from './components/molecules/pagination/pagination.component';
+import { StorageModule } from './storage/storage.module';
 @NgModule({
   declarations: [AppComponent, NoFoundComponent],
   imports: [
@@ -32,6 +33,7 @@ import { PaginationComponent } from './components/molecules/pagination/paginatio
     HttpClientModule,
     AppRoutingModule,
     ProjectPageModule,
+    StorageModule.forRoot(),
 
     // SubmitsModule,
   ],

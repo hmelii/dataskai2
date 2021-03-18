@@ -1,4 +1,8 @@
-<div class="table-modal" *ngIf="isShown">
+<div
+  class="table-modal"
+  *ngIf="isShown"
+  (clickOutside)="handleClickedOutside($event)"
+>
   <a class="table-modal-close-btn" (click)="handleClose()">
     <span class="table-modal-close-btn-ico">
       <app-icon [type]="'close'"></app-icon>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ComparisonService } from '../../../services/comparison/comparison.service';
 
 @Component({
   selector: 'app-add-to-comparison',
@@ -7,12 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddToComparisonComponent implements OnInit {
   isInComparison = false;
+  @Input() id: string;
 
-  constructor() {}
+  constructor(private comparisonService: ComparisonService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.updateIsInComparison();
+  }
+
+  updateIsInComparison() {
+    this.comparisonService.currentComparisonIDSStageMessage.subscribe(
+      (comparisonIDs) => {
+        const findedIndex = comparisonIDs.findIndex((id) => id === this.id);
+        this.isInComparison = findedIndex > -1;
+      }
+    );
+  }
 
   handleClick() {
-    this.isInComparison = !this.isInComparison;
+    this.comparisonService.updateComparisonIDSMessage(this.id);
   }
 }

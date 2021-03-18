@@ -1,4 +1,8 @@
-<div class="feature-info" *ngIf="isShown">
+<div
+  class="feature-info"
+  *ngIf="isShown"
+  (clickOutside)="handleClickedOutside($event)"
+>
   <a class="feature-info-close-btn" (click)="handleClose()">
     <span class="feature-info-close-btn-ico">
       <app-icon [type]="'close'"></app-icon>
@@ -12,8 +16,8 @@
   <div class="feature-info-body">
     <ul class="feature-list">
       <li class="feature-list-item" *ngFor="let feature of featuresNames">
-        <div class="feature-list-text">{{feature.name}}</div>
-        <div class="feature-list-bubble">{{feature.description}}</div>
+        <div class="feature-list-text">{{ feature.name }}</div>
+        <div class="feature-list-bubble">{{ feature.description }}</div>
       </li>
     </ul>
   </div>

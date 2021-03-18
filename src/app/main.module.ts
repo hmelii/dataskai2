@@ -44,6 +44,7 @@ import { ReplaceLineBreaks } from './pipes/replace-line-breaks.pipe';
 import { ReplaceTabs } from './pipes/replace-tabs.pipe';
 import { MatchesIsHiddenPipe } from './pipes/matches-is-hidden.pipe';
 import { TableActionsComponent } from './components/molecules/table-actions/table-actions.component';
+
 @NgModule({
   declarations: [
     ProjectNameComponent,
