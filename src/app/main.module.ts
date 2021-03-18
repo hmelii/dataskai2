@@ -44,6 +44,7 @@ import { ReplaceLineBreaks } from './pipes/replace-line-breaks.pipe';
 import { ReplaceTabs } from './pipes/replace-tabs.pipe';
 import { MatchesIsHiddenPipe } from './pipes/matches-is-hidden.pipe';
 import { TableActionsComponent } from './components/molecules/table-actions/table-actions.component';
+import { TableFeaturesComponent } from './components/molecules/table-features/table-features.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { TableActionsComponent } from './components/molecules/table-actions/tabl
     ReplaceTabs,
     MatchesIsHiddenPipe,
     TableActionsComponent,
+    TableFeaturesComponent,
   ],
   imports: [
     IconSpriteModule,

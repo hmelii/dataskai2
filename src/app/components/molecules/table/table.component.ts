@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FeaturesInfoService } from '../../organisms/features-info/features-info.service';
 import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
 import { TaskConfigColumnInterface } from '../../../interfaces/task/task.interface';
 import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/table-col-sorting.interface';
@@ -22,7 +21,7 @@ export class TableComponent implements OnInit {
   cols: TaskConfigColumnInterface[] = [];
   rows: SubmitInterface[] = [];
 
-  constructor(private featuresInfoService: FeaturesInfoService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -42,10 +41,6 @@ export class TableComponent implements OnInit {
 
   generateTableBody() {
     this.rows = this.rowsItems;
-  }
-
-  featureHandleClick(submitID: string) {
-    this.featuresInfoService.updateFeaturesInfoMessage(submitID);
   }
 
   handleSortChange($event: TableColSortingInterface) {

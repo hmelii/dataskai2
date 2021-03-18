@@ -115,6 +115,7 @@
             </div>
           </ng-template>
         </div>
+
         <div *ngIf="col.type === 'date'">
           <div class="table-tbody-td-sub-sub-heading">
             {{ row[col.id] | date: "hh:mm" }}
@@ -129,11 +130,11 @@
           [attachments]="row[col.id]"
         ></app-table-attachments>
 
-        <div *ngIf="col.type === 'features'">
-          <a class="table-link" (click)="featureHandleClick(row.id)">{{
-            row[col.id]
-          }}</a>
-        </div>
+        <app-table-features
+          *ngIf="col.type === 'features'"
+          [id]="row.id"
+          [text]="row[col.id]"
+        ></app-table-features>
       </td>
       <!--<th class="table-tbody-th">
       <div class="table-tbody-th-heading">1</div>

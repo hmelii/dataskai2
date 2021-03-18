@@ -29,7 +29,7 @@
         "model_version": "4.1",
         "features": 345,
         "author": "Eugene.Tcatcorin",
-        "feature_mining_comments": "v5 Eugene Tsatsorin features {'bootstrap': False, 'ccp_alpha': 0.0, 'class_weight': None, 'criterion': 'gini', 'max_depth': None, 'max_features': 'auto', 'max_leaf_nodes': None, 'max_samples': None, 'min_impurity_decrease': 0.0, 'min_impurity_split': None, 'min_samples_leaf': 1, 'min_samples_split': 2, 'min_weight_fraction_leaf': 0.0, 'n_estimators': 100, 'n_jobs': None, 'oob_score': False, 'random_state': 17, 'verbose': 0, 'warm_start': False}",
+        "feature_mining_comments": "1 SimpleImputer: {\n\t'add_indicator': False, \n\t'copy': True, \n\t'fill_value': None, \n\t'missing_values': nan, \n\t'strategy': 'mean', \n\t'verbose': 0\n}, \n\nmodel_2': Lasso(\n\talpha=1.1750871309048077, \n\tcopy_X=True, \n\tfit_intercept=True, \n\tmax_iter=1000, \n\tnormalize=False, \n\tpositive=False, \n\tprecompute=False,\n\trandom_state=123, \n\tselection='cyclic', \n\ttol=0.0001, \n\twarm_start=False)\n}, \n\nRobustScaler: {\n\t'copy': True, \n\t'quantile_range': (25.0, 75.0), \n\t'with_centering': True, \n\t'with_scaling': True\n},\n\nSet 0 for target less than 10\n",
         "attachments": {
           "notebook": true,
           "other_files": 1,
@@ -76,7 +76,7 @@
         "model_version": "4.1",
         "features": 345,
         "author": "Eugene.Tcatcorin",
-        "feature_mining_comments": "v5 Eugene Tsatsorin features {'bootstrap': False, 'ccp_alpha': 0.0, 'class_weight': None, 'criterion': 'gini', 'max_depth': None, 'max_features': 'auto', 'max_leaf_nodes': None, 'max_samples': None, 'min_impurity_decrease': 0.0, 'min_impurity_split': None, 'min_samples_leaf': 1, 'min_samples_split': 2, 'min_weight_fraction_leaf': 0.0, 'n_estimators': 100, 'n_jobs': None, 'oob_score': False, 'random_state': 17, 'verbose': 0, 'warm_start': False}",
+        "feature_mining_comments": "2 SimpleImputer: {\n\t'add_indicator': False, \n\t'copy': True, \n\t'fill_value': None, \n\t'missing_values': nan, \n\t'strategy': 'mean', \n\t'verbose': 0\n}, \n\nmodel_2': Lasso(\n\talpha=1.1750871309048077, \n\tcopy_X=True, \n\tfit_intercept=True, \n\tmax_iter=1000, \n\tnormalize=False, \n\tpositive=False, \n\tprecompute=False,\n\trandom_state=123, \n\tselection='cyclic', \n\ttol=0.0001, \n\twarm_start=False)\n}, \n\nRobustScaler: {\n\t'copy': True, \n\t'quantile_range': (25.0, 75.0), \n\t'with_centering': True, \n\t'with_scaling': True\n},\n\nSet 0 for target less than 10\n",
         "attachments": {
           "notebook": true,
           "other_files": 0,
@@ -120,7 +120,7 @@
         "model_version": "4.1",
         "features": 345,
         "author": "Eugene.Tcatcorin",
-        "feature_mining_comments": "v5 Eugene Tsatsorin features {'bootstrap': False, 'ccp_alpha': 0.0, 'class_weight': None, 'criterion': 'gini', 'max_depth': None, 'max_features': 'auto', 'max_leaf_nodes': None, 'max_samples': None, 'min_impurity_decrease': 0.0, 'min_impurity_split': None, 'min_samples_leaf': 1, 'min_samples_split': 2, 'min_weight_fraction_leaf': 0.0, 'n_estimators': 100, 'n_jobs': None, 'oob_score': False, 'random_state': 17, 'verbose': 0, 'warm_start': False}",
+        "feature_mining_comments": "3 SimpleImputer: {\n\t'add_indicator': False, \n\t'copy': True, \n\t'fill_value': None, \n\t'missing_values': nan, \n\t'strategy': 'mean', \n\t'verbose': 0\n}, \n\nmodel_2': Lasso(\n\talpha=1.1750871309048077, \n\tcopy_X=True, \n\tfit_intercept=True, \n\tmax_iter=1000, \n\tnormalize=False, \n\tpositive=False, \n\tprecompute=False,\n\trandom_state=123, \n\tselection='cyclic', \n\ttol=0.0001, \n\twarm_start=False)\n}, \n\nRobustScaler: {\n\t'copy': True, \n\t'quantile_range': (25.0, 75.0), \n\t'with_centering': True, \n\t'with_scaling': True\n},\n\nSet 0 for target less than 10\n",
         "attachments": {
           "notebook": false,
           "other_files": 4,

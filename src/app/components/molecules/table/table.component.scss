@@ -33,6 +33,10 @@
     .table-tbody-th,
     .table-tbody-td {
       background: var(--table-background-tertiary);
+
+      &:hover {
+        background: var(--table-background-quaternary);
+      }
     }
   }
 }
