@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorsService } from '../../../services/authors/authors.service';
 import { CheckboxInterface } from '../../../interfaces/checkbox/checkbox.interface';
+import { TaskService } from '../../../services/task/task.service';
+import { ProjectService } from '../../../services/project/project.service';
 
 @Component({
   selector: 'app-authors-filter',
@@ -18,21 +20,50 @@ export class AuthorsFilterComponent implements OnInit {
 
   selectedAuthors: (string | number)[] = [];
 
-  constructor(private authorsService: AuthorsService) {
+  constructor(
+    private taskService: TaskService,
+    private projectService: ProjectService
+  ) {
     this.isShow = false;
+    this.subscribeTaskInfoUpdates();
+    this.subscribeProjectInfoUpdates();
   }
 
-  ngOnInit(): void {
-    this.authorsService.currentAuthorsStageMessage.subscribe(
-      (authors: Array<string>) => {
-        return (this.authors = authors.map((author) => ({
-          value: author,
-          checked: false,
-          label: author,
-        })));
+  subscribeTaskInfoUpdates() {
+    this.taskService.currentTaskInfoStageMessage.subscribe(
+      ({ loaded, loading, data }) => {
+        if (loaded && !loading) {
+          if (data) {
+            this.authors = data.authors.map((author) => ({
+              value: author,
+              checked: false,
+              label: author,
+            }));
+            console.log('this.authors', this.authors);
+          }
+        }
       }
     );
   }
+
+  subscribeProjectInfoUpdates() {
+    this.projectService.currentProjectInfoStageMessage.subscribe(
+      ({ loaded, loading, data }) => {
+        if (loaded && !loading) {
+          if (data) {
+            this.authors = data.authors.map((author) => ({
+              value: author,
+              checked: false,
+              label: author,
+            }));
+            console.log('this.authors', this.authors);
+          }
+        }
+      }
+    );
+  }
+
+  ngOnInit(): void {}
 
   handleClick() {
     this.isShow = !this.isShow;

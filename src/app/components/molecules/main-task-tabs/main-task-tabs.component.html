@@ -3,14 +3,8 @@
     <li class="main-tabs-item" routerLinkActive="main-tabs-item--active">
       <a
         class="main-tabs-link"
-        [routerLink]="[
-          routeMain,
-          routeProject,
-          routeTasks,
-          routeTaskID,
-          routeSubmits
-        ]"
-        >TASKS (2341)</a
+        [routerLink]="[routeMain, routeProject, routeTasks]"
+        >TASKS ({{ projectTasksLength }})</a
       >
     </li>
     <li class="main-tabs-item" routerLinkActive="main-tabs-item--active">

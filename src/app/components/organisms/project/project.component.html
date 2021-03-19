@@ -1,7 +1,7 @@
-<div class="submits" *ngIf="taskSubmits">
+<div class="project">
   <app-table
-    [colsItems]="taskConfigColumns"
-    [rowsItems]="taskSubmits"
+    [colsItems]="projectConfigColumns"
+    [rowsItems]="projectTasks"
     [sortCol]="sortColumn"
     [sortOrder]="sortOrder"
     [selectRowWithID]="routeSubmitID"

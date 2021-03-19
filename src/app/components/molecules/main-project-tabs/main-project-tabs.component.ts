@@ -5,13 +5,15 @@ import { ProjectEnum } from '../../../enums/routes/project.enum';
 import { MainEnum } from '../../../enums/routes/main.enum';
 import { ComparisonService } from '../../../services/comparison/comparison.service';
 import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from '../../../services/project/project.service';
+import { ProjectInfoInterface } from '../../../interfaces/project/project.interface';
 
 @Component({
-  selector: 'app-main-tabs',
-  templateUrl: './main-tabs.component.html',
-  styleUrls: ['./main-tabs.component.scss'],
+  selector: 'app-main-project-tabs',
+  templateUrl: './main-project-tabs.component.html',
+  styleUrls: ['./main-project-tabs.component.scss'],
 })
-export class MainTabsComponent implements OnInit {
+export class MainProjectTabsComponent implements OnInit {
   routeTaskID = '';
   routeSubmits = TaskEnum.Submits;
   routeTasks = TasksEnum.Tasks;
@@ -20,13 +22,33 @@ export class MainTabsComponent implements OnInit {
   routeInfo = TaskEnum.Info;
   routeComparison = TaskEnum.ComparedSubmits;
   comparisonIDsLength = 0;
+  projectTasksLength = 0;
 
   constructor(
     private comparisonService: ComparisonService,
+    private projectService: ProjectService,
     private activateRoute: ActivatedRoute
   ) {
     this.subscribeRouteUpdate();
     this.subscribeComparisonIDsUpdate();
+    this.subscribeProjectInfoUpdate();
+  }
+
+  subscribeProjectInfoUpdate() {
+    this.projectService.currentProjectInfoStageMessage.subscribe(
+      ({ data }: ProjectInfoInterface) => {
+        if (!data) {
+          return;
+        }
+        const {
+          tasks: { count },
+        } = data;
+        if (count) {
+          console.log('count', count);
+          this.projectTasksLength = count;
+        }
+      }
+    );
   }
 
   subscribeComparisonIDsUpdate() {

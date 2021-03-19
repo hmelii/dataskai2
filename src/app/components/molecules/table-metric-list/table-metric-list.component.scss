@@ -1,0 +1,16 @@
+.table-metric-list {
+  position: relative;
+  font-size: 1.3rem;
+  max-width: 180px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  line-clamp: 4;
+  box-orient: vertical;
+  z-index: 1;
+}
+
+.table-metric-list-item {
+  text-transform: uppercase;
+}

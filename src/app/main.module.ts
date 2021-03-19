@@ -3,7 +3,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { LogoComponent } from './components/atoms/logo/logo.component';
 import { ProjectNameComponent } from './components/molecules/project-name/project-name.component';
 import { ThemesSwitcherComponent } from './components/molecules/themes-switcher/themes-switcher.component';
-import { MainTabsComponent } from './components/molecules/main-tabs/main-tabs.component';
+import { MainTaskTabsComponent } from './components/molecules/main-task-tabs/main-task-tabs.component';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { FiltersPanelComponent } from './components/molecules/filters-panel/filters-panel.component';
 
@@ -45,6 +45,11 @@ import { ReplaceTabs } from './pipes/replace-tabs.pipe';
 import { MatchesIsHiddenPipe } from './pipes/matches-is-hidden.pipe';
 import { TableActionsComponent } from './components/molecules/table-actions/table-actions.component';
 import { TableFeaturesComponent } from './components/molecules/table-features/table-features.component';
+import { TableTaskNameComponent } from './components/molecules/table-task-name/table-task-name.component';
+import { TableMetricListComponent } from './components/molecules/table-metric-list/table-metric-list.component';
+import { FormatNumberPipe } from './pipes/format-number.pipe';
+import { TableMetricServiceStatusComponent } from './components/molecules/table-metric-service-status/table-metric-service-status.component';
+import { MainProjectTabsComponent } from './components/molecules/main-project-tabs/main-project-tabs.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +69,8 @@ import { TableFeaturesComponent } from './components/molecules/table-features/ta
     // MainLayoutComponent,
     LogoComponent,
     ThemesSwitcherComponent,
-    MainTabsComponent,
+    MainTaskTabsComponent,
+    MainProjectTabsComponent,
     PaginationComponent,
     MainComponent,
     MainLayoutComponent,
@@ -89,6 +95,10 @@ import { TableFeaturesComponent } from './components/molecules/table-features/ta
     MatchesIsHiddenPipe,
     TableActionsComponent,
     TableFeaturesComponent,
+    TableTaskNameComponent,
+    TableMetricListComponent,
+    FormatNumberPipe,
+    TableMetricServiceStatusComponent,
   ],
   imports: [
     IconSpriteModule,
@@ -115,7 +125,8 @@ import { TableFeaturesComponent } from './components/molecules/table-features/ta
     // MainLayoutComponent,
     LogoComponent,
     ThemesSwitcherComponent,
-    MainTabsComponent,
+    MainTaskTabsComponent,
+    MainProjectTabsComponent,
     PaginationComponent,
     MainComponent,
     MainLayoutComponent,

@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
-import { TaskConfigColumnInterface } from '../../../interfaces/task/task.interface';
+import {
+  TaskConfigColumnInterface,
+  TaskInterface,
+} from '../../../interfaces/task/task.interface';
 import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/table-col-sorting.interface';
 
 @Component({
@@ -10,7 +13,7 @@ import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/
 })
 export class TableComponent implements OnInit {
   @Input() colsItems;
-  @Input() rowsItems: SubmitInterface[];
+  @Input() rowsItems;
   @Input() selectRowWithID: string;
   @Input() sortCol: string;
   @Input() sortOrder: string;
@@ -27,6 +30,7 @@ export class TableComponent implements OnInit {
 
   ngOnChanges(): void {
     if (this.colsItems) {
+      console.log('this.colsItems', this.colsItems);
       this.generateTableHead();
     }
 

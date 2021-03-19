@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/project/tasks/123/submits',
+    redirectTo: '/project/tasks',
   },
   {
     path: ProjectEnum.Project,

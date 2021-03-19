@@ -33,7 +33,6 @@ export class FeaturesInfoComponent implements OnInit {
   }
 
   fetchFeaturesInfo(submitID: string) {
-    console.log(submitID);
     this.loading = true;
     this.featuresInfoService.fetchFeaturesInfo(submitID).subscribe(
       (featuresInfo: FeaturesInfo) => {

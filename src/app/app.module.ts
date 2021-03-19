@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LogoComponent } from './components/atoms/logo/logo.component';
 import { ProjectNameComponent } from './components/molecules/project-name/project-name.component';
 import { ThemesSwitcherComponent } from './components/molecules/themes-switcher/themes-switcher.component';
-import { MainTabsComponent } from './components/molecules/main-tabs/main-tabs.component';
+import { MainTaskTabsComponent } from './components/molecules/main-task-tabs/main-task-tabs.component';
 import { ProjectPageModule } from './pages/project/project-page.module';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { NoFoundComponent } from './components/organisms/no-found/no-found.component';

@@ -1,6 +1,11 @@
-<div class="select" (clickOutside)="onClickedOutside($event)" [class]="{'select--active': isShow}" *ngIf="tasks.length">
-  <div class="select-value"  (click)="handleClick()">
-    <div class="select-value-text">{{ tasks[selectedIndex] }}</div>
+<div
+  class="select"
+  (clickOutside)="onClickedOutside($event)"
+  [class]="{ 'select--active': isShow }"
+  *ngIf="tasks && tasks.length"
+>
+  <div class="select-value" (click)="handleClick()">
+    <div class="select-value-text">{{ taskName }}</div>
     <div class="select-ico">
       <app-icon type="triangle"></app-icon>
     </div>
@@ -8,8 +13,22 @@
   <div class="select-sub">
     <div class="select-heading">Ammiak project</div>
     <ul class="select-list">
-      <li class="select-item" [class]="{'select-item--active': selectedIndex === i}" *ngFor="let task of tasks; let i = index;">
-        <a class="select-link" (click)="handleItemClick(i)">{{ task }}</a>
+      <li
+        class="select-item"
+        [class]="{ 'select-item--active': selectedIndex === i }"
+        *ngFor="let task of tasks; let i = index"
+      >
+        <a
+          class="select-link"
+          [routerLink]="[
+            routeMain,
+            routeProject,
+            routeTasks,
+            task,
+            routeSubmits
+          ]"
+          >{{ task }}</a
+        >
       </li>
     </ul>
   </div>

@@ -1,4 +1,5 @@
 import { SubmitInterface } from '../submit/submit.interface';
+import { LoadStatusInterface } from '../load-status/load-status.interface';
 
 export interface TaskConfigColumnInterface {
   id: string;
@@ -59,4 +60,23 @@ export interface TaskInterface {
   date_of_last_submit: string;
   comment_to_task: string;
   metrics_service_status: string;
+}
+
+export interface TaskInfoDataTaskDescriptionInterface {
+  [key: string]: string[];
+}
+
+export interface TaskInfoDataInterface {
+  task_name: string;
+  task_description: TaskInfoDataTaskDescriptionInterface;
+  authors: string[];
+  submits: number;
+  favorite_submits: number;
+  hidden_submits: number;
+  comments: number;
+  metrics_service_status: string;
+}
+
+export interface TaskInfoInterface extends LoadStatusInterface {
+  data?: TaskInfoDataInterface;
 }

@@ -17,12 +17,10 @@ export class BaseLocalStorage implements LocalStorage {
     /* tslint:disable-next-line:ban-types */
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    console.log(PLATFORM_ID);
     if (
       isPlatformBrowser(this.platformId) &&
       storageAvailable('localStorage')
     ) {
-      console.log('test');
       this.storage = window.localStorage;
     } else {
       this.storage = this.memoryStorage;

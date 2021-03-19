@@ -1,0 +1,15 @@
+<nav class="main-tabs">
+  <ul class="main-tabs-list">
+    <li class="main-tabs-item" routerLinkActive="main-tabs-item--active">
+      <a
+        class="main-tabs-link"
+        [routerLink]="[routeMain, routeProject, routeTasks]"
+        >TASKS ({{ projectTasksLength }})</a
+      >
+    </li>
+
+    <!--<li class="main-tabs-item" routerLinkActive="main-tabs-item&#45;&#45;active">
+      <a class="main-tabs-link" [routerLink]="[routeMain, routeProject, routeTasks, routeTaskId, routeInfo]">INFORMATION</a>
+    </li>-->
+  </ul>
+</nav>

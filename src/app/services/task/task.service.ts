@@ -5,6 +5,7 @@ import { catchError, delay } from 'rxjs/operators';
 import config from '../../config/config';
 import {
   TaskConfigInterface,
+  TaskInfoInterface,
   TaskSubmitsInterface,
 } from '../../interfaces/task/task.interface';
 
@@ -18,7 +19,10 @@ export class TaskService {
   } as TaskSubmitsInterface);
   currentTaskSubmitsStageMessage = this.taskSubmitsStageMessage.asObservable();
 
-  private taskInfoStageMessage = new BehaviorSubject([]);
+  private taskInfoStageMessage = new BehaviorSubject({
+    loaded: false,
+    loading: false,
+  } as TaskInfoInterface);
   currentTaskInfoStageMessage = this.taskInfoStageMessage.asObservable();
 
   private taskConfigStageMessage = new BehaviorSubject({
@@ -29,17 +33,22 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
-  updateTaskInfoMessage(message: []) {
-    this.taskInfoStageMessage.next(message);
+  updateTaskInfoMessage(message) {
+    this.taskInfoStageMessage.next({
+      ...this.taskInfoStageMessage.getValue(),
+      ...message,
+    });
   }
 
-  fetchTaskInfo(): Observable<any[]> {
+  fetchTaskInfo(taskInfoParams): Observable<TaskInfoInterface> {
     const params = new HttpParams({
-      fromObject: { _limit: '2' },
+      fromObject: taskInfoParams,
     });
 
     return this.http
-      .get<any[]>(config.BASE_URL + config.TASK_INFO_URL, { params })
+      .get<TaskInfoInterface>(config.BASE_URL + config.TASK_INFO_URL, {
+        params,
+      })
       .pipe(
         delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
@@ -152,6 +161,27 @@ export class TaskService {
       },
       () => {
         this.updateTaskConfigMessage({
+          loading: false,
+        });
+      }
+    );
+  }
+
+  getTaskInfo(params = {}) {
+    this.updateTaskInfoMessage({ loading: true });
+
+    this.fetchTaskInfo(params).subscribe(
+      (taskInfo: TaskInfoInterface) => {
+        this.updateTaskInfoMessage({
+          ...taskInfo,
+          loaded: true,
+        });
+      },
+      (error) => {
+        console.log(error.message);
+      },
+      () => {
+        this.updateTaskInfoMessage({
           loading: false,
         });
       }

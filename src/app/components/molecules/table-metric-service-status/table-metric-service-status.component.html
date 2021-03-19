@@ -1,0 +1,14 @@
+<div class="table-metric-service-status">
+  <div [ngSwitch]="status">
+    <ng-template ngSwitchCase="OK">
+      <div class="table-metric-service-status-ico">
+        <app-icon type="status-ok"></app-icon>
+      </div>
+    </ng-template>
+    <ng-template ngSwitchDefault>
+      <div class="table-metric-service-status-ico">
+        <app-loader></app-loader>
+      </div>
+    </ng-template>
+  </div>
+</div>

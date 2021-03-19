@@ -56,18 +56,19 @@ export class SubmitsComponent implements OnInit {
     this.subscribeSubmitsUpdates();
     this.subscribeTaskConfigUpdates();
     this.subscribeRouteUpdate();
+    this.subscribeProjectInfoUpdates();
+    this.subscribeTaskInfoUpdates();
   }
 
-  ngOnInit(): void {
-    // this.fetchTaskConfig();
-    this.fetchTaskInfo();
-    this.fetchProjectInfo();
-  }
+  ngOnInit(): void {}
 
   subscribeRouteUpdate() {
     this.activateRoute.params.subscribe((params) => {
       this.routeTaskID = params['taskID'];
-      this.routeSubmitID = params['submitID'];
+      this.routeSubmitID = params['submitID']; // используется для перехода по ссылке Например: http://localhost/project/tasks/aero__fw_clf_v1__ENG_1_FUEL_FILTER_CLOG__21/submits/6017b6b376a8c74ef40b1247d6
+
+      this.getTaskInfo();
+      this.getTaskSubmits();
     });
   }
 
@@ -93,9 +94,7 @@ export class SubmitsComponent implements OnInit {
 
   subscribeSubmitsUpdates() {
     this.taskService.currentTaskSubmitsStageMessage.subscribe(
-      (taskSubmits: TaskSubmitsInterface) => {
-        const { loaded, loading, data, meta } = taskSubmits;
-
+      ({ loaded, loading, data, meta }) => {
         if (!loaded && !loading) {
           this.taskService.getTaskSubmits();
         }
@@ -116,6 +115,40 @@ export class SubmitsComponent implements OnInit {
             this.totalPages = total_pages;
             this.sortColumn = sort_column;
             this.sortOrder = sort_order;
+          }
+        }
+      }
+    );
+  }
+
+  subscribeProjectInfoUpdates() {
+    this.projectService.currentProjectInfoStageMessage.subscribe(
+      ({ loaded, loading, data }) => {
+        console.log(loaded, loading, data);
+        if (!loaded && !loading) {
+          this.getProjectInfo();
+        }
+
+        if (loaded && !loading) {
+          if (data) {
+            this.projectInfo = data;
+          }
+        }
+      }
+    );
+  }
+
+  subscribeTaskInfoUpdates() {
+    this.taskService.currentTaskInfoStageMessage.subscribe(
+      ({ loaded, loading, data }) => {
+        console.log(loaded, loading, data);
+        if (!loaded && !loading) {
+          this.getTaskInfo();
+        }
+
+        if (loaded && !loading) {
+          if (data) {
+            this.taskInfo = data;
           }
         }
       }
@@ -143,61 +176,29 @@ export class SubmitsComponent implements OnInit {
     if (this.currentPage !== currentPage) {
       this.currentPage = currentPage;
       this.changeSubmitsRoute();
-      this.fetchTaskSubmits();
+      this.getTaskSubmits();
     }
   }
 
-  fetchTaskSubmits() {
+  getTaskSubmits() {
     this.taskService.getTaskSubmits({
       start: this.currentPage * this.rowsDefault,
       sort: `${this.sortOrder === 'asc' ? '-' : '+'}${this.sortColumn}`,
     });
   }
 
-  fetchTaskInfo() {
-    this.loading.taskInfo = true;
-    this.taskService.fetchTaskInfo().subscribe(
-      (info) => {
-        this.taskInfo = info;
-        this.authorsService.updateAuthorsMessage(this.taskInfo.data.authors);
-        this.taskService.updateTaskInfoMessage(
-          this.taskInfo.data.task_description
-        );
-        this.loaded.taskInfo = true;
-      },
-      (error) => {
-        this.error = error.message;
-      },
-      () => {
-        this.loading.taskInfo = false;
-      }
-    );
+  getProjectInfo() {
+    this.projectService.getProjectInfo();
   }
 
-  fetchProjectInfo() {
-    this.loading.projectInfo = true;
-    this.projectService.fetchProjectInfo().subscribe(
-      (info) => {
-        this.projectInfo = info;
-        this.projectService.updateProjectMessage(
-          this.projectInfo.data.tasks.names
-        );
-        this.loaded.projectInfo = true;
-      },
-      (error) => {
-        this.error = error.message;
-      },
-      () => {
-        this.loading.projectInfo = false;
-      }
-    );
+  getTaskInfo() {
+    this.taskService.getTaskInfo();
   }
 
   handleSortChange({ sortOrder, colID }: TableColSortingInterface) {
-    console.log(sortOrder, colID);
     this.taskService.getTaskSubmits();
     this.sortOrder = sortOrder;
     this.sortColumn = colID;
-    this.fetchTaskSubmits();
+    this.getTaskSubmits();
   }
 }

@@ -29,7 +29,6 @@ export class TableColSortingComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.sort = null;
     if (this.colID === this.sortCol) {
-      console.log(this.sortOrder);
       this.sort = this.sortOrder;
     }
   }
