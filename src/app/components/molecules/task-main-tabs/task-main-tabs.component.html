@@ -1,13 +1,21 @@
 <nav class="main-tabs">
   <ul class="main-tabs-list">
-    <li class="main-tabs-item" routerLinkActive="main-tabs-item--active">
+    <li
+      class="main-tabs-item"
+      routerLinkActive="main-tabs-item--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <a
         class="main-tabs-link"
         [routerLink]="[routeMain, routeProject, routeTasks]"
         >TASKS ({{ projectTasksLength }})</a
       >
     </li>
-    <li class="main-tabs-item" routerLinkActive="main-tabs-item--active">
+    <li
+      class="main-tabs-item"
+      routerLinkActive="main-tabs-item--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <a
         class="main-tabs-link"
         [routerLink]="[

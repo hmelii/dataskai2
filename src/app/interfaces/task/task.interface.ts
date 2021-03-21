@@ -24,7 +24,9 @@ export interface TaskConfigInterface {
 }
 
 export interface TaskSubmitsMetaSearchMatchesInterface {
-  submit_id: string;
+  matched_row: {
+    [key: string]: string;
+  };
   matched_columns: string[];
 }
 
@@ -34,7 +36,7 @@ export interface TaskSubmitsMeta {
   per_page: number;
   sort_order: string;
   sort_column: string;
-  submits_search_matches: TaskSubmitsMetaSearchMatchesInterface[];
+  search_matches: TaskSubmitsMetaSearchMatchesInterface[];
 }
 
 export interface TaskSubmitsInterface {

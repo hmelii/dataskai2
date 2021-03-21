@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainTaskTabsComponent } from './main-task-tabs.component';
+import { TaskMainTabsComponent } from './task-main-tabs.component';
 
 describe('MainTabsComponent', () => {
-  let component: MainTaskTabsComponent;
-  let fixture: ComponentFixture<MainTaskTabsComponent>;
+  let component: TaskMainTabsComponent;
+  let fixture: ComponentFixture<TaskMainTabsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MainTaskTabsComponent],
+      declarations: [TaskMainTabsComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainTaskTabsComponent);
+    fixture = TestBed.createComponent(TaskMainTabsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

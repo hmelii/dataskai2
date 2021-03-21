@@ -41,7 +41,18 @@
   }
 }
 
-.table-tbody-tr-selected {
+.table-tbody-tr--founded {
+  .table-tbody-th,
+  .table-tbody-td {
+    background: var(--table-background-tertiary);
+  }
+
+  .table-tbody-td--founded {
+    background: var(--table-background-quaternary);
+  }
+}
+
+.table-tbody-tr--selected {
   .table-tbody-th,
   .table-tbody-td {
     background: var(--table-background-tertiary);

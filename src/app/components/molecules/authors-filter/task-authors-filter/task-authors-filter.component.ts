@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorsService } from '../../../services/authors/authors.service';
-import { CheckboxInterface } from '../../../interfaces/checkbox/checkbox.interface';
-import { TaskService } from '../../../services/task/task.service';
-import { ProjectService } from '../../../services/project/project.service';
+import { AuthorsService } from '../../../../services/authors/authors.service';
+import { CheckboxInterface } from '../../../../interfaces/checkbox/checkbox.interface';
+import { TaskService } from '../../../../services/task/task.service';
+import { ProjectService } from '../../../../services/project/project.service';
 
 @Component({
-  selector: 'app-authors-filter',
-  templateUrl: './authors-filter.component.html',
-  styleUrls: ['./authors-filter.component.scss'],
+  selector: 'app-task-authors-filter',
+  templateUrl: '../authors-filter.component.html',
+  styleUrls: ['../authors-filter.component.scss'],
 })
-export class AuthorsFilterComponent implements OnInit {
+export class TaskAuthorsFilterComponent implements OnInit {
   isShow: boolean;
   authors: CheckboxInterface[];
   all: CheckboxInterface = {
@@ -26,7 +26,6 @@ export class AuthorsFilterComponent implements OnInit {
   ) {
     this.isShow = false;
     this.subscribeTaskInfoUpdates();
-    this.subscribeProjectInfoUpdates();
   }
 
   subscribeTaskInfoUpdates() {
@@ -39,24 +38,6 @@ export class AuthorsFilterComponent implements OnInit {
               checked: false,
               label: author,
             }));
-            console.log('this.authors', this.authors);
-          }
-        }
-      }
-    );
-  }
-
-  subscribeProjectInfoUpdates() {
-    this.projectService.currentProjectInfoStageMessage.subscribe(
-      ({ loaded, loading, data }) => {
-        if (loaded && !loading) {
-          if (data) {
-            this.authors = data.authors.map((author) => ({
-              value: author,
-              checked: false,
-              label: author,
-            }));
-            console.log('this.authors', this.authors);
           }
         }
       }

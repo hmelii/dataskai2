@@ -15,11 +15,11 @@ import { TaskEnum } from '../../../enums/routes/task.enum';
 import { TasksEnum } from '../../../enums/routes/tasks.enum';
 import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/table-col-sorting.interface';
 @Component({
-  selector: 'app-submits',
-  templateUrl: './submits.component.html',
-  styleUrls: ['./submits.component.scss'],
+  selector: 'app-task',
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.scss'],
 })
-export class SubmitsComponent implements OnInit {
+export class TaskComponent implements OnInit {
   loading = {
     projectInfo: false,
     taskInfo: false,
@@ -45,6 +45,7 @@ export class SubmitsComponent implements OnInit {
   routeSubmitID = null;
   sortColumn = null;
   sortOrder = null;
+  searchMatches = null;
 
   constructor(
     private authorsService: AuthorsService,
@@ -110,11 +111,13 @@ export class SubmitsComponent implements OnInit {
               total_pages = 1,
               sort_column = null,
               sort_order = null,
+              search_matches = null,
             } = meta;
             this.currentPage = current_page;
             this.totalPages = total_pages;
             this.sortColumn = sort_column;
             this.sortOrder = sort_order;
+            this.searchMatches = search_matches;
           }
         }
       }
@@ -124,7 +127,6 @@ export class SubmitsComponent implements OnInit {
   subscribeProjectInfoUpdates() {
     this.projectService.currentProjectInfoStageMessage.subscribe(
       ({ loaded, loading, data }) => {
-        console.log(loaded, loading, data);
         if (!loaded && !loading) {
           this.getProjectInfo();
         }
@@ -141,7 +143,6 @@ export class SubmitsComponent implements OnInit {
   subscribeTaskInfoUpdates() {
     this.taskService.currentTaskInfoStageMessage.subscribe(
       ({ loaded, loading, data }) => {
-        console.log(loaded, loading, data);
         if (!loaded && !loading) {
           this.getTaskInfo();
         }

@@ -42,17 +42,24 @@
       *ngFor="let row of rows; index as i"
       class="table-tbody-tr"
       [class]="{
-        'table-tbody-tr-selected': selectRowWithID && selectRowWithID === row.id
+        'table-tbody-tr--selected':
+          selectRowWithID && selectRowWithID === row.id,
+        'table-tbody-tr--founded': row.founded
       }"
     >
       <th class="table-tbody-th">
         <div class="table-tbody-th-heading">{{ i + 1 }}</div>
       </th>
       <td
-        class="table-tbody-td"
-        [class]="'table-tbody-td--' + col.id"
         *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as j"
+        class="table-tbody-td"
+        [class]="{
+          'table-tbody-td--founded':
+            row.foundedItems && row.foundedItems[col.id]
+        }"
       >
+        <!--        [attr.class]="'table-tbody-td table-tbody-td--' + col.id"
+-->
         <div [ngSwitch]="col.type">
           <ng-template ngSwitchCase="metric">
             <app-table-metric

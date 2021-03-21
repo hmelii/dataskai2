@@ -9,11 +9,11 @@ import { ProjectService } from '../../../services/project/project.service';
 import { ProjectInfoInterface } from '../../../interfaces/project/project.interface';
 
 @Component({
-  selector: 'app-main-task-tabs',
-  templateUrl: './main-task-tabs.component.html',
-  styleUrls: ['./main-task-tabs.component.scss'],
+  selector: 'app-task-main-tabs',
+  templateUrl: './task-main-tabs.component.html',
+  styleUrls: ['./task-main-tabs.component.scss'],
 })
-export class MainTaskTabsComponent implements OnInit {
+export class TaskMainTabsComponent implements OnInit {
   routeTaskID = '';
   routeSubmits = TaskEnum.Submits;
   routeTasks = TasksEnum.Tasks;
@@ -44,7 +44,6 @@ export class MainTaskTabsComponent implements OnInit {
           tasks: { count },
         } = data;
         if (count) {
-          console.log('count', count);
           this.projectTasksLength = count;
         }
       }

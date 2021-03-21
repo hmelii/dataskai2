@@ -67,7 +67,6 @@ export class ProjectService {
         delay(500), // исскуственная задержка
         catchError((error) => {
           // отлавливаем ошибку
-          console.log('Error: ', error.message);
           return throwError(error);
         })
       );

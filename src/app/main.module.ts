@@ -3,11 +3,13 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { LogoComponent } from './components/atoms/logo/logo.component';
 import { ProjectNameComponent } from './components/molecules/project-name/project-name.component';
 import { ThemesSwitcherComponent } from './components/molecules/themes-switcher/themes-switcher.component';
-import { MainTaskTabsComponent } from './components/molecules/main-task-tabs/main-task-tabs.component';
+import { TaskMainTabsComponent } from './components/molecules/task-main-tabs/task-main-tabs.component';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { FiltersPanelComponent } from './components/molecules/filters-panel/filters-panel.component';
 
-import { AuthorsFilterComponent } from './components/molecules/authors-filter/authors-filter.component';
+import { ProjectAuthorsFilterComponent } from './components/molecules/authors-filter/project-authors-filter/project-authors-filter.component';
+import { TaskAuthorsFilterComponent } from './components/molecules/authors-filter/task-authors-filter/task-authors-filter.component';
+
 import { IconComponent } from './components/atoms/icon/icon.component';
 import { SearchComponent } from './components/molecules/search/search.component';
 import { FeaturesInfoComponent } from './components/organisms/features-info/features-info.component';
@@ -49,13 +51,15 @@ import { TableTaskNameComponent } from './components/molecules/table-task-name/t
 import { TableMetricListComponent } from './components/molecules/table-metric-list/table-metric-list.component';
 import { FormatNumberPipe } from './pipes/format-number.pipe';
 import { TableMetricServiceStatusComponent } from './components/molecules/table-metric-service-status/table-metric-service-status.component';
-import { MainProjectTabsComponent } from './components/molecules/main-project-tabs/main-project-tabs.component';
+import { ProjectMainTabsComponent } from './components/molecules/project-main-tabs/project-main-tabs.component';
 
 @NgModule({
   declarations: [
     ProjectNameComponent,
     FiltersPanelComponent,
-    AuthorsFilterComponent,
+    ProjectAuthorsFilterComponent,
+    TaskAuthorsFilterComponent,
+
     IconComponent,
     SearchComponent,
     FeaturesInfoComponent,
@@ -69,8 +73,8 @@ import { MainProjectTabsComponent } from './components/molecules/main-project-ta
     // MainLayoutComponent,
     LogoComponent,
     ThemesSwitcherComponent,
-    MainTaskTabsComponent,
-    MainProjectTabsComponent,
+    TaskMainTabsComponent,
+    ProjectMainTabsComponent,
     PaginationComponent,
     MainComponent,
     MainLayoutComponent,
@@ -111,7 +115,9 @@ import { MainProjectTabsComponent } from './components/molecules/main-project-ta
   exports: [
     ProjectNameComponent,
     FiltersPanelComponent,
-    AuthorsFilterComponent,
+    ProjectAuthorsFilterComponent,
+    TaskAuthorsFilterComponent,
+
     IconComponent,
     SearchComponent,
     FeaturesInfoComponent,
@@ -125,8 +131,8 @@ import { MainProjectTabsComponent } from './components/molecules/main-project-ta
     // MainLayoutComponent,
     LogoComponent,
     ThemesSwitcherComponent,
-    MainTaskTabsComponent,
-    MainProjectTabsComponent,
+    TaskMainTabsComponent,
+    ProjectMainTabsComponent,
     PaginationComponent,
     MainComponent,
     MainLayoutComponent,

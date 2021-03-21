@@ -2,15 +2,15 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SubmitsPageComponent } from './submits-page.component';
 import { SubmitsPageRoutingModule } from './submits-page-routing.module';
-import { SubmitsComponent } from '../../../../../../../../components/organisms/submits/submits.component';
+import { TaskComponent } from '../../../../../../../../components/organisms/task/task.component';
 
 import { MainModule } from '../../../../../../../../main.module';
 
 @NgModule({
-  declarations: [SubmitsPageComponent, SubmitsComponent],
+  declarations: [SubmitsPageComponent, TaskComponent],
   imports: [SubmitsPageRoutingModule, CommonModule, MainModule],
   exports: [
-    SubmitsComponent,
+    TaskComponent,
     //SubmitsPageComponent,
     //FeaturesInfoComponent,
     // SubmitsComponent,

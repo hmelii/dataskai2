@@ -2,23 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthorsService } from '../../../services/authors/authors.service';
 import { ProjectService } from '../../../services/project/project.service';
 import { TaskService } from '../../../services/task/task.service';
-import {
-  TaskConfigColumnInterface,
-  TaskConfigInterface,
-  TaskInterface,
-  TaskSubmitsInterface,
-} from '../../../interfaces/task/task.interface';
-import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
+import { TaskInterface } from '../../../interfaces/task/task.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainEnum } from '../../../enums/routes/main.enum';
 import { ProjectEnum } from '../../../enums/routes/project.enum';
 import { TaskEnum } from '../../../enums/routes/task.enum';
 import { TasksEnum } from '../../../enums/routes/tasks.enum';
 import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/table-col-sorting.interface';
-import {
-  ProjectConfigDataColumnInterface,
-  ProjectTasksInterface,
-} from '../../../interfaces/project/project.interface';
+import { ProjectConfigDataColumnInterface } from '../../../interfaces/project/project.interface';
 
 @Component({
   selector: 'app-project',
@@ -39,7 +30,7 @@ export class ProjectComponent implements OnInit {
   routeSubmitID = null;
   sortColumn = null;
   sortOrder = null;
-  projectConfig = null;
+  searchMatches = null;
 
   routeSubmits = TaskEnum.Submits;
   routeTasks = TasksEnum.Tasks;
@@ -97,7 +88,7 @@ export class ProjectComponent implements OnInit {
 
   subscribeProjectTasksUpdates() {
     this.projectService.currentProjectTasksStageMessage.subscribe(
-      ({ loaded, loading, data }) => {
+      ({ loaded, loading, data, meta }) => {
         if (!loaded && !loading) {
           this.projectService.getProjectTasks();
         }
@@ -105,6 +96,20 @@ export class ProjectComponent implements OnInit {
         if (loaded && !loading) {
           if (data) {
             this.projectTasks = data.tasks;
+          }
+          if (meta) {
+            const {
+              sort_column = null,
+              sort_order = null,
+              total_pages = 1,
+              current_page = 1,
+              search_matches = null,
+            } = meta;
+            this.sortColumn = sort_column;
+            this.sortOrder = sort_order;
+            this.totalPages = total_pages;
+            this.currentPage = current_page;
+            this.searchMatches = search_matches;
           }
         }
       }

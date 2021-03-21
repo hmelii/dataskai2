@@ -17,6 +17,7 @@ export class TableComponent implements OnInit {
   @Input() selectRowWithID: string;
   @Input() sortCol: string;
   @Input() sortOrder: string;
+  @Input() searchMatches;
   @Output() onSortChange: EventEmitter<
     TableColSortingInterface
   > = new EventEmitter<TableColSortingInterface>();
@@ -29,8 +30,50 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges(): void {
+    if (this.searchMatches) {
+      // находим строчки и колонки удовлетворяющие поиску
+      /*this.colsItems = this.colsItems.map((col) => {
+        // колонки
+        let newCol;
+
+        this.searchMatches.forEach((item) => {
+          console.log(item.matched_columns.includes(col.id));
+
+          newCol = {
+            ...col,
+            founded:
+              newCol && newCol.founded
+                ? true
+                : item.matched_columns.includes(col.id),
+          };
+        });
+
+        return newCol;
+      });*/
+
+      this.rowsItems = this.rowsItems.map((row) => {
+        //строки
+        let newRow;
+        this.searchMatches.forEach((item) => {
+          const key = Object.keys(item.matched_row)[0];
+          const value = Object.values(item.matched_row)[0];
+
+          if (row[key] === value) {
+            row = {
+              ...row,
+              founded: true,
+              foundedItems: item.matched_columns.reduce(
+                (acc, curr) => ((acc[curr] = true), acc),
+                {}
+              ),
+            };
+          }
+        });
+        return row;
+      });
+    }
+
     if (this.colsItems) {
-      console.log('this.colsItems', this.colsItems);
       this.generateTableHead();
     }
 
