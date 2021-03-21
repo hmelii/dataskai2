@@ -108,7 +108,7 @@
       {
         "matched_row": {"task_name": "aero__fw_classification_v2"},
         "matched_columns": [
-          "comment_to_task"
+          "features"
         ]
       }
     ]

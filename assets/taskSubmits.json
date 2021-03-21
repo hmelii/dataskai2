@@ -176,13 +176,13 @@
         "matched_row": { "id": "6017b6b376a8c74ef40b47d6"},
         "matched_columns": [
           "model_name",
-          "date_of_submit"
+          "created"
         ]
       },
       {
         "matched_row": { "id": "000000000000000000000000"},
         "matched_columns": [
-          "date_of_submit"
+          "created"
         ]
       }
     ]

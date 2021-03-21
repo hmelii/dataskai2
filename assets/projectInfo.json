@@ -8,10 +8,11 @@
     "authors": [
       "Eugene.Tcatcorin",
       "Eugenia.Chibisova",
-      "Alexey.Savilov"
+      "Alexey.Savilov",
+      "Alexey.Fedorec"
     ],
     "tasks": {
-      "count": 4,
+      "count": 4000,
       "names": [
         "aero__fw_classification_v1",
         "aero__fw_classification_v1_legacy_features",
