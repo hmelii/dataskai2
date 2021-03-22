@@ -6,27 +6,37 @@ import { LocalStorage } from '../../storage/interfaces/local-storage.interface';
   providedIn: 'root',
 })
 export class ComparisonService {
-  private comparisonIDSStageMessage = new BehaviorSubject([]);
+  private comparisonIDSStageMessage = new BehaviorSubject({});
   currentComparisonIDSStageMessage = this.comparisonIDSStageMessage.asObservable();
 
   constructor(private localStorage: LocalStorage) {
     this.checkLocalStorage();
   }
 
-  updateComparisonIDSMessage(message: string | [], init?) {
+  updateComparisonIDSMessage(message, init?) {
+    console.log(message);
     if (init) {
       this.comparisonIDSStageMessage.next(message as []);
       return;
     }
     const oldState = this.comparisonIDSStageMessage.getValue();
 
-    const findedIndex = oldState.findIndex((item) => item === message);
-    let newState;
+    let newState = { ...oldState };
+
+    if (!newState[message.taskID]) {
+      newState[message.taskID] = [];
+    }
+
+    const findedIndex = newState[message.taskID].findIndex(
+      (item) => item === message.submitID
+    );
 
     if (findedIndex > -1) {
-      newState = oldState.filter((item) => item !== message);
+      newState[message.taskID] = newState[message.taskID].filter(
+        (item) => item !== message.submitID
+      );
     } else {
-      newState = [...oldState, message];
+      newState[message.taskID].push(message.submitID);
     }
 
     this.comparisonIDSStageMessage.next(newState);
@@ -42,7 +52,13 @@ export class ComparisonService {
 
     const localStorageValuesArray = JSON.parse(localStorageValue);
 
-    if (!localStorageValuesArray || !localStorageValuesArray.length) {
+    if (
+      !localStorageValuesArray ||
+      !(
+        typeof localStorageValuesArray === 'object' &&
+        localStorageValuesArray !== null
+      )
+    ) {
       return;
     }
 

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ComparisonService } from '../../../services/comparison/comparison.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-to-comparison',
@@ -8,9 +9,16 @@ import { ComparisonService } from '../../../services/comparison/comparison.servi
 })
 export class AddToComparisonComponent implements OnInit {
   isInComparison = false;
+  routeTaskID;
+
   @Input() id: string;
 
-  constructor(private comparisonService: ComparisonService) {}
+  constructor(
+    private comparisonService: ComparisonService,
+    private activateRoute: ActivatedRoute
+  ) {
+    this.subscribeRouteUpdate();
+  }
 
   ngOnInit(): void {
     this.updateIsInComparison();
@@ -19,13 +27,28 @@ export class AddToComparisonComponent implements OnInit {
   updateIsInComparison() {
     this.comparisonService.currentComparisonIDSStageMessage.subscribe(
       (comparisonIDs) => {
-        const findedIndex = comparisonIDs.findIndex((id) => id === this.id);
-        this.isInComparison = findedIndex > -1;
+        if (this.routeTaskID && comparisonIDs[this.routeTaskID]) {
+          const findedIndex = comparisonIDs[this.routeTaskID].findIndex(
+            (id) => {
+              return id === this.id;
+            }
+          );
+          this.isInComparison = findedIndex > -1;
+        }
       }
     );
   }
 
+  subscribeRouteUpdate() {
+    this.activateRoute.params.subscribe((params) => {
+      this.routeTaskID = params['taskID'];
+    });
+  }
+
   handleClick() {
-    this.comparisonService.updateComparisonIDSMessage(this.id);
+    this.comparisonService.updateComparisonIDSMessage({
+      taskID: this.routeTaskID,
+      submitID: this.id,
+    });
   }
 }

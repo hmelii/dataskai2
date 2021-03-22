@@ -53,7 +53,9 @@ export class ProjectMainTabsComponent implements OnInit {
   subscribeComparisonIDsUpdate() {
     this.comparisonService.currentComparisonIDSStageMessage.subscribe(
       (comparisonIDs) => {
-        this.comparisonIDsLength = comparisonIDs.length;
+        if (this.routeTaskID && comparisonIDs[this.routeTaskID]) {
+          this.comparisonIDsLength = comparisonIDs[this.routeTaskID].length;
+        }
       }
     );
   }
