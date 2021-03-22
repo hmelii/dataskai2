@@ -1,5 +1,29 @@
-<div class="search">
-  <a class="search-btn">
-    <span class="search-btn-ico"><app-icon [type]="'search'"></app-icon></span>
+<div class="search" (clickOutside)="handleClickedOutside($event)">
+  <a class="search-trigger-btn" (click)="handleClick()">
+    <span class="search-trigger-btn-ico"
+      ><app-icon type="search"></app-icon
+    ></span>
   </a>
+  <div class="search-bubble" [ngClass]="{ 'search-bubble-shown': isShown }">
+    <form class="search-bubble-form">
+      <input
+        name="search"
+        class="search-bubble-field"
+        type="search"
+        [autofocus]="isShown"
+        [(ngModel)]="search"
+      />
+      <a class="search-bubble-question">
+        <span class="search-bubble-question-ico">
+          <app-icon type="question"></app-icon>
+        </span>
+      </a>
+
+      <a class="search-bubble-close">
+        <span class="search-bubble-close-ico">
+          <app-icon type="close"></app-icon>
+        </span>
+      </a>
+    </form>
+  </div>
 </div>

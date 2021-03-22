@@ -3,13 +3,78 @@
   top: 12px;
   right: 26px;
 }
-.search-btn {
+.search-trigger-btn {
   display: inline-block;
   width: 20px;
   height: 20px;
 }
 
-.search-btn-ico {
+.search-trigger-btn-ico {
   width: 20px;
   height: 20px;
+  color: var(--button-color-default);
+}
+
+.search-bubble {
+  background: var(--background-secondary);
+  width: 304px;
+  border-radius: 4px;
+  padding: 8px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.search-bubble-shown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-bubble-field {
+  background-color: var(--background-secondary);
+  border: 1px solid var(--text-color-tertiary);
+  border-radius: 4px;
+  width: 243px;
+  padding: 5px;
+  color: var(--text-color-default);
+}
+
+.search-bubble-question {
+}
+
+.search-bubble-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-bubble-question {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bubble-question-ico {
+  width: 14px;
+  height: 14px;
+  color: var(--text-color-default);
+}
+
+.search-bubble-close {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bubble-close-ico {
+  width: 14px;
+  height: 14px;
+  color: var(--text-color-default);
 }

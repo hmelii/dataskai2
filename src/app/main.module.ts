@@ -52,6 +52,8 @@ import { TableMetricListComponent } from './components/molecules/table-metric-li
 import { FormatNumberPipe } from './pipes/format-number.pipe';
 import { TableMetricServiceStatusComponent } from './components/molecules/table-metric-service-status/table-metric-service-status.component';
 import { ProjectMainTabsComponent } from './components/molecules/project-main-tabs/project-main-tabs.component';
+import { FormsModule } from '@angular/forms';
+import { AutofocusDirective } from './directives/autofocus.directive';
 
 @NgModule({
   declarations: [
@@ -103,12 +105,14 @@ import { ProjectMainTabsComponent } from './components/molecules/project-main-ta
     TableMetricListComponent,
     FormatNumberPipe,
     TableMetricServiceStatusComponent,
+    AutofocusDirective,
   ],
   imports: [
     IconSpriteModule,
     CommonModule,
     ProjectPageRoutingModule,
     ClickOutsideModule,
+    FormsModule,
     // SubmitsModule,
   ],
   providers: [],
