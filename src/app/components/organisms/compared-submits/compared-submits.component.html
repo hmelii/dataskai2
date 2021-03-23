@@ -1,5 +1,8 @@
 <div class="submits">
-  <app-table [colsItems]="config" [rowsItems]="taskSubmits"></app-table>
-  <app-meta-panel></app-meta-panel>
+  <app-comparison-table
+    [rows]="rows"
+    [cols]="cols"
+    [baselineID]="baselineID"
+  ></app-comparison-table>
   <app-features-info class="submits-features"></app-features-info>
 </div>

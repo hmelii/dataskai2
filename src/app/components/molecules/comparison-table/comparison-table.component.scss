@@ -1,31 +1,63 @@
-.table {
+.comparison-table {
   border: 0;
-  width: 100%;
+  margin-bottom: 100px;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
 }
 
-.table-thead-th {
+.comparison-table-th {
   background: var(--table-background-default);
   border: 0;
   border-left: 1px solid var(--table-border-default);
+  border-top: 1px solid var(--table-border-default);
   padding: 12px;
   text-align: left;
   vertical-align: top;
+  font-size: 1.2rem;
+  width: 140px;
+  text-transform: uppercase;
   /*overflow: hidden;
   resize: horizontal;*/
 }
 
-.table-tbody-th,
-.table-tbody-td {
+.comparison-table-td {
   background: var(--table-background-secondary);
   border-left: 1px solid var(--table-border-default);
   border-top: 1px solid var(--table-border-default);
+  width: 252px;
+  height: 64px;
   padding: 12px;
   position: relative;
   vertical-align: top;
   text-align: left;
   transition: all 0.3s ease;
+}
+
+.comparison-table-th--align-right,
+.comparison-table-td--align-right {
+  text-align: right;
+}
+
+.comparison-table-td--baseline {
+  background: var(--table-background-quinary);
+}
+
+.comparison-table-tr {
+  &:first-child {
+    .comparison-table-td {
+      background: var(--table-background-default);
+      padding: 12px 32px;
+    }
+  }
+}
+
+.comparison-table-th-text {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  max-width: 116px;
+  text-overflow: ellipsis;
 }
 
 .table-tbody-tr {

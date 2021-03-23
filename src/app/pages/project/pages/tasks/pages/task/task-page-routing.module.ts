@@ -30,17 +30,7 @@ const routes: Routes = [
       breadcrumb: 'favorite submits',
     },
   },*/
-  {
-    path: TaskEnum.ComparedSubmits,
-    loadChildren: () =>
-      import('./pages/compared-submits/compared-submits-page.module').then(
-        (m) => m.ComparedSubmitsPageModule
-      ),
-    data: {
-      id: 'projectTaskComparedSubmits',
-      breadcrumb: 'comparises submits',
-    },
-  },
+
   /*{
     path: TaskEnum.DeletedSubmits,
     loadChildren: () =>

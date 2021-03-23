@@ -1,0 +1,11 @@
+<div class="comparison-table-metric">
+  <a class="comparison-table-metric-value">{{ metric.short_value }}</a>
+  <app-dynamics
+    *ngIf="comparison"
+    [number]="comparison.short_delta"
+  ></app-dynamics>
+  <div class="comparison-table-metric-bubble">
+    {{ metric.value }}
+    <app-dynamics *ngIf="comparison" [number]="comparison.delta"></app-dynamics>
+  </div>
+</div>

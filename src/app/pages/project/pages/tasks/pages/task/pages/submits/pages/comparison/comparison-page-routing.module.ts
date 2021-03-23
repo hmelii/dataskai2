@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ComparedSubmitsPageComponent } from './compared-submits-page.component';
+import { ComparisonPageComponent } from './comparison-page.component';
+import { TaskEnum } from '../../../../../../../../../../enums/routes/task.enum';
 
 const routes: Routes = [
   {
     path: '',
-    component: ComparedSubmitsPageComponent,
+    component: ComparisonPageComponent,
   },
 ];
 

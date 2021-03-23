@@ -1,0 +1,71 @@
+<!--<div style="overflow: hidden; overflow-x: auto; position: relative">-->
+<table class="comparison-table">
+  <tbody class="comparison-table-body">
+    <tr *ngFor="let row of rows; let i = index" class="comparison-table-tr">
+      <th
+        class="comparison-table-th"
+        [ngClass]="{
+          'comparison-table-th--align-right': row.type === 'metric'
+        }"
+      >
+        <div class="comparison-table-th-text">{{ row.name }}</div>
+      </th>
+
+      <td
+        *ngFor="let col of cols"
+        class="comparison-table-td"
+        [ngClass]="{
+          'comparison-table-td--baseline': baselineID === col.id,
+          'comparison-table-td--align-right':
+            row.type === 'metric' || row.id === 'model_version'
+        }"
+      >
+        <div *ngIf="i === 0">
+          <app-comparison-table-select-baseline
+            [active]="baselineID === col.id"
+          ></app-comparison-table-select-baseline
+          ><app-comparison-table-remove-form-comparison></app-comparison-table-remove-form-comparison>
+        </div>
+
+        <div [ngSwitch]="row.type">
+          <ng-template ngSwitchCase="metric">
+            <app-comparison-table-metric
+              [metric]="col.metrics[row.id]"
+              [comparison]="col.comparison ? col.comparison[row.id] : null"
+            ></app-comparison-table-metric>
+          </ng-template>
+          <ng-template ngSwitchCase="date">
+            <div class="table-tbody-td-sub-sub-heading">
+              {{ col[row.id] | date: "hh:mm" }}
+            </div>
+            <div class="table-tbody-td-sub-sub-heading">
+              {{ col[row.id] | date: "dd:MM:YYYY" }}
+            </div>
+          </ng-template>
+          <ng-template ngSwitchCase="files">
+            <app-table-attachments
+              [attachments]="col[row.id]"
+            ></app-table-attachments>
+          </ng-template>
+
+          <ng-template ngSwitchDefault>
+            <div [ngSwitch]="row.id">
+              <ng-template ngSwitchCase="actions">
+                <app-table-actions [id]="col.id"></app-table-actions>
+              </ng-template>
+              <ng-template ngSwitchCase="feature_mining_comments">
+                <app-table-feature-mining-comments
+                  [text]="col[row.id]"
+                ></app-table-feature-mining-comments>
+              </ng-template>
+              <ng-template ngSwitchDefault>
+                {{ col[row.id] }}
+              </ng-template>
+            </div>
+          </ng-template>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!--</div>-->

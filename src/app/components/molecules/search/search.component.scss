@@ -1,12 +1,15 @@
 .search {
   position: absolute;
-  top: 12px;
-  right: 26px;
+  top: 0;
+  right: 16px;
 }
 .search-trigger-btn {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
 }
 
 .search-trigger-btn-ico {
@@ -22,6 +25,7 @@
   padding: 8px;
   position: absolute;
   top: 100%;
+  transform: translate(0, 2px);
   right: 0;
   opacity: 0;
   visibility: hidden;

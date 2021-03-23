@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ComparedSubmitsPageComponent } from './compared-submits-page.component';
+import { ComparisonPageComponent } from './comparison-page.component';
 
 describe('FavoritesPageComponent', () => {
-  let component: ComparedSubmitsPageComponent;
-  let fixture: ComponentFixture<ComparedSubmitsPageComponent>;
+  let component: ComparisonPageComponent;
+  let fixture: ComponentFixture<ComparisonPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ComparedSubmitsPageComponent],
+      declarations: [ComparisonPageComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComparedSubmitsPageComponent);
+    fixture = TestBed.createComponent(ComparisonPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

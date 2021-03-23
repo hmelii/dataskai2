@@ -3,11 +3,13 @@
   color: var(--text-color-default);
   font-size: 1rem;
   line-height: (12 / 10);
-
 }
 
 .dynamics--positive {
   color: var(--accent-text-color-default);
+  &:before {
+    content: "+";
+  }
 }
 
 .dynamics--negative {

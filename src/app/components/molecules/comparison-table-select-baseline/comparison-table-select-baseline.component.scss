@@ -1,0 +1,35 @@
+.select-baseline {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 6px;
+  left: 0;
+  opacity: 0;
+  z-index: 10;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.select-baseline--active {
+  opacity: 1;
+}
+
+.select-baseline-button {
+  display: flex;
+  width: inherit;
+  height: inherit;
+  align-items: center;
+  color: inherit;
+  justify-content: center;
+}
+
+.select-baseline-button-ico {
+  display: block;
+  width: 10px;
+  height: 16px;
+  font-size: 0;
+  color: inherit;
+}

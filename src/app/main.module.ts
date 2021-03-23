@@ -54,6 +54,9 @@ import { TableMetricServiceStatusComponent } from './components/molecules/table-
 import { ProjectMainTabsComponent } from './components/molecules/project-main-tabs/project-main-tabs.component';
 import { FormsModule } from '@angular/forms';
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { ComparisonTableMetricComponent } from './components/molecules/comparison-table-metric/comparison-table-metric.component';
+import { ComparisonTableSelectBaselineComponent } from './components/molecules/comparison-table-select-baseline/comparison-table-select-baseline.component';
+import { ComparisonTableRemoveFormComparisonComponent } from './components/molecules/comparison-table-remove-form-comparison/comparison-table-remove-form-comparison.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +109,9 @@ import { AutofocusDirective } from './directives/autofocus.directive';
     FormatNumberPipe,
     TableMetricServiceStatusComponent,
     AutofocusDirective,
+    ComparisonTableMetricComponent,
+    ComparisonTableSelectBaselineComponent,
+    ComparisonTableRemoveFormComparisonComponent,
   ],
   imports: [
     IconSpriteModule,
@@ -146,6 +152,12 @@ import { AutofocusDirective } from './directives/autofocus.directive';
     MetricServiceInSubmitsComponent,
     TableColSwitcherComponent,
     TableModalComponent,
+    ComparisonTableMetricComponent,
+    TableActionsComponent,
+    TableAttachmentsComponent,
+    TableFeatureMiningCommentsComponent,
+    ComparisonTableSelectBaselineComponent,
+    ComparisonTableRemoveFormComparisonComponent,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })
