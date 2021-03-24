@@ -12,43 +12,43 @@ export class FeaturesInfoComponent implements OnInit {
   isShown = false;
   featuresInfo: FeaturesInfo;
   featuresNames: [] = [];
-  loading = false;
-  error = null;
 
-  constructor(private featuresInfoService: FeaturesInfoService) {}
+  constructor(private featuresInfoService: FeaturesInfoService) {
+    this.subscribeFeaturesInfoIDUpdates();
+    this.subscribeFeaturesInfoUpdates();
+  }
 
-  ngOnInit(): void {
-    this.featuresInfoService.currentFeatureInfoStageMessage.subscribe(
-      (submitID) => {
-        setTimeout(() => {
-          // этот таймаут нужен, для того чтобы не срабатывал ложный клик вне окна
-          this.isShown = !!submitID;
-        }, 100);
-
-        if (submitID) {
-          this.fetchFeaturesInfo(submitID);
+  subscribeFeaturesInfoIDUpdates() {
+    this.featuresInfoService.currentFeatureInfoIDStageMessage.subscribe(
+      (featureInfo) => {
+        if (featureInfo && featureInfo.id) {
+          setTimeout(() => {
+            this.isShown = true;
+          }, 100);
+          this.featuresInfoService.getFeaturesInfo();
+        } else {
+          this.isShown = false;
         }
       }
     );
   }
 
-  fetchFeaturesInfo(submitID: string) {
-    this.loading = true;
-    this.featuresInfoService.fetchFeaturesInfo(submitID).subscribe(
-      (featuresInfo: FeaturesInfo) => {
-        this.featuresInfo = featuresInfo;
-        this.featuresNames = this.featuresInfo.data;
-        this.loading = false;
-      },
-      (error) => {
-        this.error = error.message;
-      },
-      () => {}
+  subscribeFeaturesInfoUpdates() {
+    this.featuresInfoService.currentFeatureInfoStageMessage.subscribe(
+      ({ loaded, loading, data }) => {
+        if (loaded && !loading) {
+          if (data) {
+            console.log(data);
+            this.featuresNames = data;
+          }
+        }
+      }
     );
   }
 
   handleClose() {
-    this.featuresInfoService.updateFeaturesInfoMessage(null);
+    this.featuresInfoService.updateFeaturesInfoIDMessage({ id: null });
+    this.featuresInfoService.updateFeaturesInfoMessage({ loaded: false });
   }
 
   handleClickedOutside($event: Event) {
@@ -56,4 +56,6 @@ export class FeaturesInfoComponent implements OnInit {
       this.handleClose();
     }
   }
+
+  ngOnInit(): void {}
 }

@@ -1,12 +1,13 @@
 .meta-panel {
-  position: absolute;
-  bottom: 8px;
+  background: var(--background-default);
+  padding: 8px;
+  position: fixed;
+  bottom: 0;
   right: 24px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-
 
 .meta-panel-pagination {
   margin-right: 26px;

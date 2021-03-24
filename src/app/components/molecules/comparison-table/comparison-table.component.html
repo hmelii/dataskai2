@@ -28,6 +28,13 @@
         </div>
 
         <div [ngSwitch]="row.type">
+          <ng-template ngSwitchCase="features">
+            <app-table-features
+              [id]="col.id || col.task_name"
+              [text]="col[row.id]"
+              [comparisonBaselineID]="col.comparison ? baselineID : null"
+            ></app-table-features>
+          </ng-template>
           <ng-template ngSwitchCase="metric">
             <app-comparison-table-metric
               [metric]="col.metrics[row.id]"

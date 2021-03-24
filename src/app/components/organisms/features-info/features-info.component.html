@@ -13,12 +13,56 @@
     <div class="feature-info-heading">Features</div>
     <div class="feature-info-used">285 321 features used</div>
   </div>
-  <div class="feature-info-body">
+  <div class="feature-info-body" *ngIf="!featuresNames.added_features">
     <ul class="feature-list">
       <li class="feature-list-item" *ngFor="let feature of featuresNames">
         <div class="feature-list-text">{{ feature.name }}</div>
         <div class="feature-list-bubble">{{ feature.description }}</div>
       </li>
     </ul>
+  </div>
+
+  <div
+    class="feature-info-body"
+    *ngIf="featuresNames.added_features || featuresNames.deleted_features"
+  >
+    <div
+      *ngIf="
+        featuresNames.added_features && featuresNames.added_features.length
+      "
+    >
+      <div class="feature-info-subheading">
+        {{ featuresNames.added_features.length }} features
+        <span class="feature-info-subheading-good">added</span>:
+      </div>
+      <ul class="feature-list">
+        <li
+          class="feature-list-item"
+          *ngFor="let feature of featuresNames.added_features"
+        >
+          <div class="feature-list-text">{{ feature.name }}</div>
+          <div class="feature-list-bubble">{{ feature.description }}</div>
+        </li>
+      </ul>
+    </div>
+    <div
+      *ngIf="
+        featuresNames.deleted_features && featuresNames.deleted_features.length
+      "
+    >
+      <div class="feature-info-subheading">
+        {{ featuresNames.deleted_features.length }} features
+        <span class="feature-info-subheading-warning">deleted</span>:
+      </div>
+      <ul class="feature-list">
+        <li
+          class="feature-list-item"
+          *ngFor="let feature of featuresNames.deleted_features"
+        >
+          <div class="feature-list-text">{{ feature.name }}</div>
+          <div class="feature-list-bubble">{{ feature.description }}</div>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

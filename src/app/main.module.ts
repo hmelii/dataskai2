@@ -158,6 +158,7 @@ import { ComparisonTableRemoveFormComparisonComponent } from './components/molec
     TableFeatureMiningCommentsComponent,
     ComparisonTableSelectBaselineComponent,
     ComparisonTableRemoveFormComparisonComponent,
+    TableFeaturesComponent,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })
