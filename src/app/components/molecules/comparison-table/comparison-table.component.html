@@ -17,7 +17,9 @@
         [ngClass]="{
           'comparison-table-td--baseline': baselineID === col.id,
           'comparison-table-td--align-right':
-            row.type === 'metric' || row.id === 'model_version'
+            row.type === 'metric' ||
+            row.type === 'features' ||
+            row.id === 'model_version'
         }"
       >
         <div *ngIf="i === 0">
@@ -32,6 +34,7 @@
             <app-table-features
               [id]="col.id || col.task_name"
               [text]="col[row.id]"
+              [comparison]="col.comparison ? col.comparison[row.id] : null"
               [comparisonBaselineID]="col.comparison ? baselineID : null"
             ></app-table-features>
           </ng-template>

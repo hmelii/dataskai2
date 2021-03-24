@@ -9,11 +9,14 @@ import { FeaturesInfoService } from '../../organisms/features-info/features-info
 export class TableFeaturesComponent implements OnInit {
   @Input() id: string;
   @Input() text: string;
+  @Input() comparison;
   @Input() comparisonBaselineID;
 
   constructor(private featuresInfoService: FeaturesInfoService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('this.comparison', this.comparison);
+  }
 
   handleClick() {
     this.featuresInfoService.updateFeaturesInfoIDMessage({

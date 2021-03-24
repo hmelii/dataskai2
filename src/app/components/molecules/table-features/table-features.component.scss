@@ -13,3 +13,19 @@
     bottom: 0;
   }
 }
+
+.table-features-added {
+  color: var(--accent-text-color-positive);
+
+  &:before {
+    content: "+";
+  }
+}
+
+.table-features-deleted {
+  color: var(--accent-text-color-negative);
+
+  &:before {
+    content: "-";
+  }
+}

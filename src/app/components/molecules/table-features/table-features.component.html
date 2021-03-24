@@ -1,3 +1,15 @@
 <div class="table-features">
-  <a class="table-features-link" (click)="handleClick()">{{ text }}</a>
+  <a class="table-features-link" (click)="handleClick()">
+    <div *ngIf="!comparison">
+      {{ text | formatNumber }}
+    </div>
+    <div *ngIf="comparison">
+      <div class="table-features-added" *ngIf="comparison.added">
+        {{ comparison.added }}
+      </div>
+      <div class="table-features-deleted" *ngIf="comparison.deleted">
+        {{ comparison.deleted }}
+      </div>
+    </div>
+  </a>
 </div>
