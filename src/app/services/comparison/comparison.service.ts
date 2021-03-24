@@ -28,7 +28,6 @@ export class ComparisonService {
   }
 
   updateComparisonIDSMessage(message, init?) {
-    console.log(message);
     if (init) {
       this.comparisonIDSStageMessage.next(message as []);
       return;
@@ -54,6 +53,7 @@ export class ComparisonService {
     }
 
     this.comparisonIDSStageMessage.next(newState);
+
     this.updateLocalStorage();
   }
 
@@ -61,6 +61,14 @@ export class ComparisonService {
     this.comparisonSubmitsStageMessage.next({
       ...this.comparisonSubmitsStageMessage.getValue(),
       ...message,
+    });
+  }
+
+  removeComparedSubmits() {
+    this.updateComparisonSubmitsMessage({
+      loaded: false,
+      loading: false,
+      data: null,
     });
   }
 

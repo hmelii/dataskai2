@@ -48,7 +48,10 @@ export class TaskSelectionComponent implements OnInit {
 
   subscribeProjectInfoUpdates() {
     this.projectService.currentProjectInfoStageMessage.subscribe(
-      ({ data }: ProjectInfoInterface) => {
+      ({ loaded, loading, data }: ProjectInfoInterface) => {
+        if (!loaded && !loading) {
+          this.projectService.getProjectInfo();
+        }
         if (!data || !data.tasks) {
           return;
         }

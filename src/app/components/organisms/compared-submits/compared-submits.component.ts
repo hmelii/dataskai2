@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthorsService } from '../../../services/authors/authors.service';
 import { ProjectService } from '../../../services/project/project.service';
 import { TaskService } from '../../../services/task/task.service';
@@ -11,13 +11,14 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './compared-submits.component.html',
   styleUrls: ['./compared-submits.component.scss'],
 })
-export class ComparedSubmitsComponent implements OnInit {
+export class ComparedSubmitsComponent implements OnInit, OnDestroy {
   rows = null;
   cols = null;
   comparisonIDs = null;
   routeTaskID = null;
   comparisonBaselineSubmitID = null;
   baselineID = null;
+  empty = false;
 
   constructor(
     private authorsService: AuthorsService,
@@ -26,14 +27,15 @@ export class ComparedSubmitsComponent implements OnInit {
     private comparisonService: ComparisonService,
     private activateRoute: ActivatedRoute
   ) {
-    this.subscribeTaskConfigUpdates();
-    this.subscribeTaskComparedSubmitsIDsUpdates();
     this.subscribeRouteUpdates();
     this.subscribeTaskComparedSubmitsUpdates();
+    this.subscribeTaskConfigUpdates();
+    this.subscribeTaskComparedSubmitsIDsUpdates();
   }
 
   subscribeRouteUpdates() {
     this.activateRoute.params.subscribe((params) => {
+      console.log('params', params);
       this.routeTaskID = params['taskID'];
       if (this.comparisonIDs) {
         this.getComparedSubmits();
@@ -44,23 +46,27 @@ export class ComparedSubmitsComponent implements OnInit {
   subscribeTaskComparedSubmitsUpdates() {
     this.comparisonService.currentComparisonSubmitsStageMessage.subscribe(
       ({ loading, loaded, data, meta }) => {
-        if (loaded) {
+        if (!loaded) {
+          return;
+        }
+
+        if (data && data.submits) {
           this.cols = data.submits;
-          console.log('meta', meta);
           this.baselineID = meta.baseline_submit;
-          console.log('comparisonSubmits', data, meta);
         }
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.comparisonService.removeComparedSubmits();
   }
 
   subscribeTaskComparedSubmitsIDsUpdates() {
     this.comparisonService.currentComparisonIDSStageMessage.subscribe(
       (comparisonIDs) => {
         this.comparisonIDs = comparisonIDs;
-
-        console.log(this.comparisonIDs);
-
+        console.log(this.routeTaskID, comparisonIDs);
         if (this.routeTaskID) {
           this.getComparedSubmits();
         }
@@ -87,10 +93,22 @@ export class ComparedSubmitsComponent implements OnInit {
   }
 
   getComparedSubmits() {
-    const filterdComparisonIDs = this.comparisonIDs[this.routeTaskID];
-    if (!filterdComparisonIDs || !filterdComparisonIDs.length) {
+    if (!this.comparisonIDs || !this.routeTaskID) {
       return;
     }
+
+    const filterdComparisonIDs = this.comparisonIDs[this.routeTaskID];
+    console.log(this.comparisonIDs, this.routeTaskID);
+    console.log(this.comparisonIDs[this.routeTaskID]);
+
+    if (!filterdComparisonIDs || !filterdComparisonIDs.length) {
+      this.empty = true;
+      return;
+    }
+
+    this.empty = false;
+
+    console.log('зашло сюда');
 
     const comparisonBaselineSubmitID: { [key: string]: string } = {};
 

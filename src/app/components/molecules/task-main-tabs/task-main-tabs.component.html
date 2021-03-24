@@ -7,8 +7,14 @@
     >
       <a
         class="main-tabs-link"
-        [routerLink]="[routeMain, routeProject, routeTasks]"
-        >TASKS ({{ projectTasksLength }})</a
+        [routerLink]="[
+          routeMain,
+          routeProject,
+          routeTasks,
+          routeTaskID,
+          routeSubmits
+        ]"
+        >SUBMITS ({{ submitsLength }})</a
       >
     </li>
     <li

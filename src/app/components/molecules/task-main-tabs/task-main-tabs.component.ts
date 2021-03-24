@@ -7,6 +7,7 @@ import { ComparisonService } from '../../../services/comparison/comparison.servi
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../../services/project/project.service';
 import { ProjectInfoInterface } from '../../../interfaces/project/project.interface';
+import { TaskService } from '../../../services/task/task.service';
 
 @Component({
   selector: 'app-task-main-tabs',
@@ -22,29 +23,29 @@ export class TaskMainTabsComponent implements OnInit {
   routeInfo = TaskEnum.Info;
   routeComparison = TaskEnum.ComparedSubmits;
   comparisonIDsLength = 0;
-  projectTasksLength = 0;
+  submitsLength = 0;
 
   constructor(
     private comparisonService: ComparisonService,
     private projectService: ProjectService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private taskService: TaskService
   ) {
     this.subscribeRouteUpdate();
     this.subscribeComparisonIDsUpdate();
-    this.subscribeProjectInfoUpdate();
+    this.subscribeTaskInfoUpdates();
   }
 
-  subscribeProjectInfoUpdate() {
-    this.projectService.currentProjectInfoStageMessage.subscribe(
-      ({ data }: ProjectInfoInterface) => {
-        if (!data) {
-          return;
+  subscribeTaskInfoUpdates() {
+    this.taskService.currentTaskInfoStageMessage.subscribe(
+      ({ loaded, loading, data }) => {
+        if (!loaded && !loading) {
+          this.taskService.getTaskInfo();
         }
-        const {
-          tasks: { count },
-        } = data;
-        if (count) {
-          this.projectTasksLength = count;
+        if (loaded && !loading) {
+          if (data) {
+            this.submitsLength = data.submits;
+          }
         }
       }
     );

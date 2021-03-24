@@ -1,5 +1,19 @@
-<div class="submits">
+<div class="compared-submits">
+  <div class="compared-submits-empty" *ngIf="empty">
+    <div class="compared-submits-empty-content">
+      <div class="compared-submits-empty-content-ico">
+        <app-icon type="comparison-no-data"></app-icon>
+      </div>
+      <div class="compared-submits-empty-content-heading">
+        No submits for comparison
+      </div>
+      <div class="compared-submits-empty-content-summary">
+        Use “add to comparison” icon in the submits table to add one
+      </div>
+    </div>
+  </div>
   <app-comparison-table
+    *ngIf="!empty && cols && rows"
     [rows]="rows"
     [cols]="cols"
     [baselineID]="baselineID"

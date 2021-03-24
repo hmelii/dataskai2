@@ -125,7 +125,6 @@ export class ProjectService {
           ...projectInfo,
           loaded: true,
         });
-        console.log(this.projectInfoStageMessage.getValue());
       },
       (error) => {
         console.log(error.message);

@@ -28,9 +28,5 @@ export class ComparisonTableComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(this.rows);
-    console.log(this.cols);
-    console.log('baselineID', this.baselineID);
-  }
+  ngOnChanges(changes: SimpleChanges) {}
 }

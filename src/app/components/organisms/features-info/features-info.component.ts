@@ -38,7 +38,6 @@ export class FeaturesInfoComponent implements OnInit {
       ({ loaded, loading, data }) => {
         if (loaded && !loading) {
           if (data) {
-            console.log(data);
             this.featuresNames = data;
           }
         }

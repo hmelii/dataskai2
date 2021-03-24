@@ -84,9 +84,7 @@ export class FeaturesInfoService {
           loaded: true,
         });
       },
-      (error) => {
-        console.log(error.message);
-      },
+      (error) => {},
       () => {
         this.updateFeaturesInfoMessage({
           loading: false,

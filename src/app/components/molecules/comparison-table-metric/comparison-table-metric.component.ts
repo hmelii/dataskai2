@@ -11,7 +11,5 @@ export class ComparisonTableMetricComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('te', this.comparison);
-  }
+  ngOnInit(): void {}
 }
