@@ -1,167 +1,1882 @@
 {
   "data": {
-    "task_name": "aero__fw_classification_v1",
+    "task_name": "aero_eng_2_fuel_filter_clog",
     "submits": [
       {
-        "id": "6017b6b376a8c74ef40b47d6",
-        "favorite": true,
+        "model_name": "trivial mean by AC model",
+        "model_version": "1.0",
+        "author": "trivial.model_builder",
+        "feature_mining_comments": "",
+        "id": "5d9d9ecbd81b2b6e1e0a2062",
         "metrics": {
-          "mae": {
-            "value": 0.0117900578717161,
-            "short_value": 0.0118,
-            "delta": 0.00021234,
-            "short_delta": 0.0002
+          "roc": {
+            "value": 0.32382482572125937,
+            "short_value": 0.3238
           },
           "max_f1": {
-            "value": 0.129032258064516,
-            "short_value": 0.129,
-            "delta": 0.00022434,
-            "short_delta": 0.0002
-          },
-          "roc": {
-            "value": 0.5,
-            "short_value": 0.5,
-            "delta": 0.03543534,
-            "short_delta": 0.035
+            "value": 0.0008421495868203591,
+            "short_value": 0.0008
           }
         },
-        "model_name": "cross-validated gradient boosting",
-        "model_version": "4.1",
-        "features": 345,
-        "author": "Eugene.Tcatcorin",
-        "feature_mining_comments": "1 SimpleImputer: {\n\t'add_indicator': False, \n\t'copy': True, \n\t'fill_value': None, \n\t'missing_values': nan, \n\t'strategy': 'mean', \n\t'verbose': 0\n}, \n\nmodel_2': Lasso(\n\talpha=1.1750871309048077, \n\tcopy_X=True, \n\tfit_intercept=True, \n\tmax_iter=1000, \n\tnormalize=False, \n\tpositive=False, \n\tprecompute=False,\n\trandom_state=123, \n\tselection='cyclic', \n\ttol=0.0001, \n\twarm_start=False)\n}, \n\nRobustScaler: {\n\t'copy': True, \n\t'quantile_range': (25.0, 75.0), \n\t'with_centering': True, \n\t'with_scaling': True\n},\n\nSet 0 for target less than 10\n",
+        "created": "2019-10-09T05:48:11+00:00",
+        "features": 20,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5d9d9ecbd81b2b6e1e0a2062/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5d9d9ecbd81b2b6e1e0a2062/download/130215861234403544961809996924411382307"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5d9d9ecbd81b2b6e1e0a2062/download/237296611408941553145596359361362925319"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5d9d9ecbd81b2b6e1e0a2062/download/173352006099739211257490613326111841332"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "trivial mean by condition of failure in current flight",
+        "model_version": "1.0",
+        "author": "trivial.model_builder",
+        "feature_mining_comments": "",
+        "id": "5d9edb882109d3267661d883",
+        "metrics": {
+          "roc": {
+            "value": 0.3801727569111544,
+            "short_value": 0.3802
+          },
+          "max_f1": {
+            "value": 0.15384615384615385,
+            "short_value": 0.1538
+          }
+        },
+        "created": "2019-10-10T04:19:36+00:00",
+        "features": 21,
+        "attachments": {
+          "notebook": true,
+          "other_files": 5,
+          "attachments_download_path": "/submits/5d9edb882109d3267661d883/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5d9edb882109d3267661d883/download/202518513431190116132480038961711560702"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5d9edb882109d3267661d883/download/187948513405415976746857294958796474258"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5d9edb882109d3267661d883/download/66442319154567639321076789456559259349"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5d9edb882109d3267661d883/download/91785793195903047703260296122354747039"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5d9edb882109d3267661d883/download/312486814762143717306823180506787827746"
+            },
+            {
+              "name": "file_4.py",
+              "download_path": "/submits/5d9edb882109d3267661d883/download/276955711054967202322973610088076718630"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "trivial prod over conditional probability (condition of failure in current flight) and probability of failure by AC",
+        "model_version": "1.0",
+        "author": "trivial.model_builder",
+        "feature_mining_comments": "",
+        "id": "5d9ee05d7a63da5cbb4bca00",
+        "metrics": {
+          "roc": {
+            "value": 0.3604866488729682,
+            "short_value": 0.3605
+          },
+          "max_f1": {
+            "value": 0.0009060468780776049,
+            "short_value": 0.0009
+          }
+        },
+        "created": "2019-10-10T04:40:13+00:00",
+        "features": 21,
+        "attachments": {
+          "notebook": true,
+          "other_files": 2,
+          "attachments_download_path": "/submits/5d9ee05d7a63da5cbb4bca00/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5d9ee05d7a63da5cbb4bca00/download/272386589959950917434888284354298680317"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5d9ee05d7a63da5cbb4bca00/download/186456606590307331875628358662661667693"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5d9ee05d7a63da5cbb4bca00/download/36623735469910177568193825067392266776"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "trivial mean of conditional probability (condition of failure in current flight) and probability if failure by AC",
+        "model_version": "1.0",
+        "author": "trivial.model_builder",
+        "feature_mining_comments": "",
+        "id": "5d9ee1222649eeeaec24cd83",
+        "metrics": {
+          "roc": {
+            "value": 0.47480201583873305,
+            "short_value": 0.4748
+          },
+          "max_f1": {
+            "value": 0.0008421495868203588,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-10T04:43:30+00:00",
+        "features": 21,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5d9ee1222649eeeaec24cd83/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5d9ee1222649eeeaec24cd83/download/203829104591194738762154513098930815378"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5d9ee1222649eeeaec24cd83/download/156891042747751564381976369004350305043"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5d9ee1222649eeeaec24cd83/download/301175901702690977942172884613608227985"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da592c570a528fdfc5462d1",
+        "metrics": {
+          "roc": {
+            "value": 0.541534969885336,
+            "short_value": 0.5415
+          },
+          "max_f1": {
+            "value": 0.0975609756097561,
+            "short_value": 0.0976
+          }
+        },
+        "created": "2019-10-15T06:35:01+00:00",
+        "features": 0,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5da592c570a528fdfc5462d1/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da592c570a528fdfc5462d1/download/108584784452549154136967798391531115054"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da592c570a528fdfc5462d1/download/156958119285565950150672756516663216054"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5da592c570a528fdfc5462d1/download/66536483446773018439729049888008521610"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da596ac70a528fdfc5462d2",
+        "metrics": {
+          "roc": {
+            "value": 0.533457567297055,
+            "short_value": 0.5335
+          },
+          "max_f1": {
+            "value": 0.00416233090530697,
+            "short_value": 0.0042
+          }
+        },
+        "created": "2019-10-15T06:51:40+00:00",
+        "features": 152,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5da596ac70a528fdfc5462d2/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da596ac70a528fdfc5462d2/download/105317161834661950760327958770483890608"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da596ac70a528fdfc5462d2/download/78684941659321861533543825997096605881"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5da596ac70a528fdfc5462d2/download/7982601865720512427486732091204530487"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da596f870a528fdfc5462d3",
+        "metrics": {
+          "roc": {
+            "value": 0.5334575672970553,
+            "short_value": 0.5335
+          },
+          "max_f1": {
+            "value": 0.004162330905306971,
+            "short_value": 0.0042
+          }
+        },
+        "created": "2019-10-15T06:52:55+00:00",
+        "features": 152,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5da596f870a528fdfc5462d3/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da596f870a528fdfc5462d3/download/244943695228472433524331828445059137923"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da596f870a528fdfc5462d3/download/194338283107211076309062127334570523618"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5da596f870a528fdfc5462d3/download/139572303066097802741738584256680926872"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da5973770a528fdfc5462d8",
+        "metrics": {
+          "roc": {
+            "value": 0.533457567297055,
+            "short_value": 0.5335
+          },
+          "max_f1": {
+            "value": 0.00416233090530697,
+            "short_value": 0.0042
+          }
+        },
+        "created": "2019-10-15T06:53:58+00:00",
+        "features": 152,
         "attachments": {
           "notebook": true,
           "other_files": 1,
-          "attachments_download_path": "/submits/6017b6b376a8c74ef40b47d6/download",
+          "attachments_download_path": "/submits/5da5973770a528fdfc5462d8/download",
           "files": [
             {
               "name": "notebook.ipynb",
-              "download_path": "/submits/6017b6b376a8c74ef40b47d6/download/bed62a70d8501274e65242dd7a6c4a96"
+              "download_path": "/submits/5da5973770a528fdfc5462d8/download/34664792390611922369467580159021749456"
             },
             {
-              "name": "scheme.png",
-              "download_path": "/submits/6017b6b376a8c74ef40b47d6/download/8eb4ad74993b5805038e597f813e8b0b"
+              "name": "file_0.py",
+              "download_path": "/submits/5da5973770a528fdfc5462d8/download/160949889840209727993838781198839419491"
             }
           ]
-        },
-        "trash": false,
-        "comment": "Such a good decision!",
-        "created": "2020-07-21T12:09:00+00:00"
+        }
       },
       {
-        "id": "6017b6b376a8c74ef40b1247d6",
-        "favorite": true,
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da5979770a528fdfc5462d9",
         "metrics": {
-          "mae": {
-            "value": 0.0117900578717161,
-            "short_value": 0.0118,
-            "delta": 0.00021234,
-            "short_delta": 0.0002
+          "roc": {
+            "value": 0.533457567297055,
+            "short_value": 0.5335
           },
           "max_f1": {
-            "value": 0.129032258064516,
-            "short_value": 0.129,
-            "delta": 0.00022434,
-            "short_delta": 0.0002
-          },
-          "roc": {
-            "value": 0.5,
-            "short_value": 0.5,
-            "delta": 0.03543534,
-            "short_delta": 0.035
+            "value": 0.00416233090530697,
+            "short_value": 0.0042
           }
         },
-        "model_name": "cross-validated gradient boosting",
-        "model_version": "4.1",
-        "features": 345,
-        "author": "Eugene.Tcatcorin",
-        "feature_mining_comments": "2 SimpleImputer: {\n\t'add_indicator': False, \n\t'copy': True, \n\t'fill_value': None, \n\t'missing_values': nan, \n\t'strategy': 'mean', \n\t'verbose': 0\n}, \n\nmodel_2': Lasso(\n\talpha=1.1750871309048077, \n\tcopy_X=True, \n\tfit_intercept=True, \n\tmax_iter=1000, \n\tnormalize=False, \n\tpositive=False, \n\tprecompute=False,\n\trandom_state=123, \n\tselection='cyclic', \n\ttol=0.0001, \n\twarm_start=False)\n}, \n\nRobustScaler: {\n\t'copy': True, \n\t'quantile_range': (25.0, 75.0), \n\t'with_centering': True, \n\t'with_scaling': True\n},\n\nSet 0 for target less than 10\n",
+        "created": "2019-10-15T06:55:35+00:00",
+        "features": 152,
         "attachments": {
           "notebook": true,
-          "other_files": 0,
-          "attachments_download_path": "/submits/6017b6b376a8c74ef40b47d6/download",
+          "other_files": 1,
+          "attachments_download_path": "/submits/5da5979770a528fdfc5462d9/download",
           "files": [
             {
               "name": "notebook.ipynb",
-              "download_path": "/submits/6017b6b376a8c74ef40b47d6/download/bed62a70d8501274e65242dd7a6c4a96"
+              "download_path": "/submits/5da5979770a528fdfc5462d9/download/79156654248132693101660890578693936882"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da5979770a528fdfc5462d9/download/339189720603880682971352864972729746725"
             }
-
           ]
-        },
-        "trash": false,
-        "comment": "Such a good decision!",
-        "created": "2020-07-21T12:09:00+00:00"
+        }
       },
       {
-        "id": "6017b6b37612c74ef40b1247d6",
-        "favorite": true,
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da598a070a528fdfc5462da",
         "metrics": {
-          "mae": {
-            "value": 0.0117900578717161,
-            "short_value": 0.0118,
-            "delta": 0.00021234,
-            "short_delta": 0.0002
+          "roc": {
+            "value": 0.533457567297055,
+            "short_value": 0.5335
           },
           "max_f1": {
-            "value": 0.129032258064516,
-            "short_value": 0.129,
-            "delta": 0.00022434,
-            "short_delta": 0.0002
-          },
-          "roc": {
-            "value": 0.5234234234,
-            "short_value": 0.5,
-            "delta": -0.03543534,
-            "short_delta": -0.035
+            "value": 0.00416233090530697,
+            "short_value": 0.0042
           }
         },
-        "model_name": "cross-validated gradient boosting",
-        "model_version": "4.1",
-        "features": 345,
-        "author": "Eugene.Tcatcorin",
-        "feature_mining_comments": "3 SimpleImputer: {\n\t'add_indicator': False, \n\t'copy': True, \n\t'fill_value': None, \n\t'missing_values': nan, \n\t'strategy': 'mean', \n\t'verbose': 0\n}, \n\nmodel_2': Lasso(\n\talpha=1.1750871309048077, \n\tcopy_X=True, \n\tfit_intercept=True, \n\tmax_iter=1000, \n\tnormalize=False, \n\tpositive=False, \n\tprecompute=False,\n\trandom_state=123, \n\tselection='cyclic', \n\ttol=0.0001, \n\twarm_start=False)\n}, \n\nRobustScaler: {\n\t'copy': True, \n\t'quantile_range': (25.0, 75.0), \n\t'with_centering': True, \n\t'with_scaling': True\n},\n\nSet 0 for target less than 10\n",
+        "created": "2019-10-15T07:00:00+00:00",
+        "features": 152,
         "attachments": {
-          "notebook": false,
-          "other_files": 4,
-          "attachments_download_path": "/submits/6017b6b376a8c74ef40b47d6/download",
+          "notebook": true,
+          "other_files": 2,
+          "attachments_download_path": "/submits/5da598a070a528fdfc5462da/download",
           "files": [
             {
-              "name": "scheme.png",
-              "download_path": "/submits/6017b6b376a8c74ef40b47d6/download/8eb4ad74993b5805038e597f813e8b0b"
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5da598a070a528fdfc5462da/download/320057410940632537756307705910113418261"
             },
             {
-              "name": "scheme.png",
-              "download_path": "/submits/6017b6b376a8c74ef40b47d6/download/8eb4ad74993b5805038e597f813e8b0b"
+              "name": "file_0.py",
+              "download_path": "/submits/5da598a070a528fdfc5462da/download/125923476576715628732401388004999279893"
             },
             {
-              "name": "scheme.png",
-              "download_path": "/submits/6017b6b376a8c74ef40b47d6/download/8eb4ad74993b5805038e597f813e8b0b"
-            },
-            {
-              "name": "scheme.png",
-              "download_path": "/submits/6017b6b376a8c74ef40b47d6/download/8eb4ad74993b5805038e597f813e8b0b"
+              "name": "file_1.py",
+              "download_path": "/submits/5da598a070a528fdfc5462da/download/78374021042598879085235409407231246718"
             }
-
           ]
-        },
-        "trash": false,
-        "comment": "Such a good decision!",
-        "created": "2020-07-21T12:09:00+00:00"
+        }
       },
       {
-        "id": "000000000000000000000000",
-        "favorite": false,
-        "metrics": null,
-        "model_name": null,
-        "model_version": null,
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da59ac770a528fdfc5462db",
+        "metrics": {
+          "roc": {
+            "value": 0.533457567297055,
+            "short_value": 0.5335
+          },
+          "max_f1": {
+            "value": 0.00416233090530697,
+            "short_value": 0.0042
+          }
+        },
+        "created": "2019-10-15T07:09:10+00:00",
+        "features": 152,
+        "attachments": {
+          "notebook": true,
+          "other_files": 5,
+          "attachments_download_path": "/submits/5da59ac770a528fdfc5462db/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5da59ac770a528fdfc5462db/download/128652598653207919169645959858115769364"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da59ac770a528fdfc5462db/download/114083750306178477218582183350118086348"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da59ac770a528fdfc5462db/download/126539654490719580468092969006186490040"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5da59ac770a528fdfc5462db/download/103018988220843738434113762505689535050"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5da59ac770a528fdfc5462db/download/276020716617533356401890179317705521918"
+            },
+            {
+              "name": "file_4.py",
+              "download_path": "/submits/5da59ac770a528fdfc5462db/download/288226412453422052468334693907745912792"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "DummyClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da5a3f770a528fdfc5462dc",
+        "metrics": {
+          "roc": {
+            "value": 0.541666666666667,
+            "short_value": 0.5417
+          },
+          "max_f1": {
+            "value": 0.153846153846154,
+            "short_value": 0.1538
+          }
+        },
+        "created": "2019-10-15T07:48:21+00:00",
+        "features": 1,
+        "attachments": {
+          "notebook": true,
+          "other_files": 1,
+          "attachments_download_path": "/submits/5da5a3f770a528fdfc5462dc/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5da5a3f770a528fdfc5462dc/download/5422304827497367421003287616660938031"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da5a3f770a528fdfc5462dc/download/146405382282587381848487205359930990661"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "all_zeroes",
+        "model_version": 0,
+        "author": "Andrey.Kalmykov",
+        "feature_mining_comments": "",
+        "id": "5da738dd55437fea20148e98",
+        "metrics": {
+          "roc": {
+            "value": 0.5,
+            "short_value": 0.5
+          },
+          "max_f1": {
+            "value": 0.0008421495868203588,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-16T12:35:56+00:00",
         "features": 0,
-        "author": null,
-        "feature_mining_comments": null,
-        "attachments": null,
-        "trash": false,
-        "comment": null,
-        "created": "2020-07-21T12:09:00+00:00"
+        "attachments": null
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da8322c333d7fe97a4012fd",
+        "metrics": {
+          "roc": {
+            "value": 0.5120546453844668,
+            "short_value": 0.5121
+          },
+          "max_f1": {
+            "value": 0.0008629368617862794,
+            "short_value": 0.0009
+          }
+        },
+        "created": "2019-10-17T06:19:39+00:00",
+        "features": 152,
+        "attachments": null
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da8328d333d7fe97a4012fe",
+        "metrics": {
+          "roc": {
+            "value": 0.5728458796467014,
+            "short_value": 0.5728
+          },
+          "max_f1": {
+            "value": 0.0009856262833675565,
+            "short_value": 0.001
+          }
+        },
+        "created": "2019-10-17T06:21:16+00:00",
+        "features": 148,
+        "attachments": {
+          "notebook": true,
+          "other_files": 2,
+          "attachments_download_path": "/submits/5da8328d333d7fe97a4012fe/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5da8328d333d7fe97a4012fe/download/133271983049088984700882626495637711539"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da8328d333d7fe97a4012fe/download/85964865233661034770835316900445204230"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da8328d333d7fe97a4012fe/download/204580740037829563374743234337209506855"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da83467acb1312ec557ebb5",
+        "metrics": {
+          "roc": {
+            "value": 0.5728458796467014,
+            "short_value": 0.5728
+          },
+          "max_f1": {
+            "value": 0.0009856262833675565,
+            "short_value": 0.001
+          }
+        },
+        "created": "2019-10-17T06:29:10+00:00",
+        "features": 148,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5da83467acb1312ec557ebb5/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da83467acb1312ec557ebb5/download/146066129315337104298173167235994870500"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da83467acb1312ec557ebb5/download/33046832778442657785372461687546398654"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5da83467acb1312ec557ebb5/download/14671722841032408902111064525479444105"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da83bb4acb1312ec557ebb6",
+        "metrics": {
+          "roc": {
+            "value": 0.5728458796467014,
+            "short_value": 0.5728
+          },
+          "max_f1": {
+            "value": 0.0009856262833675565,
+            "short_value": 0.001
+          }
+        },
+        "created": "2019-10-17T07:00:19+00:00",
+        "features": 152,
+        "attachments": {
+          "notebook": true,
+          "other_files": 4,
+          "attachments_download_path": "/submits/5da83bb4acb1312ec557ebb6/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5da83bb4acb1312ec557ebb6/download/202008315868900761869946305277759521533"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da83bb4acb1312ec557ebb6/download/135020382655598156436303398070513112226"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da83bb4acb1312ec557ebb6/download/238074205705755783751946832360038471327"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5da83bb4acb1312ec557ebb6/download/41369106230368483400955718884797181077"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5da83bb4acb1312ec557ebb6/download/102567099497130412438118800122915102647"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da83cadacb1312ec557ebb7",
+        "metrics": {
+          "roc": {
+            "value": 0.42830427224358636,
+            "short_value": 0.4283
+          },
+          "max_f1": {
+            "value": 0.13793103448275862,
+            "short_value": 0.1379
+          }
+        },
+        "created": "2019-10-17T07:04:28+00:00",
+        "features": 152,
+        "attachments": {
+          "notebook": true,
+          "other_files": 4,
+          "attachments_download_path": "/submits/5da83cadacb1312ec557ebb7/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5da83cadacb1312ec557ebb7/download/71413859974091635450721323329622721344"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da83cadacb1312ec557ebb7/download/205694770587506402029666359661000453125"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da83cadacb1312ec557ebb7/download/230859938805802718149915584909229296308"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5da83cadacb1312ec557ebb7/download/70873060551455500511957130806719470360"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5da83cadacb1312ec557ebb7/download/146068932189036922092440657996330979483"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da83cf5acb1312ec557ebb8",
+        "metrics": {
+          "roc": {
+            "value": 0.5716957277564136,
+            "short_value": 0.5717
+          },
+          "max_f1": {
+            "value": 0.0014235408706076273,
+            "short_value": 0.0014
+          }
+        },
+        "created": "2019-10-17T07:05:41+00:00",
+        "features": 152,
+        "attachments": {
+          "notebook": true,
+          "other_files": 5,
+          "attachments_download_path": "/submits/5da83cf5acb1312ec557ebb8/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5da83cf5acb1312ec557ebb8/download/213589505508415035123350873091160080507"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da83cf5acb1312ec557ebb8/download/185621183535613206246155811383751703842"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da83cf5acb1312ec557ebb8/download/338583884170174334259421705758758156396"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5da83cf5acb1312ec557ebb8/download/180663906941399204530271311103276574084"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5da83cf5acb1312ec557ebb8/download/255469283240289149134332424234987593936"
+            },
+            {
+              "name": "file_4.py",
+              "download_path": "/submits/5da83cf5acb1312ec557ebb8/download/111441678737808409880753976461945524690"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da83d89acb1312ec557ebb9",
+        "metrics": {
+          "roc": {
+            "value": 0.5907902977517896,
+            "short_value": 0.5908
+          },
+          "max_f1": {
+            "value": 0.0015257746939368617,
+            "short_value": 0.0015
+          }
+        },
+        "created": "2019-10-17T07:08:08+00:00",
+        "features": 148,
+        "attachments": {
+          "notebook": true,
+          "other_files": 4,
+          "attachments_download_path": "/submits/5da83d89acb1312ec557ebb9/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5da83d89acb1312ec557ebb9/download/326997024457885210796186847090204300980"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da83d89acb1312ec557ebb9/download/73335458505848064213109505233796198164"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da83d89acb1312ec557ebb9/download/52626871755378329053112452471827641195"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5da83d89acb1312ec557ebb9/download/131174310198794602680718611150916898127"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5da83d89acb1312ec557ebb9/download/56269711009257087621471830443069362635"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LogisticRegression",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5da84363acb1312ec557ebba",
+        "metrics": {
+          "roc": {
+            "value": 0.5907902977517896,
+            "short_value": 0.5908
+          },
+          "max_f1": {
+            "value": 0.0015257746939368617,
+            "short_value": 0.0015
+          }
+        },
+        "created": "2019-10-17T07:33:07+00:00",
+        "features": 148,
+        "attachments": {
+          "notebook": true,
+          "other_files": 4,
+          "attachments_download_path": "/submits/5da84363acb1312ec557ebba/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5da84363acb1312ec557ebba/download/219561209178775209581548427973569762182"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da84363acb1312ec557ebba/download/52520039006953203404724646330735353547"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da84363acb1312ec557ebba/download/326102456552923570713793148444815572586"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5da84363acb1312ec557ebba/download/288029617413120120999318023272396730573"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5da84363acb1312ec557ebba/download/217187414254634240438861585372418857474"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "extra tree on base feats without nans",
+        "model_version": 0,
+        "author": "Andrey.Kalmykov",
+        "feature_mining_comments": "",
+        "id": "5da9c6d95b9780cb8f29a4e2",
+        "metrics": {
+          "roc": {
+            "value": 0.5416666666666666,
+            "short_value": 0.5417
+          },
+          "max_f1": {
+            "value": 0.15384615384615385,
+            "short_value": 0.1538
+          }
+        },
+        "created": "2019-10-18T11:06:16+00:00",
+        "features": 260,
+        "attachments": {
+          "notebook": true,
+          "other_files": 2,
+          "attachments_download_path": "/submits/5da9c6d95b9780cb8f29a4e2/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5da9c6d95b9780cb8f29a4e2/download/89365941988548008049787604597821282933"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5da9c6d95b9780cb8f29a4e2/download/168884751781366733178633557623544363347"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5da9c6d95b9780cb8f29a4e2/download/58284323359716249103316211028348413632"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5dad40b278f7bcd298136b74",
+        "metrics": {
+          "roc": {
+            "value": 0.7303292565863024,
+            "short_value": 0.7303
+          },
+          "max_f1": {
+            "value": 0.002097535395909806,
+            "short_value": 0.0021
+          }
+        },
+        "created": "2019-10-21T02:22:57+00:00",
+        "features": 59,
+        "attachments": {
+          "notebook": true,
+          "other_files": 5,
+          "attachments_download_path": "/submits/5dad40b278f7bcd298136b74/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5dad40b278f7bcd298136b74/download/189894806392650709499452927212030566165"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5dad40b278f7bcd298136b74/download/64280075246040551767463701721119141530"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5dad40b278f7bcd298136b74/download/247267345062373149573008874307073817920"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5dad40b278f7bcd298136b74/download/294175583843335527489116627514531763702"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5dad40b278f7bcd298136b74/download/313859607975581904091412917117998393065"
+            },
+            {
+              "name": "file_4.py",
+              "download_path": "/submits/5dad40b278f7bcd298136b74/download/186581871540685885629232340091323731199"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5dae9c7aa86665e5d486cf4e",
+        "metrics": {
+          "roc": {
+            "value": 0.5080521607051923,
+            "short_value": 0.5081
+          },
+          "max_f1": {
+            "value": 0.0008565151007336239,
+            "short_value": 0.0009
+          }
+        },
+        "created": "2019-10-22T03:06:48+00:00",
+        "features": 59,
+        "attachments": null
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5daff7b85efbb301321079ad",
+        "metrics": {
+          "roc": {
+            "value": 0.32496217375780667,
+            "short_value": 0.325
+          },
+          "max_f1": {
+            "value": 0.0009008806107970541,
+            "short_value": 0.0009
+          }
+        },
+        "created": "2019-10-23T03:48:24+00:00",
+        "features": 59,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5daff7b85efbb301321079ad/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5daff7b85efbb301321079ad/download/237406096109512761975372025966371535194"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5daff7b85efbb301321079ad/download/64211349157009340224123236124985961956"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5daff7b85efbb301321079ad/download/8410051196460713297618086564376552860"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5daff7cb5efbb301321079ae",
+        "metrics": {
+          "roc": {
+            "value": 0.7231682441014474,
+            "short_value": 0.7232
+          },
+          "max_f1": {
+            "value": 0.00234965034965035,
+            "short_value": 0.0023
+          }
+        },
+        "created": "2019-10-23T03:48:42+00:00",
+        "features": 59,
+        "attachments": {
+          "notebook": true,
+          "other_files": 2,
+          "attachments_download_path": "/submits/5daff7cb5efbb301321079ae/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5daff7cb5efbb301321079ae/download/257024951504176564478934251643386323494"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5daff7cb5efbb301321079ae/download/312322414400309877078895996280081085090"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5daff7cb5efbb301321079ae/download/179038482377809192090072169010918952825"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5daff9575efbb301321079af",
+        "metrics": {
+          "roc": {
+            "value": 0.32496217375780667,
+            "short_value": 0.325
+          },
+          "max_f1": {
+            "value": 0.0009008806107970541,
+            "short_value": 0.0009
+          }
+        },
+        "created": "2019-10-23T03:55:18+00:00",
+        "features": 59,
+        "attachments": {
+          "notebook": true,
+          "other_files": 5,
+          "attachments_download_path": "/submits/5daff9575efbb301321079af/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5daff9575efbb301321079af/download/120598565434157562955007647645245445966"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5daff9575efbb301321079af/download/200411212955332523705029243178449987269"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5daff9575efbb301321079af/download/297390055669340071611316360828902703397"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5daff9575efbb301321079af/download/46511480104983264984842220789152466535"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5daff9575efbb301321079af/download/69908007153139251882099775541284183876"
+            },
+            {
+              "name": "file_4.py",
+              "download_path": "/submits/5daff9575efbb301321079af/download/79808668163175853207298535439594352064"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5dafffc95efbb301321079b0",
+        "metrics": {
+          "roc": {
+            "value": 0.6143695089758674,
+            "short_value": 0.6144
+          },
+          "max_f1": {
+            "value": 0.0013198416190057193,
+            "short_value": 0.0013
+          }
+        },
+        "created": "2019-10-23T04:22:48+00:00",
+        "features": 58,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5dafffc95efbb301321079b0/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5dafffc95efbb301321079b0/download/24883683849888320850872512088422709624"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5dafffc95efbb301321079b0/download/40676464301833033278070544733353877499"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5dafffc95efbb301321079b0/download/72706306271718393562363808222702178978"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db000205efbb301321079b1",
+        "metrics": {
+          "roc": {
+            "value": 0.44062706690781817,
+            "short_value": 0.4406
+          },
+          "max_f1": {
+            "value": 0.0010816349766594555,
+            "short_value": 0.0011
+          }
+        },
+        "created": "2019-10-23T04:24:16+00:00",
+        "features": 58,
+        "attachments": {
+          "notebook": true,
+          "other_files": 4,
+          "attachments_download_path": "/submits/5db000205efbb301321079b1/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db000205efbb301321079b1/download/91400628757996080327445402562535955797"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db000205efbb301321079b1/download/243911566780641038801090426466147146732"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db000205efbb301321079b1/download/92735754083676547084835429175113049243"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5db000205efbb301321079b1/download/263544228365727994864968065320993284094"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5db000205efbb301321079b1/download/15348300701535920254817480552385792838"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db17e6ad4551fa39acd3f36",
+        "metrics": {
+          "roc": {
+            "value": 0.5008252998296722,
+            "short_value": 0.5008
+          },
+          "max_f1": {
+            "value": 0.0008435407623499638,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-24T07:35:21+00:00",
+        "features": 117,
+        "attachments": null
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db18318d4551fa39acd3f37",
+        "metrics": {
+          "roc": {
+            "value": 0.500790180687984,
+            "short_value": 0.5008
+          },
+          "max_f1": {
+            "value": 0.0008434814697664611,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-24T07:55:20+00:00",
+        "features": 117,
+        "attachments": {
+          "notebook": true,
+          "other_files": 1,
+          "attachments_download_path": "/submits/5db18318d4551fa39acd3f37/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db18318d4551fa39acd3f37/download/340199317286900308846699009581937675258"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db18318d4551fa39acd3f37/download/129618833028863689591060716567368220179"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "RandomForestClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db2b6e2d4551fa39acd3f38",
+        "metrics": {
+          "roc": {
+            "value": 0.35281933542877536,
+            "short_value": 0.3528
+          },
+          "max_f1": {
+            "value": 0.0008490110950313555,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-25T05:48:29+00:00",
+        "features": 117,
+        "attachments": {
+          "notebook": true,
+          "other_files": 4,
+          "attachments_download_path": "/submits/5db2b6e2d4551fa39acd3f38/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db2b6e2d4551fa39acd3f38/download/30710520422318806314076912256601313067"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db2b6e2d4551fa39acd3f38/download/65055083762602829404755751113936335268"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db2b6e2d4551fa39acd3f38/download/200383159611092571218118827852822860575"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5db2b6e2d4551fa39acd3f38/download/189988894421467010976626120293179620739"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5db2b6e2d4551fa39acd3f38/download/233847963851769911033294135849482006899"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "RandomForestClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db2b787d4551fa39acd3f3d",
+        "metrics": {
+          "roc": {
+            "value": 0.35281933542877536,
+            "short_value": 0.3528
+          },
+          "max_f1": {
+            "value": 0.0008490110950313555,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-25T05:51:15+00:00",
+        "features": 117,
+        "attachments": {
+          "notebook": true,
+          "other_files": 4,
+          "attachments_download_path": "/submits/5db2b787d4551fa39acd3f3d/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db2b787d4551fa39acd3f3d/download/39345514611540151192848783575944687725"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db2b787d4551fa39acd3f3d/download/280698697195770846157724552566957981224"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db2b787d4551fa39acd3f3d/download/219398838183384899297938646411138328660"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5db2b787d4551fa39acd3f3d/download/264401339878517228394168936145515085762"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5db2b787d4551fa39acd3f3d/download/234138952289089214432396488835839754172"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "RandomForestClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db2c6a7d4551fa39acd3f3e",
+        "metrics": {
+          "roc": {
+            "value": 0.35281933542877536,
+            "short_value": 0.3528
+          },
+          "max_f1": {
+            "value": 0.0008490110950313555,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-25T06:55:47+00:00",
+        "features": 117,
+        "attachments": {
+          "notebook": true,
+          "other_files": 2,
+          "attachments_download_path": "/submits/5db2c6a7d4551fa39acd3f3e/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db2c6a7d4551fa39acd3f3e/download/297904904114126439069516272221429112641"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db2c6a7d4551fa39acd3f3e/download/71065392011282237878161170104724420143"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db2c6a7d4551fa39acd3f3e/download/53054544495477389403817570348273008549"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "RandomForestClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db2df13d4551fa39acd3f3f",
+        "metrics": {
+          "roc": {
+            "value": 0.050591318548174675,
+            "short_value": 0.0506
+          },
+          "max_f1": {
+            "value": 0.0008421495868203591,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-25T08:39:53+00:00",
+        "features": 117,
+        "attachments": null
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db820c6d4551fa39acd3f56",
+        "metrics": {
+          "roc": {
+            "value": 0.570281816479072,
+            "short_value": 0.5703
+          },
+          "max_f1": {
+            "value": 0.001362026695723236,
+            "short_value": 0.0014
+          }
+        },
+        "created": "2019-10-29T08:21:41+00:00",
+        "features": 13,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5db820c6d4551fa39acd3f56/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db820c6d4551fa39acd3f56/download/182280712139336768228615961020803299435"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db820c6d4551fa39acd3f56/download/51433574026558968207423949060763782159"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5db820c6d4551fa39acd3f56/download/302902444061547691261295026468500970422"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db93d40d4551fa39acd3f58",
+        "metrics": {
+          "roc": {
+            "value": 0.0861765205125053,
+            "short_value": 0.0862
+          },
+          "max_f1": {
+            "value": 0.0008421495868203591,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-30T04:35:27+00:00",
+        "features": 12,
+        "attachments": {
+          "notebook": true,
+          "other_files": 4,
+          "attachments_download_path": "/submits/5db93d40d4551fa39acd3f58/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db93d40d4551fa39acd3f58/download/315604830787678616451882070115030455759"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db93d40d4551fa39acd3f58/download/25134937312997920319161533111044775817"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db93d40d4551fa39acd3f58/download/135807814799869082554627517433933194705"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5db93d40d4551fa39acd3f58/download/111011588240838445900037206902029295905"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5db93d40d4551fa39acd3f58/download/28467980573579173762166576169681452844"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "XGBClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db96af6d4551fa39acd3f59",
+        "metrics": {
+          "roc": {
+            "value": 0.46236435231522954,
+            "short_value": 0.4624
+          },
+          "max_f1": {
+            "value": 0.0009176788124156546,
+            "short_value": 0.0009
+          }
+        },
+        "created": "2019-10-30T07:50:29+00:00",
+        "features": 17,
+        "attachments": {
+          "notebook": true,
+          "other_files": 4,
+          "attachments_download_path": "/submits/5db96af6d4551fa39acd3f59/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db96af6d4551fa39acd3f59/download/234947090599956749742397266315083419802"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db96af6d4551fa39acd3f59/download/157032672743138160750605407069982788979"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db96af6d4551fa39acd3f59/download/281777152309148063691248400873097120110"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5db96af6d4551fa39acd3f59/download/206364896869626993800916811627282954173"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5db96af6d4551fa39acd3f59/download/176880035760552021555300051933955427197"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "XGBClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db970f6d4551fa39acd3f5a",
+        "metrics": {
+          "roc": {
+            "value": 0.6043353117116484,
+            "short_value": 0.6043
+          },
+          "max_f1": {
+            "value": 0.0020820681877331483,
+            "short_value": 0.0021
+          }
+        },
+        "created": "2019-10-30T08:16:04+00:00",
+        "features": 17,
+        "attachments": {
+          "notebook": true,
+          "other_files": 1,
+          "attachments_download_path": "/submits/5db970f6d4551fa39acd3f5a/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db970f6d4551fa39acd3f5a/download/274166567507833835335230738005882246906"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db970f6d4551fa39acd3f5a/download/289283058825420169822825201223262252306"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "XGBClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db971abd4551fa39acd3f5b",
+        "metrics": {
+          "roc": {
+            "value": 0.5415788688124462,
+            "short_value": 0.5416
+          },
+          "max_f1": {
+            "value": 0.1111111111111111,
+            "short_value": 0.1111
+          }
+        },
+        "created": "2019-10-30T08:19:04+00:00",
+        "features": 17,
+        "attachments": {
+          "notebook": true,
+          "other_files": 5,
+          "attachments_download_path": "/submits/5db971abd4551fa39acd3f5b/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db971abd4551fa39acd3f5b/download/672417264583120964409806101315158445"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db971abd4551fa39acd3f5b/download/324322285608688471872904215346454337522"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db971abd4551fa39acd3f5b/download/132802509226671124276677643949338945540"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5db971abd4551fa39acd3f5b/download/243735776875455124361948765558727238179"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5db971abd4551fa39acd3f5b/download/129060304979864751753395802177567533907"
+            },
+            {
+              "name": "file_4.py",
+              "download_path": "/submits/5db971abd4551fa39acd3f5b/download/222401581650699109992173251276867223603"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "XGBClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db97221d4551fa39acd3f5c",
+        "metrics": {
+          "roc": {
+            "value": 0.45836845247502145,
+            "short_value": 0.4584
+          },
+          "max_f1": {
+            "value": 0.0008421495868203591,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-30T08:21:04+00:00",
+        "features": 17,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5db97221d4551fa39acd3f5c/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db97221d4551fa39acd3f5c/download/48343407008668914606319667152486793370"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db97221d4551fa39acd3f5c/download/42455941893945630252307584880023267602"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5db97221d4551fa39acd3f5c/download/200378235823487590176542714547539618918"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "XGBClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db97232d4551fa39acd3f5d",
+        "metrics": {
+          "roc": {
+            "value": 0.45843869075839777,
+            "short_value": 0.4584
+          },
+          "max_f1": {
+            "value": 0.0008421495868203591,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-30T08:21:21+00:00",
+        "features": 17,
+        "attachments": {
+          "notebook": true,
+          "other_files": 4,
+          "attachments_download_path": "/submits/5db97232d4551fa39acd3f5d/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db97232d4551fa39acd3f5d/download/238766468119887931263256888566931177396"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db97232d4551fa39acd3f5d/download/229972529366142686558921853313131325510"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db97232d4551fa39acd3f5d/download/261710563894646230928213393504581300475"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5db97232d4551fa39acd3f5d/download/29719657261990048082695361138532688582"
+            },
+            {
+              "name": "file_3.py",
+              "download_path": "/submits/5db97232d4551fa39acd3f5d/download/101637181118857047535231235379680995317"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "XGBClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db97247d4551fa39acd3f5e",
+        "metrics": {
+          "roc": {
+            "value": 0.5415613092416021,
+            "short_value": 0.5416
+          },
+          "max_f1": {
+            "value": 0.10526315789473685,
+            "short_value": 0.1053
+          }
+        },
+        "created": "2019-10-30T08:21:42+00:00",
+        "features": 17,
+        "attachments": {
+          "notebook": true,
+          "other_files": 1,
+          "attachments_download_path": "/submits/5db97247d4551fa39acd3f5e/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db97247d4551fa39acd3f5e/download/101091357794577000167151874221965054613"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db97247d4551fa39acd3f5e/download/34220190209482294979957303763184458120"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "XGBClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db9725ed4551fa39acd3f5f",
+        "metrics": {
+          "roc": {
+            "value": 0.5415788688124462,
+            "short_value": 0.5416
+          },
+          "max_f1": {
+            "value": 0.1111111111111111,
+            "short_value": 0.1111
+          }
+        },
+        "created": "2019-10-30T08:22:05+00:00",
+        "features": 17,
+        "attachments": {
+          "notebook": true,
+          "other_files": 1,
+          "attachments_download_path": "/submits/5db9725ed4551fa39acd3f5f/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5db9725ed4551fa39acd3f5f/download/36200947759029238413668404968247308595"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db9725ed4551fa39acd3f5f/download/252413582700274695711089056653740975504"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "XGBClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5db972c2d4551fa39acd3f60",
+        "metrics": {
+          "roc": {
+            "value": 0.5,
+            "short_value": 0.5
+          },
+          "max_f1": {
+            "value": 0.0008421495868203591,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-30T08:23:45+00:00",
+        "features": 17,
+        "attachments": {
+          "notebook": false,
+          "other_files": 3,
+          "attachments_download_path": "/submits/5db972c2d4551fa39acd3f60/download",
+          "files": [
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5db972c2d4551fa39acd3f60/download/338030544951737129381904432579882478449"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5db972c2d4551fa39acd3f60/download/91163394665735270226368179677709181292"
+            },
+            {
+              "name": "file_2.py",
+              "download_path": "/submits/5db972c2d4551fa39acd3f60/download/49924459319573483853813699471154219692"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "XGBClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5dbad116d4551fa39acd3f61",
+        "metrics": {
+          "roc": {
+            "value": 0.5,
+            "short_value": 0.5
+          },
+          "max_f1": {
+            "value": 0.0008421495868203591,
+            "short_value": 0.0008
+          }
+        },
+        "created": "2019-10-31T09:18:29+00:00",
+        "features": 17,
+        "attachments": null
+      },
+      {
+        "model_name": "catboost, 2 features",
+        "model_version": 2,
+        "author": "Andrey.Kalmykov",
+        "feature_mining_comments": "",
+        "id": "5dbc4e0eb93785faef1ca4d9",
+        "metrics": {
+          "roc": {
+            "value": 0.5624795138340153,
+            "short_value": 0.5625
+          },
+          "max_f1": {
+            "value": 0.14285714285714285,
+            "short_value": 0.1429
+          }
+        },
+        "created": "2019-11-01T12:23:57+00:00",
+        "features": 2,
+        "attachments": {
+          "notebook": true,
+          "other_files": 2,
+          "attachments_download_path": "/submits/5dbc4e0eb93785faef1ca4d9/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5dbc4e0eb93785faef1ca4d9/download/1878938227314168372996679499613375759"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5dbc4e0eb93785faef1ca4d9/download/334758410396220007184967207518996511749"
+            },
+            {
+              "name": "file_1.py",
+              "download_path": "/submits/5dbc4e0eb93785faef1ca4d9/download/281010855892606598005348940309060768779"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5dbd9f7852b346996b32b082",
+        "metrics": {
+          "roc": {
+            "value": 0.9918615047381575,
+            "short_value": 0.9919
+          },
+          "max_f1": {
+            "value": 0.15384615384615385,
+            "short_value": 0.1538
+          }
+        },
+        "created": "2019-11-02T12:23:34+00:00",
+        "features": 5784,
+        "attachments": {
+          "notebook": true,
+          "other_files": 1,
+          "attachments_download_path": "/submits/5dbd9f7852b346996b32b082/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/5dbd9f7852b346996b32b082/download/71597525538264404944959841354311973281"
+            },
+            {
+              "name": "file_0.py",
+              "download_path": "/submits/5dbd9f7852b346996b32b082/download/299411759072164805896919759075391153101"
+            }
+          ]
+        }
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5dc1046b52b346996b32b083",
+        "metrics": {
+          "roc": {
+            "value": 0.9918615047381575,
+            "short_value": 0.9919
+          },
+          "max_f1": {
+            "value": 0.15384615384615385,
+            "short_value": 0.1538
+          }
+        },
+        "created": "2019-11-05T02:11:05+00:00",
+        "features": 5784,
+        "attachments": null
+      },
+      {
+        "model_name": "LGBMClassifier",
+        "model_version": "1.0",
+        "author": "Alexander.Vasin",
+        "feature_mining_comments": "",
+        "id": "5dc10a0652b346996b32b084",
+        "metrics": {
+          "roc": {
+            "value": 0.9918615047381575,
+            "short_value": 0.9919
+          },
+          "max_f1": {
+            "value": 0.15384615384615385,
+            "short_value": 0.1538
+          }
+        },
+        "created": "2019-11-05T02:35:00+00:00",
+        "features": 5784,
+        "attachments": null
       }
     ]
   },

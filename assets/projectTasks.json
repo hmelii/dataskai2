@@ -4,90 +4,298 @@
     "tasks": [
       {
         "task_name": "aero__fw_classification_v1",
-        "features": 345,
-        "submits_active": 1233221,
-        "submits_new": 34,
-        "submits_favorite": 3,
-        "trash": 3,
-        "comments_to_submits": 2,
-        "metrics": [
-          "roc",
-          "public max f1",
-          "mae",
-          "rmse",
-          "roc",
-          "public max f1",
-          "mae",
-          "rmse"
-        ],
+        "features": 1250,
+        "submits_active": 3174,
+        "submits_new": 93,
+        "date_of_last_submit": "2021-01-19T16:58:05+00:00",
         "authors": [
-          "Eugene.Tcatcorin",
-          "Eugenia.Chibisova",
-          "Alexey.Savilov"
+          "Alexander.Vasin",
+          "Evgeniya.Chibisova"
         ],
-        "date_of_last_submit": "2020-07-21T12:09:00+00:00",
-        "comment_to_task": "Awesome",
-        "metrics_service_status": "OK"
+        "metrics": [
+          "public_std_of_auc",
+          "log_loss",
+          "public_std_of_r2",
+          "prec_at_max_f1",
+          "public_max_f1",
+          "public_r_squared",
+          "r_squared",
+          "max_f1",
+          "public_prec_at_max_f1",
+          "std_of_auc",
+          "std_of_r2",
+          "roc",
+          "public_log_loss"
+        ]
       },
       {
-        "task_name": "aero__fw_classification_v2",
-        "features": 345,
-        "submits_active": 1233221,
-        "submits_new": 34,
-        "submits_favorite": 3,
-        "trash": 3,
-        "comments_to_submits": 2,
-        "metrics": [
-          "roc",
-          "public max f1",
-          "mae",
-          "rmse"
-        ],
+        "task_name": "aero__fw_classification_v1_legacy_features",
+        "features": 3860,
+        "submits_active": 4503,
+        "submits_new": 15,
+        "date_of_last_submit": "2020-10-30T15:39:52+00:00",
         "authors": [
-          "Eugene.Tcatcorin",
-          "Eugenia.Chibisova",
-          "Alexey.Savilov"
+          "Andrey.Kalmykov",
+          "Evgeniya.Chibisova",
+          "v.lobachev",
+          "v.stupnikov"
         ],
-        "date_of_last_submit": "2020-07-21T12:09:00+00:00",
-        "comment_to_task": "Awesome",
-        "metrics_service_status": "OK"
+        "metrics": [
+          "public_r_squared",
+          "roc",
+          "rec_at_max_f1",
+          "public_std_of_r2",
+          "r_squared",
+          "log_loss",
+          "public_log_loss",
+          "max_f1",
+          "public_std_of_auc",
+          "public_max_f1",
+          "std_of_r2",
+          "std_of_auc",
+          "public_prec_at_max_f1",
+          "prec_at_max_f1",
+          "public_rec_at_max_f1"
+        ]
       },
       {
-        "task_name": "aero__fw_classification_v3",
-        "features": 345,
-        "submits_active": 1233221,
-        "submits_new": 34,
-        "submits_favorite": 3,
-        "trash": 3,
-        "comments_to_submits": 2,
-        "metrics": [
-          "roc",
-          "public max f1",
-          "mae",
-          "rmse"
-        ],
+        "task_name": "aero__fw_clf_v1__ENG_1_FUEL_FILTER_CLOG__21",
+        "features": 1380,
+        "submits_active": 2910,
+        "submits_new": 171,
+        "date_of_last_submit": "2021-01-04T18:34:08+00:00",
         "authors": [
+          "Evgeniya.Chibisova",
           "Eugene.Tcatcorin",
-          "Eugenia.Chibisova",
-          "Alexey.Savilov"
+          "v.stupnikov",
+          "trivial.model_builder",
+          "v.lobachev",
+          "Alexander.Vasin",
+          "Denis.Shuvalov",
+          "Andrey.Kalmykov",
+          "Aleksandr.Medvedev"
         ],
-        "date_of_last_submit": "2020-07-21T12:09:00+00:00",
-        "comment_to_task": "Awesome",
-        "metrics_service_status": "OK"
+        "metrics": null
       },
       {
-        "task_name": "aero__fw_classification_v4",
-        "features": 0,
+        "task_name": "aero__fw_clf_v1__ENG_2_REV_PRESSURIZED__21",
+        "features": 1000,
+        "submits_active": 3780,
+        "submits_new": 37,
+        "date_of_last_submit": "2020-12-25T01:07:37+00:00",
+        "authors": [
+          "Andrey.Kalmykov",
+          "Satyarth",
+          "v.lobachev",
+          "trivial.model_builder",
+          "Alexander.Vasin",
+          "Denis.Shuvalov",
+          "Aleksandr.Medvedev",
+          "v.stupnikov"
+        ],
+        "metrics": [
+          "public_roc",
+          "rec_at_max_f1",
+          "public_log_loss",
+          "max_f1",
+          "public_std_of_r2",
+          "public_max_f1",
+          "public_rec_at_max_f1",
+          "public_r_squared",
+          "log_loss",
+          "std_of_r2",
+          "roc"
+        ]
+      },
+      {
+        "task_name": "aero__fw_clf_v1__ENG_1_REV_PRESSURIZED__21",
+        "features": 2770,
+        "submits_active": 4288,
+        "submits_new": 146,
+        "date_of_last_submit": "2020-12-08T14:23:49+00:00",
+        "authors": [
+          "Aleksandr.Medvedev",
+          "v.stupnikov",
+          "v.lobachev",
+          "Denis.Shuvalov",
+          "Evgeniya.Chibisova",
+          "Alexander.Vasin",
+          "Eugene.Tcatcorin",
+          "Andrey.Kalmykov",
+          "Satyarth"
+        ],
+        "metrics": [
+          "r_squared",
+          "public_log_loss",
+          "public_max_f1",
+          "public_rec_at_max_f1",
+          "public_prec_at_max_f1",
+          "max_f1",
+          "public_r_squared",
+          "public_roc",
+          "rec_at_max_f1",
+          "public_std_of_r2",
+          "public_std_of_auc",
+          "prec_at_max_f1",
+          "std_of_auc",
+          "log_loss",
+          "std_of_r2",
+          "roc"
+        ]
+      },
+      {
+        "task_name": "aero__fw_clf_v1__ENG_2_COMPRESSOR_VANE__8",
+        "features": 1440,
+        "submits_active": 739,
+        "submits_new": 24,
+        "date_of_last_submit": "2020-11-11T19:33:40+00:00",
+        "authors": [
+          "Alexander.Vasin",
+          "v.stupnikov",
+          "Denis.Shuvalov",
+          "Aleksandr.Medvedev",
+          "v.lobachev",
+          "Satyarth",
+          "Evgeniya.Chibisova",
+          "Eugene.Tcatcorin",
+          "Andrey.Kalmykov",
+          "trivial.model_builder"
+        ],
+        "metrics": [
+          "public_roc",
+          "std_of_auc",
+          "public_rec_at_max_f1",
+          "max_f1",
+          "std_of_r2",
+          "roc",
+          "r_squared",
+          "public_log_loss",
+          "public_max_f1",
+          "public_r_squared",
+          "public_std_of_r2",
+          "public_std_of_auc",
+          "log_loss",
+          "public_prec_at_max_f1",
+          "rec_at_max_f1",
+          "prec_at_max_f1"
+        ]
+      },
+      {
+        "task_name": "aero__fw_clf_v1__ENG_2_FADEC_B_FAULT__21",
+        "features": 1770,
+        "submits_active": 2438,
+        "submits_new": 80,
+        "date_of_last_submit": "2021-01-29T15:11:31+00:00",
+        "authors": [
+          "trivial.model_builder",
+          "Evgeniya.Chibisova",
+          "Alexander.Vasin",
+          "Satyarth"
+        ],
+        "metrics": null
+      },
+      {
+        "task_name": "aero__fw_clf_v1__ENG_2_START_FAULT__21",
+        "features": 1690,
         "submits_active": 0,
         "submits_new": 0,
-        "submits_favorite": 0,
-        "trash": 0,
-        "comments_to_submits": 0,
-        "metrics": null,
-        "authors": null,
         "date_of_last_submit": null,
-        "comment_to_task": null,
-        "metrics_service_status": null
+        "authors": null,
+        "metrics": [
+          "public_prec_at_max_f1",
+          "log_loss",
+          "public_std_of_r2",
+          "public_log_loss",
+          "public_rec_at_max_f1",
+          "std_of_auc",
+          "r_squared",
+          "roc"
+        ]
+      },
+      {
+        "task_name": "aero__fw_clf_v1__ENG_1_START_FAULT__21",
+        "features": 1370,
+        "submits_active": 371,
+        "submits_new": 86,
+        "date_of_last_submit": "2021-01-14T15:32:16+00:00",
+        "authors": [
+          "Aleksandr.Medvedev",
+          "Evgeniya.Chibisova",
+          "Satyarth",
+          "v.lobachev",
+          "trivial.model_builder"
+        ],
+        "metrics": [
+          "public_prec_at_max_f1",
+          "public_max_f1",
+          "std_of_auc",
+          "std_of_r2",
+          "log_loss",
+          "public_roc",
+          "roc",
+          "public_log_loss",
+          "max_f1",
+          "rec_at_max_f1",
+          "public_std_of_r2",
+          "r_squared",
+          "prec_at_max_f1",
+          "public_r_squared",
+          "public_std_of_auc",
+          "public_rec_at_max_f1"
+        ]
+      },
+      {
+        "task_name": "raw_data__aero__fw_classification_v1",
+        "features": 4540,
+        "submits_active": 3649,
+        "submits_new": 161,
+        "date_of_last_submit": "2020-10-27T17:15:44+00:00",
+        "authors": [
+          "Alexander.Vasin",
+          "trivial.model_builder",
+          "Eugene.Tcatcorin",
+          "Aleksandr.Medvedev",
+          "Satyarth",
+          "v.stupnikov"
+        ],
+        "metrics": [
+          "std_of_r2",
+          "roc",
+          "public_r_squared",
+          "public_roc",
+          "std_of_auc"
+        ]
+      },
+      {
+        "task_name": "raw_data__aero__fw_classification_v1_with_fstrings",
+        "features": 4740,
+        "submits_active": 3308,
+        "submits_new": 179,
+        "date_of_last_submit": "2021-03-02T13:57:39+00:00",
+        "authors": [
+          "trivial.model_builder",
+          "v.lobachev",
+          "Evgeniya.Chibisova",
+          "Aleksandr.Medvedev",
+          "Eugene.Tcatcorin"
+        ],
+        "metrics": [
+          "roc",
+          "max_f1",
+          "std_of_r2",
+          "rec_at_max_f1",
+          "public_prec_at_max_f1",
+          "std_of_auc",
+          "public_log_loss",
+          "public_std_of_r2",
+          "log_loss",
+          "public_max_f1",
+          "r_squared",
+          "public_std_of_auc",
+          "public_rec_at_max_f1",
+          "public_r_squared",
+          "prec_at_max_f1"
+        ]
       }
     ]
   },
