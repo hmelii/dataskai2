@@ -12,11 +12,21 @@
       </div>
     </div>
   </div>
-  <app-comparison-table
-    *ngIf="!empty && cols && rows"
-    [rows]="rows"
-    [cols]="cols"
-    [baselineID]="baselineID"
-  ></app-comparison-table>
-  <app-features-info class="submits-features"></app-features-info>
+  <div class="compared-submits-content" *ngIf="!empty && cols && rows">
+    <app-comparison-table
+      [rows]="rows"
+      [cols]="cols"
+      [baselineID]="baselineID"
+    ></app-comparison-table>
+    <div class="compared-submits-add-more" *ngIf="addMore">
+      <div class="compared-submits-add-more-ico">
+        <app-icon type="comparison-add-more"></app-icon>
+      </div>
+      <div class="compared-submits-add-more-text">
+        Add one more submit to see comparison results
+      </div>
+    </div>
+
+    <app-features-info class="submits-features"></app-features-info>
+  </div>
 </div>

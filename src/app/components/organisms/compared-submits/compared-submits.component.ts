@@ -19,6 +19,7 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
   comparisonBaselineSubmitID = null;
   baselineID = null;
   empty = false;
+  addMore = false;
 
   constructor(
     private authorsService: AuthorsService,
@@ -98,8 +99,6 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
     }
 
     const filterdComparisonIDs = this.comparisonIDs[this.routeTaskID];
-    console.log(this.comparisonIDs, this.routeTaskID);
-    console.log(this.comparisonIDs[this.routeTaskID]);
 
     if (!filterdComparisonIDs || !filterdComparisonIDs.length) {
       this.empty = true;
@@ -107,6 +106,8 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
     }
 
     this.empty = false;
+
+    this.addMore = filterdComparisonIDs && filterdComparisonIDs.length === 1;
 
     console.log('зашло сюда');
 

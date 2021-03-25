@@ -30,3 +30,27 @@
   line-height: (34 / 29);
   text-align: center;
 }
+
+.compared-submits-content {
+  display: flex;
+}
+
+.compared-submits-add-more {
+  width: 272px;
+  padding-top: 83px;
+  margin-left: 71px;
+}
+
+.compared-submits-add-more-ico {
+  width: 46px;
+  height: 21px;
+  margin-bottom: 29px;
+  font-size: 0;
+  color: var(--text-color-quaternary);
+}
+
+.compared-submits-add-more-text {
+  color: var(--text-color-quaternary);
+  font-size: 2.1rem;
+  line-height: (27 / 21);
+}
