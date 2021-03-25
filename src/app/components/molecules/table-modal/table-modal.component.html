@@ -19,9 +19,8 @@
     <div
       class="table-modal-body-text block-with-line-numbers"
       *ngIf="body !== ''"
-    >
-      <span [innerHTML]="body | replaceLineBreaks | replaceTabs"></span>
-    </div>
+      [innerHTML]="body"
+    ></div>
     <!--<ul class="table-modal-list">
         <li class="table-modal-list-item" *ngFor="let feature of featuresNames">
           <div class="table-modal-list-text">{{feature.name}}</div>
