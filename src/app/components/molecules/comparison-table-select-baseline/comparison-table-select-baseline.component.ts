@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-comparison-table-select-baseline',
@@ -6,9 +6,22 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./comparison-table-select-baseline.component.scss'],
 })
 export class ComparisonTableSelectBaselineComponent implements OnInit {
-  @Input() active: boolean = false;
+  @Input() baselineID: string;
+  @Input() submitID: string;
+
+  isActive: boolean = false;
+
+  @Output() onHandleChangeBaselineID: EventEmitter<string> = new EventEmitter<
+    string
+  >();
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isActive = this.baselineID === this.submitID;
+  }
+
+  handleChangeBaselineID() {
+    this.onHandleChangeBaselineID.emit(this.submitID);
+  }
 }

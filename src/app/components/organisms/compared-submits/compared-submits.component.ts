@@ -117,6 +117,8 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
       comparisonBaselineSubmitID.baseline_submit = this.comparisonBaselineSubmitID;
     }
 
+    console.log(comparisonBaselineSubmitID);
+
     this.comparisonService.getComparisonSubmits({
       ids: filterdComparisonIDs,
       taskID: this.routeTaskID,
@@ -125,4 +127,9 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {}
+
+  handleChangeBaselineID(submitID: string) {
+    this.comparisonBaselineSubmitID = submitID;
+    this.getComparedSubmits();
+  }
 }

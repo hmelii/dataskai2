@@ -7,12 +7,6 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
-import {
-  TaskConfigColumnInterface,
-  TaskInterface,
-} from '../../../interfaces/task/task.interface';
-import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/table-col-sorting.interface';
 
 @Component({
   selector: 'app-comparison-table',
@@ -23,10 +17,17 @@ export class ComparisonTableComponent implements OnInit, OnChanges {
   @Input() rows;
   @Input() cols;
   @Input() baselineID;
+  @Output() onHandleChangeBaselineID: EventEmitter<string> = new EventEmitter<
+    string
+  >();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {}
+
+  handleChangeBaselineID(submitID) {
+    this.onHandleChangeBaselineID.emit(submitID);
+  }
 }

@@ -1,5 +1,8 @@
-<div class="select-baseline" [ngClass]="{ 'select-baseline--active': active }">
-  <a class="select-baseline-button">
+<div
+  class="select-baseline"
+  [ngClass]="{ 'select-baseline--active': isActive }"
+>
+  <a class="select-baseline-button" (click)="handleChangeBaselineID()">
     <span class="select-baseline-button-ico">
       <app-icon type="baseline"></app-icon>
     </span>

@@ -24,9 +24,15 @@
       >
         <div *ngIf="i === 0">
           <app-comparison-table-select-baseline
-            [active]="baselineID === col.id"
-          ></app-comparison-table-select-baseline
-          ><app-comparison-table-remove-form-comparison></app-comparison-table-remove-form-comparison>
+            [baselineID]="baselineID"
+            [submitID]="col.id"
+            (onHandleChangeBaselineID)="handleChangeBaselineID($event)"
+          >
+          </app-comparison-table-select-baseline>
+
+          <app-comparison-table-remove-form-comparison
+            [submitID]="col.id"
+          ></app-comparison-table-remove-form-comparison>
         </div>
 
         <div [ngSwitch]="row.type">

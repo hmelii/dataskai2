@@ -17,6 +17,7 @@
       [rows]="rows"
       [cols]="cols"
       [baselineID]="baselineID"
+      (onHandleChangeBaselineID)="handleChangeBaselineID($event)"
     ></app-comparison-table>
     <div class="compared-submits-add-more" *ngIf="addMore">
       <div class="compared-submits-add-more-ico">

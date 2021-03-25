@@ -76,10 +76,11 @@ export class ComparisonService {
     comparisonSubmitsParams
   ): Observable<ComparisonSubmitsInterface> {
     const { ids, baseline_submit = '', taskID } = comparisonSubmitsParams;
+
     const params = new HttpParams({
       fromObject: {
         ids: ids.join(','),
-        ...baseline_submit,
+        baseline_submit,
       },
     });
 
