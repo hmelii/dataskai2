@@ -1,29 +1,51 @@
 <div class="search" (clickOutside)="handleClickedOutside($event)">
-  <a class="search-trigger-btn" (click)="handleClick()">
+  <a class="search-trigger-btn" (click)="handleClickToggle()">
     <span class="search-trigger-btn-ico"
       ><app-icon type="search"></app-icon
     ></span>
   </a>
   <div class="search-bubble" [ngClass]="{ 'search-bubble-shown': isShown }">
-    <form class="search-bubble-form">
-      <input
-        name="search"
-        class="search-bubble-field"
-        type="search"
-        [autofocus]="isShown"
-        [(ngModel)]="search"
-      />
-      <a class="search-bubble-question">
-        <span class="search-bubble-question-ico">
-          <app-icon type="question"></app-icon>
-        </span>
-      </a>
+    <div class="search-bubble-form">
+      <form>
+        <input
+          name="search"
+          class="search-bubble-field"
+          type="search"
+          [autofocus]="isShown"
+          [(ngModel)]="search"
+        />
+      </form>
+    </div>
+    <a class="search-bubble-question" (click)="handleToggleQuestion()">
+      <span class="search-bubble-question-ico">
+        <app-icon type="question"></app-icon>
+      </span>
+    </a>
 
-      <a class="search-bubble-close">
+    <a class="search-bubble-close" (click)="handleClickClose()">
+      <span class="search-bubble-close-ico">
+        <app-icon type="close"></app-icon>
+      </span>
+    </a>
+    <div
+      class="search-bubble-question-bubble"
+      [ngClass]="{
+        'search-bubble-question-bubble--shown': isQuestionBubbleShown
+      }"
+    >
+      <a
+        class="search-bubble-question-bubble-close"
+        (click)="handleToggleQuestion()"
+      >
         <span class="search-bubble-close-ico">
           <app-icon type="close"></app-icon>
         </span>
       </a>
-    </form>
+      <p>
+        The search is performed by columns: Favorites, metric columns, versions,
+        author, features, feature mining comment, comment, submit date.
+      </p>
+      <p>To search through cell comments, please open the comment panel</p>
+    </div>
   </div>
 </div>

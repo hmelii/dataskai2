@@ -1,28 +1,24 @@
 :host {
   position: absolute;
-  right: 74px;
+  right: 54px;
+  top: 0;
 }
 
 .metric-service-in-submits-selected {
   display: flex;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   position: relative;
   color: var(--button-color-default);
   font-size: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .table-col-switcher-ico {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
   width: 12px;
   height: 12px;
   font-size: 0;
-  margin-right: 4px;
 }
 
 .authors-filter-sub {
@@ -38,7 +34,6 @@
   left: 50%;
   z-index: 1;
   transform: translate(-50%, 4px);
-
 }
 
 .select-list {
@@ -64,7 +59,7 @@
 }
 
 .authors-filter-heading {
-  border-bottom: 1px solid #494C50;
+  border-bottom: 1px solid #494c50;
   padding-bottom: 9px;
   margin-bottom: 9px;
 }
@@ -93,5 +88,3 @@
   position: relative;
   text-overflow: ellipsis;
 }
-
-
