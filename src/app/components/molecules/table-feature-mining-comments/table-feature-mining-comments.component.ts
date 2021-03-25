@@ -26,7 +26,7 @@ export class TableFeatureMiningCommentsComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   handleClick() {
-    this.tableService.updateModalHeadingMessage('Feature mining comments');
+    this.tableService.updateModalHeadingMessage('Tags');
 
     this.tableService.updateModalBodyMessage(this.text);
     this.tableService.updateModalShownMessage(true);

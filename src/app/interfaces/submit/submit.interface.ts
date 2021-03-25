@@ -25,7 +25,7 @@ export interface SubmitInterface {
     names: string[];
   };
   author: string;
-  feature_mining_comments: string;
+  tags: string;
   attachments: SubmitAttachmentsInterface;
   hidden: boolean;
   comment: string;
