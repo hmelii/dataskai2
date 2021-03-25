@@ -46,8 +46,8 @@
         "sortable": true
       },
       {
-        "id": "feature_mining_comments",
-        "name": "feature mining comments",
+        "id": "tags",
+        "name": "tags",
         "type": "field",
         "sortable": true
       },
