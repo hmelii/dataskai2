@@ -48,7 +48,7 @@
       }"
     >
       <th class="table-tbody-th">
-        <div class="table-tbody-th-heading">{{ i + 1 }}</div>
+        <div class="table-tbody-th-heading">{{ startIndex + i }}</div>
       </th>
       <td
         *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as j"

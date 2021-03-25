@@ -20,18 +20,6 @@ import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/
   styleUrls: ['./task.component.scss'],
 })
 export class TaskComponent implements OnInit {
-  loading = {
-    projectInfo: false,
-    taskInfo: false,
-    config: false,
-  };
-
-  loaded = {
-    projectInfo: false,
-    taskInfo: false,
-    config: false,
-  };
-
   taskSubmits: SubmitInterface[] = null;
   error = null;
   projectInfo = null;
@@ -46,6 +34,7 @@ export class TaskComponent implements OnInit {
   sortColumn = null;
   sortOrder = null;
   searchMatches = null;
+  startIndex = 1;
 
   constructor(
     private authorsService: AuthorsService,
@@ -87,6 +76,7 @@ export class TaskComponent implements OnInit {
             this.taskConfigColumns = taskConfig.data.columns;
             this.rows = taskConfig.data.rows_per_page_values;
             this.rowsDefault = taskConfig.data.rows_per_page_default;
+            this.updateStartIndex();
           }
         }
       }
@@ -118,10 +108,17 @@ export class TaskComponent implements OnInit {
             this.sortColumn = sort_column;
             this.sortOrder = sort_order;
             this.searchMatches = search_matches;
+            this.updateStartIndex();
           }
         }
       }
     );
+  }
+
+  updateStartIndex() {
+    if (this.currentPage && this.rowsDefault) {
+      this.startIndex = (this.currentPage - 1) * this.rowsDefault + 1;
+    }
   }
 
   subscribeProjectInfoUpdates() {

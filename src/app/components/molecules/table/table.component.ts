@@ -12,6 +12,7 @@ import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
+  @Input() startIndex: number = 1;
   @Input() colsItems;
   @Input() rowsItems;
   @Input() selectRowWithID: string;

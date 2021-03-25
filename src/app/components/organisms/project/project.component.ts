@@ -31,6 +31,7 @@ export class ProjectComponent implements OnInit {
   sortColumn = null;
   sortOrder = null;
   searchMatches = null;
+  startIndex = 1;
 
   routeSubmits = TaskEnum.Submits;
   routeTasks = TasksEnum.Tasks;
@@ -80,6 +81,7 @@ export class ProjectComponent implements OnInit {
             this.projectConfigColumns = data.columns;
             this.rowsDefault = data.rows_per_page_default;
             this.rows = data.rows_per_page_values;
+            this.updateStartIndex();
           }
         }
       }
@@ -110,6 +112,7 @@ export class ProjectComponent implements OnInit {
             this.totalPages = total_pages;
             this.currentPage = current_page;
             this.searchMatches = search_matches;
+            this.updateStartIndex();
           }
         }
       }
@@ -121,6 +124,12 @@ export class ProjectComponent implements OnInit {
       this.routeTaskID = params['taskID'];
       this.routeSubmitID = params['submitID'];
     });
+  }
+
+  updateStartIndex() {
+    if (this.currentPage && this.rowsDefault) {
+      this.startIndex = (this.currentPage - 1) * this.rowsDefault + 1;
+    }
   }
 
   changeSubmitsRoute() {
