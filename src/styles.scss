@@ -59,3 +59,25 @@ a {
     }
   }
 }
+
+.draggable {
+}
+.placeholder {
+  background: var(--background-default);
+}
+.clone-list {
+  display: flex;
+  z-index: 999;
+}
+.clone-table {
+  background: var(--background-default);
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 1px;
+}
+.clone-table th,
+.clone-table td {
+}
+.dragging {
+  z-index: 999;
+}

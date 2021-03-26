@@ -40,7 +40,7 @@ import { TableColSwitcherComponent } from './components/molecules/table-col-swit
 import { TableAttachmentsComponent } from './components/molecules/table-attachments/table-attachments.component';
 import { TableColSortingComponent } from './components/molecules/table-col-sorting/table-col-sorting.component';
 import { TableMetricComponent } from './components/molecules/table-metric/table-metric.component';
-import { TableFeatureMiningCommentsComponent } from './components/molecules/table-feature-mining-comments/table-feature-mining-comments.component';
+import { TableTagsComponent } from './components/molecules/table-tags/table-tags.component';
 import { TableModalComponent } from './components/molecules/table-modal/table-modal.component';
 import { ReplaceLineBreaks } from './pipes/replace-line-breaks.pipe';
 import { ReplaceTabs } from './pipes/replace-tabs.pipe';
@@ -98,7 +98,7 @@ import { TableDragNDropDirective } from './directives/table-drag-n-drop/table-dr
     TableAttachmentsComponent,
     TableColSortingComponent,
     TableMetricComponent,
-    TableFeatureMiningCommentsComponent,
+    TableTagsComponent,
     TableModalComponent,
     ReplaceLineBreaks,
     ReplaceTabs,
@@ -157,7 +157,7 @@ import { TableDragNDropDirective } from './directives/table-drag-n-drop/table-dr
     ComparisonTableMetricComponent,
     TableActionsComponent,
     TableAttachmentsComponent,
-    TableFeatureMiningCommentsComponent,
+    TableTagsComponent,
     ComparisonTableSelectBaselineComponent,
     ComparisonTableRemoveFormComparisonComponent,
     TableFeaturesComponent,

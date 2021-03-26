@@ -70,9 +70,7 @@
                 <app-table-actions [id]="col.id"></app-table-actions>
               </ng-template>
               <ng-template ngSwitchCase="tags">
-                <app-table-feature-mining-comments
-                  [text]="col[row.id]"
-                ></app-table-feature-mining-comments>
+                <app-tags [text]="col[row.id]"></app-tags>
               </ng-template>
               <ng-template ngSwitchDefault>
                 {{ col[row.id] }}

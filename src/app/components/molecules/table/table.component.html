@@ -1,131 +1,129 @@
-<!--<div style="overflow: hidden; overflow-x: auto; position: relative">-->
-<table class="table" appTableDragNDrop>
-  <thead class="table-thead">
-    <tr>
-      <th class="table-thead-th">
-        <div class="table-thead-th-heading">#</div>
-      </th>
-      <th
-        class="table-thead-th"
-        appThDragNDrop
-        *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as i"
-      >
-        <div class="table-thead-th-heading">
-          <app-table-col-sorting
-            *ngIf="col.sortable; else unsortable"
-            [colID]="col.id"
-            [sortCol]="sortCol"
-            [sortOrder]="sortOrder"
-            (onSortChange)="handleSortChange($event)"
-          >
-            <span [ngSwitch]="col.id">
-              <ng-template ngSwitchCase="favorite">
-                <span
-                  class="table-thead-th-link-ico table-thead-th-link-ico--star"
-                  ><app-icon
-                    class="table-thead-th-link-ico-svg"
-                    type="star"
-                  ></app-icon
-                ></span>
-              </ng-template>
-              <ng-template ngSwitchDefault>{{ col.name }}</ng-template>
-            </span>
-          </app-table-col-sorting>
-          <ng-template #unsortable>
-            {{ col.name }}
-          </ng-template>
-        </div>
-      </th>
-    </tr>
-  </thead>
-  <tbody class="table-tbody">
-    <tr
-      *ngFor="let row of rows; index as i"
-      class="table-tbody-tr"
-      [class]="{
-        'table-tbody-tr--selected':
-          selectRowWithID && selectRowWithID === row.id,
-        'table-tbody-tr--founded': row.founded
-      }"
-    >
-      <th class="table-tbody-th">
-        <div class="table-tbody-th-heading">{{ startIndex + i }}</div>
-      </th>
-      <td
-        *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as j"
-        class="table-tbody-td"
+<div style="">
+  <table class="table" appTableDragNDrop>
+    <thead class="table-thead">
+      <tr>
+        <th class="table-thead-th table-thead-th--line-number">
+          <div class="table-thead-th-heading">#</div>
+        </th>
+        <th
+          class="table-thead-th"
+          *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as i"
+        >
+          <div class="table-drag-n-drop"></div>
+          <div class="table-thead-th-heading">
+            <app-table-col-sorting
+              *ngIf="col.sortable; else unsortable"
+              [colID]="col.id"
+              [sortCol]="sortCol"
+              [sortOrder]="sortOrder"
+              (onSortChange)="handleSortChange($event)"
+            >
+              <div class="table-thead-th-heading-text" [ngSwitch]="col.id">
+                <ng-template ngSwitchCase="favorite">
+                  <span
+                    class="table-thead-th-link-ico table-thead-th-link-ico--star"
+                    ><app-icon
+                      class="table-thead-th-link-ico-svg"
+                      type="star"
+                    ></app-icon
+                  ></span>
+                </ng-template>
+                <ng-template ngSwitchDefault>{{ col.name }}</ng-template>
+              </div>
+            </app-table-col-sorting>
+            <ng-template #unsortable>
+              {{ col.name }}
+            </ng-template>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="table-tbody">
+      <tr
+        *ngFor="let row of rows; index as i"
+        class="table-tbody-tr"
         [class]="{
-          'table-tbody-td--founded':
-            row.foundedItems && row.foundedItems[col.id]
+          'table-tbody-tr--selected':
+            selectRowWithID && selectRowWithID === row.id,
+          'table-tbody-tr--founded': row.founded
         }"
       >
-        <!--        [attr.class]="'table-tbody-td table-tbody-td--' + col.id"
+        <td class="table-tbody-th">
+          <div class="table-tbody-th-heading">{{ startIndex + i }}</div>
+        </td>
+        <td
+          *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as j"
+          class="table-tbody-td"
+          [class]="{
+            'table-tbody-td--founded':
+              row.foundedItems && row.foundedItems[col.id]
+          }"
+        >
+          <!--        [attr.class]="'table-tbody-td table-tbody-td--' + col.id"
 -->
-        <div [ngSwitch]="col.type">
-          <ng-template ngSwitchCase="metric">
-            <app-table-metric
-              *ngIf="row.metrics && row.metrics[col.id]; else noMetrics"
-              [metric]="row.metrics[col.id]"
-            ></app-table-metric>
-            <ng-template #noMetrics>
-              <app-loader></app-loader>
+          <div [ngSwitch]="col.type">
+            <ng-template ngSwitchCase="metric">
+              <app-table-metric
+                *ngIf="row.metrics && row.metrics[col.id]; else noMetrics"
+                [metric]="row.metrics[col.id]"
+              ></app-table-metric>
+              <ng-template #noMetrics>
+                <app-loader></app-loader>
+              </ng-template>
             </ng-template>
-          </ng-template>
-          <ng-template ngSwitchCase="date">
-            <div class="table-tbody-td-sub-sub-heading">
-              {{ row[col.id] | date: "hh:mm" }}
-            </div>
-            <div class="table-tbody-td-sub-sub-heading">
-              {{ row[col.id] | date: "dd:MM:YYYY" }}
-            </div>
-          </ng-template>
-          <ng-template ngSwitchCase="files">
-            <app-table-attachments
-              [attachments]="row[col.id]"
-            ></app-table-attachments>
-          </ng-template>
-          <ng-template ngSwitchCase="features">
-            <app-table-features
-              [id]="row.id || row.task_name"
-              [text]="row[col.id]"
-            ></app-table-features>
-          </ng-template>
-          <ng-template ngSwitchDefault>
-            <div [ngSwitch]="col.id">
-              <ng-template ngSwitchCase="metrics">
-                <app-table-metric-list
-                  [metrics]="row[col.id]"
-                ></app-table-metric-list>
-              </ng-template>
-              <ng-template ngSwitchCase="actions">
-                <app-table-actions [id]="row.id"></app-table-actions>
-              </ng-template>
-              <ng-template ngSwitchCase="task_name">
-                <app-table-task-name [id]="row[col.id]"></app-table-task-name>
-              </ng-template>
-              <ng-template ngSwitchCase="favorite">
-                <app-favorite [isFavorite]="row[col.id]"></app-favorite>
-              </ng-template>
-              <ng-template ngSwitchCase="metrics_service_status">
-                <app-table-metric-service-status
-                  [status]="row[col.id]"
-                ></app-table-metric-service-status>
-              </ng-template>
-              <ng-template ngSwitchCase="tags">
-                <app-table-feature-mining-comments
-                  [text]="row[col.id]"
-                ></app-table-feature-mining-comments>
-              </ng-template>
-              <ng-template ngSwitchDefault>
-                <div class="table-tbody-td-heading">
-                  {{ row[col.id] | formatNumber }}
-                </div>
-              </ng-template>
-            </div>
-          </ng-template>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<!--</div>-->
+            <ng-template ngSwitchCase="date">
+              <div class="table-tbody-td-sub-sub-heading">
+                {{ row[col.id] | date: "hh:mm" }}
+              </div>
+              <div class="table-tbody-td-sub-sub-heading">
+                {{ row[col.id] | date: "dd:MM:YYYY" }}
+              </div>
+            </ng-template>
+            <ng-template ngSwitchCase="files">
+              <app-table-attachments
+                [attachments]="row[col.id]"
+              ></app-table-attachments>
+            </ng-template>
+            <ng-template ngSwitchCase="features">
+              <app-table-features
+                [id]="row.id || row.task_name"
+                [text]="row[col.id]"
+              ></app-table-features>
+            </ng-template>
+            <ng-template ngSwitchDefault>
+              <div [ngSwitch]="col.id">
+                <ng-template ngSwitchCase="metrics">
+                  <app-table-metric-list
+                    [metrics]="row[col.id]"
+                  ></app-table-metric-list>
+                </ng-template>
+                <ng-template ngSwitchCase="actions">
+                  <app-table-actions [id]="row.id"></app-table-actions>
+                </ng-template>
+                <ng-template ngSwitchCase="task_name">
+                  <app-table-task-name [id]="row[col.id]"></app-table-task-name>
+                </ng-template>
+                <ng-template ngSwitchCase="favorite">
+                  <app-favorite [isFavorite]="row[col.id]"></app-favorite>
+                </ng-template>
+                <ng-template ngSwitchCase="metrics_service_status">
+                  <app-table-metric-service-status
+                    [status]="row[col.id]"
+                  ></app-table-metric-service-status>
+                </ng-template>
+                <ng-template ngSwitchCase="tags">
+                  <app-tags [text]="row[col.id]"></app-tags>
+                </ng-template>
+                <ng-template ngSwitchDefault>
+                  <div class="table-tbody-td-heading">
+                    {{ row[col.id] | formatNumber }}
+                  </div>
+                </ng-template>
+              </div>
+            </ng-template>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

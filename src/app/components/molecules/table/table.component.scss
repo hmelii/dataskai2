@@ -2,26 +2,43 @@
   border: 0;
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0;
+  border-spacing: 1px;
+  table-layout: fixed;
 }
 
 .table-thead-th {
   background: var(--table-background-default);
   border: 0;
-  border-left: 1px solid var(--table-border-default);
-  padding: 12px;
   text-align: left;
   vertical-align: top;
+  position: relative;
+
+  &:before {
+    content: "";
+    cursor: move;
+    user-select: none;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    bottom: 0;
+    z-index: 11;
+  }
   /*overflow: hidden;
   resize: horizontal;*/
+}
+
+.table-thead-th--line-number {
+  width: 48px;
 }
 
 .table-tbody-th,
 .table-tbody-td {
   background: var(--table-background-secondary);
-  border-left: 1px solid var(--table-border-default);
-  border-top: 1px solid var(--table-border-default);
-  padding: 12px;
+  height: 63px;
+  padding: 8px;
   position: relative;
   vertical-align: top;
   text-align: left;
@@ -60,20 +77,21 @@
 }
 
 .table-thead-th-heading {
+  padding: 8px 8px 8px 40px;
+
   color: var(--text-color-default);
   font-size: 1.4rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  white-space: nowrap;
-  //position: relative;
-  //overflow: hidden;
-  //text-overflow: ellipsis;
-  //max-width: 180px;
+}
 
-  a {
-    color: inherit;
-  }
+.table-thead-th-heading-text {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
 }
 
 .table-thead-th-sub-heading {
@@ -98,7 +116,7 @@
   overflow: hidden;
   position: relative;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
@@ -113,7 +131,7 @@
   line-height: 1;
   position: relative;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 
   * + & {
@@ -155,12 +173,42 @@
   bottom: 0;
 }
 
-.table-metric {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
 .table-link {
   color: inherit;
+}
+
+.table-drag-n-drop {
+  cursor: move;
+  user-select: none;
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  bottom: 0;
+  z-index: 10;
+
+  &:before {
+    content: "";
+    border-top: 1px solid var(--text-color-default);
+    border-bottom: 1px solid var(--text-color-default);
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    right: 5px;
+    bottom: 6px;
+  }
+
+  &:after {
+    content: "";
+    background: var(--text-color-default);
+    height: 1px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    right: 5px;
+    bottom: 0;
+  }
 }

@@ -9,11 +9,11 @@ import { TaskService } from '../../../services/task/task.service';
 import { TableService } from '../../../services/table/table.service';
 
 @Component({
-  selector: 'app-table-feature-mining-comments',
-  templateUrl: './table-feature-mining-comments.component.html',
-  styleUrls: ['./table-feature-mining-comments.component.scss'],
+  selector: 'app-tags',
+  templateUrl: './table-tags.component.html',
+  styleUrls: ['./table-tags.component.scss'],
 })
-export class TableFeatureMiningCommentsComponent implements OnInit, OnChanges {
+export class TableTagsComponent implements OnInit, OnChanges {
   @Input() text: string;
 
   constructor(
