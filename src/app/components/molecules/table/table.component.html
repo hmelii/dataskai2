@@ -1,5 +1,5 @@
 <!--<div style="overflow: hidden; overflow-x: auto; position: relative">-->
-<table class="table">
+<table class="table" appTableDragNDrop>
   <thead class="table-thead">
     <tr>
       <th class="table-thead-th">
@@ -7,6 +7,7 @@
       </th>
       <th
         class="table-thead-th"
+        appThDragNDrop
         *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as i"
       >
         <div class="table-thead-th-heading">

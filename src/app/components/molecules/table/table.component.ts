@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SubmitInterface } from '../../../interfaces/submit/submit.interface';
-import {
-  TaskConfigColumnInterface,
-  TaskInterface,
-} from '../../../interfaces/task/task.interface';
+
+import { TaskConfigColumnInterface } from '../../../interfaces/task/task.interface';
 import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/table-col-sorting.interface';
 
 @Component({

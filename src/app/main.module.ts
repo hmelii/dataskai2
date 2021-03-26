@@ -53,10 +53,11 @@ import { FormatNumberPipe } from './pipes/format-number.pipe';
 import { TableMetricServiceStatusComponent } from './components/molecules/table-metric-service-status/table-metric-service-status.component';
 import { ProjectMainTabsComponent } from './components/molecules/project-main-tabs/project-main-tabs.component';
 import { FormsModule } from '@angular/forms';
-import { AutofocusDirective } from './directives/autofocus.directive';
+import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
 import { ComparisonTableMetricComponent } from './components/molecules/comparison-table-metric/comparison-table-metric.component';
 import { ComparisonTableSelectBaselineComponent } from './components/molecules/comparison-table-select-baseline/comparison-table-select-baseline.component';
 import { ComparisonTableRemoveFormComparisonComponent } from './components/molecules/comparison-table-remove-form-comparison/comparison-table-remove-form-comparison.component';
+import { TableDragNDropDirective } from './directives/table-drag-n-drop/table-drag-n-drop.directive';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { ComparisonTableRemoveFormComparisonComponent } from './components/molec
     FormatNumberPipe,
     TableMetricServiceStatusComponent,
     AutofocusDirective,
+    TableDragNDropDirective,
     ComparisonTableMetricComponent,
     ComparisonTableSelectBaselineComponent,
     ComparisonTableRemoveFormComparisonComponent,
