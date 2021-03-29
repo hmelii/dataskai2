@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { EventsBubbleService } from '../../../services/events-bubble/events-bubble.service';
 
 @Component({
   selector: 'app-table-copy-url',
@@ -14,6 +15,7 @@ export class TableCopyUrlComponent implements OnInit {
   @Input() id: string;
 
   constructor(
+    private eventsBubbleService: EventsBubbleService,
     private location: Location,
     private activateRoute: ActivatedRoute
   ) {
@@ -25,7 +27,6 @@ export class TableCopyUrlComponent implements OnInit {
   ngOnInit(): void {}
 
   copyUrl() {
-    this.isActive = true;
     const { protocol, hostname, pathname } = location;
 
     const selBox = document.createElement('textarea');
@@ -42,7 +43,7 @@ export class TableCopyUrlComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
-    clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => (this.isActive = false), 3000);
+
+    this.eventsBubbleService.updateEventsBubbleStageMessage('Link copied');
   }
 }

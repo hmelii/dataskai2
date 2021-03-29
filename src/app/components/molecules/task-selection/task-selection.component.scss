@@ -3,7 +3,7 @@
   position: absolute;
   top: 12px;
   left: 64px;
-  z-index: 2;
+  z-index: 100;
 }
 
 .select {
@@ -11,8 +11,6 @@
   display: block;
   position: relative;
   height: 24px;
-
-
 }
 
 .select-value-text {
@@ -33,7 +31,6 @@
   position: relative;
   color: var(--button-color-default);
   font-weight: 500;
-
 }
 
 .select-heading {
@@ -55,7 +52,7 @@
   transform: translate(0, 4px);
   opacity: 0;
   visibility: hidden;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   .select--active & {
     opacity: 1;
@@ -71,7 +68,6 @@
   margin: 0 -8px 0 0;
   padding: 0 8px 0 0;
   list-style: none;
-
 }
 
 .select-item {
@@ -81,7 +77,7 @@
   text-align: left;
   line-height: (14 / 12);
   white-space: nowrap;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     background: var(--foreground-quaternary);
@@ -93,7 +89,6 @@
 }
 
 .select-ico {
-
   width: 8px;
   height: 4px;
   margin: auto;
@@ -105,13 +100,11 @@
   font-size: 0;
   line-height: 0;
   transform: rotate(0deg);
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
 
   .select--active & {
     transform: rotate(-180deg);
   }
-
-
 }
 
 .select-link {

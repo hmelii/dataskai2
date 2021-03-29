@@ -1,17 +1,14 @@
-
 .loader {
   width: 16px;
   height: 16px;
 }
 
 .loader-ico {
-
   width: 16px;
   height: 16px;
-  animation: LoaderAnimation 1s infinite linear;
+  //animation: LoaderAnimation 1s infinite linear;
   transform: rotate(0deg);
   will-change: transform;
-
 }
 
 @keyframes LoaderAnimation {

@@ -22,9 +22,7 @@ export class TableDragNDropDirective {
   x = 0;
   y = 0;
 
-  constructor(private el: ElementRef) {
-    this.init();
-  }
+  constructor(private el: ElementRef) {}
 
   // Swap two nodes
   swap(nodeA, nodeB) {
@@ -48,6 +46,7 @@ export class TableDragNDropDirective {
   }
 
   mouseDownHandler(e) {
+    console.log(e);
     if (e.target.tagName.toLowerCase() !== 'th') {
       return;
     }
@@ -69,6 +68,7 @@ export class TableDragNDropDirective {
 
   cloneTable() {
     const rect = this.table.getBoundingClientRect();
+    console.log(rect);
 
     this.list = document.createElement('div');
     this.list.classList.add('clone-list');
@@ -154,8 +154,9 @@ export class TableDragNDropDirective {
 
     // Set position for dragging element
     this.draggingEle.style.position = 'absolute';
+    console.log(this.draggingEle.offsetTop, e.clientY, this.y);
     this.draggingEle.style.top = `${
-      this.draggingEle.offsetTop + e.clientY - this.y
+      /*this.draggingEle.offsetTop +*/ e.clientY - this.y
     }px`;
     this.draggingEle.style.left = `${
       this.draggingEle.offsetLeft + e.clientX - this.x
@@ -254,14 +255,14 @@ export class TableDragNDropDirective {
     this.table = this.el.nativeElement;
 
     setTimeout(() => {
-      this.el.nativeElement.querySelectorAll('th').forEach((headerCell) => {
+      /*this.el.nativeElement.querySelectorAll('th').forEach((headerCell) => {
         headerCell.classList.add('draggable');
-        headerCell.style.width = headerCell.offsetWidth + 'px';
+        // headerCell.style.width = headerCell.offsetWidth + 'px';
         headerCell.addEventListener(
           'mousedown',
           this.mouseDownHandler.bind(this)
         );
-      });
+      });*/
       // Attach the listeners to `document`
       const mouseMoveHandler = this.mouseMoveHandler.bind(this);
       const mouseUpHandler = this.mouseUpHandler.bind(this);
@@ -270,36 +271,9 @@ export class TableDragNDropDirective {
     }, 2000);
   }
 
-  init() {
-    /*// Query all header cells
-
-    this.observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        console.log(
-          'headerCell',
-          this.el.nativeElement.querySelectorAll('[drag-n-drop]').length
-        );
-
-        if (this.el.nativeElement.querySelectorAll('.drag-n-drop').length) {
-          this.el.nativeElement
-            .querySelectorAll('.drag-n-drop')
-            .forEach((headerCell) => {
-              // Attach event handler
-              headerCell.addEventListener('mousedown', this.mouseDownHandler);
-            });
-        }
-      });
-    });
-    console.log(this.observer);
-    var config = { attributes: true, childList: true, characterData: true };
-
-    console.log(this.el.nativeElement.innerHTML);
-    this.observer.observe(this.el.nativeElement, config);*/
-  }
-
-  /*@HostListener('mousedown', ['$event']) onMouseDown(e) {
+  @HostListener('mousedown', ['$event']) onMouseDown(e) {
     if (e.target.classList.contains('table-thead-th')) {
-      this.mouseDownHandler.call(this, e);
+      this.mouseDownHandler(e);
     }
-  }*/
+  }
 }

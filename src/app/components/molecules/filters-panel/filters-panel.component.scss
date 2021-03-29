@@ -2,18 +2,14 @@
   background: var(--foreground-secondary);
   height: 40px;
   padding: 0 27px;
-  position: relative;
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  z-index: 100;
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: nowrap;
   justify-content: stretch;
-
-
-
-
 }
-
-
-
-

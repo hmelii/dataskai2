@@ -10,6 +10,7 @@ body {
 html {
   font-size: 62.5%;
   overflow-y: scroll;
+  overflow-x: auto;
 }
 
 body {
@@ -67,7 +68,7 @@ a {
 }
 .clone-list {
   display: flex;
-  z-index: 999;
+  z-index: 98;
 }
 .clone-table {
   background: var(--background-default);
@@ -79,5 +80,5 @@ a {
 .clone-table td {
 }
 .dragging {
-  z-index: 999;
+  z-index: 99;
 }

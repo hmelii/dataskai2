@@ -1,8 +1,11 @@
-
 .header {
   background: var(--foreground-default);
   height: 40px;
-  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 101;
 }
 
 .header-task-selection {

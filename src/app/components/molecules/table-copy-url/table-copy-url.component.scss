@@ -18,36 +18,3 @@
   bottom: 0;
   font-size: 0;
 }
-
-.copy-link-bubble {
-  background: var(--table-background-quaternary);
-  border-radius: 5px;
-  padding: 5px 10px;
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  white-space: nowrap;
-  transform: translate(-50%, -10px);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-
-  .copy-link-active & {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  &:before {
-    content: "";
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 10px 10px 0 10px;
-    border-color: var(--table-background-quaternary) transparent transparent
-      transparent;
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translate(-50%, 0);
-  }
-}

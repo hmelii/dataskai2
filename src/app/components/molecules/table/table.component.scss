@@ -11,7 +11,10 @@
   border: 0;
   text-align: left;
   vertical-align: top;
-  position: relative;
+  position: sticky;
+  width: 168px;
+  top: 80px;
+  z-index: 11;
 
   &:before {
     content: "";
@@ -32,6 +35,10 @@
 
 .table-thead-th--line-number {
   width: 48px;
+
+  .table-thead-th-heading {
+    padding: 8px;
+  }
 }
 
 .table-tbody-th,
@@ -78,10 +85,10 @@
 
 .table-thead-th-heading {
   padding: 8px 8px 8px 40px;
-
   color: var(--text-color-default);
   font-size: 1.4rem;
   font-weight: 500;
+  white-space: nowrap;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
@@ -211,4 +218,15 @@
     right: 5px;
     bottom: 0;
   }
+}
+
+.table-thead-th--line-number,
+.table-tbody-th--line-number {
+  left: 0;
+  position: sticky;
+  z-index: 12;
+}
+
+.table-thead-th--line-number {
+  z-index: 13;
 }
