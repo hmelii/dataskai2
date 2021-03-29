@@ -46,10 +46,10 @@ export class TableDragNDropDirective {
   }
 
   mouseDownHandler(e) {
-    console.log(e);
+    /*console.log(e);
     if (e.target.tagName.toLowerCase() !== 'th') {
       return;
-    }
+    }*/
     this.draggingColumnIndex = [].slice
       .call(this.table.querySelectorAll('th'))
       .indexOf(e.target);
@@ -272,7 +272,8 @@ export class TableDragNDropDirective {
   }
 
   @HostListener('mousedown', ['$event']) onMouseDown(e) {
-    if (e.target.classList.contains('table-thead-th')) {
+    if (e.target.classList.contains('drag-n-drop')) {
+      console.log('lf');
       this.mouseDownHandler(e);
     }
   }

@@ -2,32 +2,44 @@
   border: 0;
   margin-bottom: 100px;
   table-layout: fixed;
+  border-spacing: 1px;
   border-collapse: separate;
-  border-spacing: 0;
 }
 
 .comparison-table-th {
   background: var(--table-background-default);
   border: 0;
-  border-left: 1px solid var(--table-border-default);
-  border-top: 1px solid var(--table-border-default);
-  padding: 12px;
+  padding: 8px;
   text-align: left;
   vertical-align: top;
   font-size: 1.2rem;
   width: 140px;
+  height: 74px;
+  position: relative;
   text-transform: uppercase;
   /*overflow: hidden;
   resize: horizontal;*/
 }
 
+.drag-n-drop {
+  &:before {
+    content: "";
+    cursor: move;
+    user-select: none;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 14px;
+    left: 30px;
+    z-index: 11;
+  }
+}
+
 .comparison-table-td {
   background: var(--table-background-secondary);
-  border-left: 1px solid var(--table-border-default);
-  border-top: 1px solid var(--table-border-default);
   width: 252px;
-  height: 64px;
-  padding: 12px;
+  height: 74px;
+  padding: 8px;
   position: relative;
   vertical-align: top;
   text-align: left;
@@ -195,4 +207,39 @@
 
 .table-link {
   color: inherit;
+}
+
+.table-drag-n-drop {
+  cursor: move;
+  user-select: none;
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  position: absolute;
+  top: 14px;
+  left: 30px;
+  z-index: 10;
+
+  &:before {
+    content: "";
+    border-top: 1px solid var(--text-color-default);
+    border-bottom: 1px solid var(--text-color-default);
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    right: 5px;
+    bottom: 6px;
+  }
+
+  &:after {
+    content: "";
+    background: var(--text-color-default);
+    height: 1px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    right: 5px;
+    bottom: 0;
+  }
 }

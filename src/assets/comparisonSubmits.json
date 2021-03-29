@@ -98,6 +98,65 @@
             "deleted": 12
           }
         }
+      },
+      {
+        "id": "6017b6b123a8c74ef40b47d6",
+        "favorite": true,
+        "metrics": {
+          "mae": {
+            "value": 0.989964732647238,
+            "short_value": 0.9899
+          },
+          "max_f1": {
+            "value": 0.999900895,
+            "short_value": 0.9999
+          },
+          "roc": {
+            "value": 0.5,
+            "short_value": 0.5
+          }
+        },
+        "model_name": "bla bla bla cross-validated gradient boosting",
+        "model_version": "4.1",
+        "features": 345,
+        "author": "Eugene.Tcatcorin",
+        "tags": "v5 Eugene Tsatsorin features {'bootstrap': False, 'ccp_alpha': 0.0, 'class_weight': None, 'criterion': 'gini', 'max_depth': None, 'max_features': 'auto', 'max_leaf_nodes': None, 'max_samples': None, 'min_impurity_decrease': 0.0, 'min_impurity_split': None, 'min_samples_leaf': 1, 'min_samples_split': 2, 'min_weight_fraction_leaf': 0.0, 'n_estimators': 100, 'n_jobs': None, 'oob_score': False, 'random_state': 17, 'verbose': 0, 'warm_start': False}",
+        "attachments": {
+          "notebook": true,
+          "other_files": 1,
+          "attachments_download_path": "/submits/6017b6b376a8c74ef40b47d6/download",
+          "files": [
+            {
+              "name": "notebook.ipynb",
+              "download_path": "/submits/6017b6b376a8c74ef40b47d6/download/bed62a70d8501274e65242dd7a6c4a96"
+            },
+            {
+              "name": "scheme.png",
+              "download_path": "/submits/6017b6b376a8c74ef40b47d6/download/8eb4ad74993b5805038e597f813e8b0b"
+            }
+          ]
+        },
+        "trash": false,
+        "comment": "Such a good decision!",
+        "created": "2020-07-21T12:09:00+00:00",
+        "comparison": {
+          "mae": {
+            "delta": 0.01,
+            "short_delta": 0.01
+          },
+          "max_f1": {
+            "delta": 0.8934502132,
+            "short_delta": 0.89345
+          },
+          "roc": {
+            "delta": 0.0,
+            "short_delta": 0.0
+          },
+          "features": {
+            "added": 32,
+            "deleted": 12
+          }
+        }
       }
     ]
   },

@@ -164,6 +164,7 @@ import { EventsBubbleComponent } from './components/molecules/events-bubble/even
     ComparisonTableRemoveFormComparisonComponent,
     TableFeaturesComponent,
     EventsBubbleComponent,
+    TableDragNDropDirective,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })
