@@ -264,11 +264,19 @@ export class TableDragNDropDirective {
         );
       });*/
       // Attach the listeners to `document`
-      const mouseMoveHandler = this.mouseMoveHandler.bind(this);
+      /*const mouseMoveHandler = this.mouseMoveHandler.bind(this);
       const mouseUpHandler = this.mouseUpHandler.bind(this);
       document.addEventListener('mousemove', mouseMoveHandler);
-      document.addEventListener('mouseup', mouseUpHandler);
+      document.addEventListener('mouseup', mouseUpHandler);*/
     }, 2000);
+  }
+
+  @HostListener('document:mousemove', ['$event']) onMouseMove(e) {
+    this.mouseMoveHandler(e);
+  }
+
+  @HostListener('document:mouseup') onMouseUp() {
+    this.mouseUpHandler();
   }
 
   @HostListener('mousedown', ['$event']) onMouseDown(e) {
