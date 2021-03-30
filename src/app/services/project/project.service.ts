@@ -182,6 +182,7 @@ export class ProjectService {
               columns: projectConfig.data.columns.map((column, index) => ({
                 ...column,
                 index: currentProject[column.id].index,
+                shown: true,
               })),
             },
           };
@@ -193,6 +194,7 @@ export class ProjectService {
               columns: projectConfig.data.columns.map((column, index) => ({
                 ...column,
                 index: index + 1, // прибавляет 1, потому что у нас ещё есть колонка с номерами
+                shown: true,
               })),
             },
           };

@@ -7,7 +7,7 @@
         </th>
         <th
           class="table-thead-th drag-n-drop"
-          *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as i"
+          *ngFor="let col of cols | matchesIsHidden: 'shown'; let i = index"
         >
           <div class="table-drag-n-drop"></div>
           <div class="table-thead-th-heading">
@@ -52,7 +52,7 @@
           <div class="table-tbody-th-heading">{{ startIndex + i }}</div>
         </td>
         <td
-          *ngFor="let col of cols | matchesIsHidden: 'isHidden'; index as j"
+          *ngFor="let col of cols | matchesIsHidden: 'shown'; index as j"
           class="table-tbody-td"
           [class]="{
             'table-tbody-td--founded':

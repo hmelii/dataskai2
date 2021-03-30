@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MatchesIsHiddenPipe implements PipeTransform {
   transform(items: Array<any>, prop: string): Array<any> {
-    return items.filter((item) => !item[prop]);
+    return items.filter((item) => item[prop]);
   }
 }

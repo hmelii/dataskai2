@@ -209,6 +209,7 @@ export class TaskService {
               columns: taskConfig.data.columns.map((column, index) => ({
                 ...column,
                 index: currentTask[column.id].index,
+                shown: currentTask[column.id].shown,
               })),
             },
           };
@@ -220,6 +221,7 @@ export class TaskService {
               columns: taskConfig.data.columns.map((column, index) => ({
                 ...column,
                 index: index + 1, // прибавляет 1, потому что у нас ещё есть колонка с номерами
+                shown: true,
               })),
             },
           };

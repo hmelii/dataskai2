@@ -28,10 +28,11 @@ export class TableColSwitcherComponent implements OnInit {
       (config: TaskConfigInterface) => {
         this.config = config;
         if (config.data) {
+          console.log(config.data.columns);
           this.columns = config.data.columns.map((column) => ({
             value: column.id,
             label: column.name,
-            checked: !column.isHidden,
+            checked: column.shown,
           }));
         }
       }
@@ -83,20 +84,26 @@ export class TableColSwitcherComponent implements OnInit {
         this.selectedColumns.splice(findedSelectedAuthorIndex, 1);
         currentColumn.checked = false;
       }
-      if (this.selectedColumns.length === 0) {
-        this.all.checked = true;
-      } else {
-        this.all.checked = false;
-      }
+      this.all.checked = this.selectedColumns.length === 0;
     }
 
+    console.log({
+      ...this.config,
+      data: {
+        ...this.config.data,
+        columns: this.config.data.columns.map((column) => ({
+          ...column,
+          shown: !this.selectedColumns.includes(column.id),
+        })),
+      },
+    });
     this.taskService.updateTaskConfigMessage({
       ...this.config,
       data: {
         ...this.config.data,
         columns: this.config.data.columns.map((column) => ({
           ...column,
-          isHidden: this.selectedColumns.includes(column.id),
+          shown: !this.selectedColumns.includes(column.id),
         })),
       },
     });

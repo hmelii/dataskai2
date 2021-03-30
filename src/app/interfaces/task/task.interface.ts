@@ -6,7 +6,8 @@ export interface TaskConfigColumnInterface {
   name: string;
   type: string;
   sortable: boolean;
-  isHidden: boolean;
+  shown: boolean;
+  index: number;
 }
 
 export interface TaskConfigDataInterface {
