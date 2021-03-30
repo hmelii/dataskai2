@@ -58,6 +58,7 @@ import { ComparisonTableMetricComponent } from './components/molecules/compariso
 import { ComparisonTableSelectBaselineComponent } from './components/molecules/comparison-table-select-baseline/comparison-table-select-baseline.component';
 import { ComparisonTableRemoveFormComparisonComponent } from './components/molecules/comparison-table-remove-form-comparison/comparison-table-remove-form-comparison.component';
 import { TableDragNDropDirective } from './directives/table-drag-n-drop/table-drag-n-drop.directive';
+import { TableResizeDirective } from './directives/table-resize/table-resize.directive';
 import { EventsBubbleComponent } from './components/molecules/events-bubble/events-bubble.component';
 
 @NgModule({
@@ -116,6 +117,7 @@ import { EventsBubbleComponent } from './components/molecules/events-bubble/even
     ComparisonTableSelectBaselineComponent,
     ComparisonTableRemoveFormComparisonComponent,
     EventsBubbleComponent,
+    TableResizeDirective,
   ],
   imports: [
     IconSpriteModule,
@@ -165,6 +167,7 @@ import { EventsBubbleComponent } from './components/molecules/events-bubble/even
     TableFeaturesComponent,
     EventsBubbleComponent,
     TableDragNDropDirective,
+    TableResizeDirective,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

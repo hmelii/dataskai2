@@ -1,6 +1,6 @@
 .table {
   border: 0;
-  width: 100%;
+  //width: 100%;
   border-collapse: separate;
   border-spacing: 1px;
   table-layout: fixed;
@@ -12,7 +12,7 @@
   text-align: left;
   vertical-align: top;
   position: sticky;
-  width: 168px;
+  //width: 168px;
   top: 80px;
   z-index: 11;
 
@@ -31,6 +31,15 @@
   }
   /*overflow: hidden;
   resize: horizontal;*/
+}
+
+.resize {
+  width: 4px;
+  position: absolute;
+  top: 0;
+  right: -2px;
+  bottom: 0;
+  cursor: ew-resize;
 }
 
 .table-thead-th--line-number {

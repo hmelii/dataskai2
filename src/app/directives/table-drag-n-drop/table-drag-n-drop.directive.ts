@@ -296,8 +296,6 @@ export class TableDragNDropDirective {
         },
       };
 
-      console.log('oldTaskConfig', newTaskConfig);
-
       this.taskService.updateTaskConfigMessage(newTaskConfig);
     } else if (this.component === 'project') {
       const newProjectConfig = {

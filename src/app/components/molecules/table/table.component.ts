@@ -23,8 +23,8 @@ export class TableComponent implements OnInit {
     TableColSortingInterface
   > = new EventEmitter<TableColSortingInterface>();
 
-  cols: TaskConfigColumnInterface[] = [];
-  rows: SubmitInterface[] = [];
+  cols: TaskConfigColumnInterface[] = null;
+  rows: SubmitInterface[] = null;
 
   constructor() {}
 
@@ -85,10 +85,12 @@ export class TableComponent implements OnInit {
 
   generateTableHead() {
     this.cols = this.colsItems;
+    console.log('this.cols', this.cols);
   }
 
   generateTableBody() {
     this.rows = this.rowsItems;
+    console.log('this.rows', this.rows);
   }
 
   handleSortChange($event: TableColSortingInterface) {

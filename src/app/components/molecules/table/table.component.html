@@ -1,5 +1,5 @@
-<div style="">
-  <table class="table" appTableDragNDrop [component]="component">
+<div *ngIf="cols && rows">
+  <table class="table" appTableDragNDrop appTableResize [component]="component">
     <thead class="table-thead">
       <tr>
         <th class="table-thead-th table-thead-th--line-number">
@@ -8,8 +8,10 @@
         <th
           class="table-thead-th drag-n-drop"
           *ngFor="let col of cols | matchesIsHidden: 'shown'; let i = index"
+          [ngStyle]="{ 'width.px': col.width }"
         >
           <div class="table-drag-n-drop"></div>
+          <div class="resize"></div>
           <div class="table-thead-th-heading">
             <app-table-col-sorting
               *ngIf="col.sortable; else unsortable"

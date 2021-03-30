@@ -13,6 +13,10 @@ html {
   overflow-x: auto;
 }
 
+.resizing {
+  cursor: ew-resize;
+}
+
 body {
   font-family: var(--font-family-default);
   font-size: var(--font-size-default);

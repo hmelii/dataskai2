@@ -210,6 +210,7 @@ export class TaskService {
                 ...column,
                 index: currentTask[column.id].index,
                 shown: currentTask[column.id].shown,
+                width: currentTask[column.id].width,
               })),
             },
           };
@@ -222,6 +223,7 @@ export class TaskService {
                 ...column,
                 index: index + 1, // прибавляет 1, потому что у нас ещё есть колонка с номерами
                 shown: true,
+                width: 168,
               })),
             },
           };
