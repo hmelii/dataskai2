@@ -36,7 +36,6 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
 
   subscribeRouteUpdates() {
     this.activateRoute.params.subscribe((params) => {
-      console.log('params', params);
       this.routeTaskID = params['taskID'];
       if (this.comparisonIDs) {
         this.getComparedSubmits();
@@ -67,7 +66,6 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
     this.comparisonService.currentComparisonIDSStageMessage.subscribe(
       (comparisonIDs) => {
         this.comparisonIDs = comparisonIDs;
-        console.log(this.routeTaskID, comparisonIDs);
         if (this.routeTaskID) {
           this.getComparedSubmits();
         }
@@ -109,15 +107,11 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
 
     this.addMore = filterdComparisonIDs && filterdComparisonIDs.length === 1;
 
-    console.log('зашло сюда');
-
     const comparisonBaselineSubmitID: { [key: string]: string } = {};
 
     if (this.comparisonBaselineSubmitID) {
       comparisonBaselineSubmitID.baseline_submit = this.comparisonBaselineSubmitID;
     }
-
-    console.log(comparisonBaselineSubmitID);
 
     this.comparisonService.getComparisonSubmits({
       ids: filterdComparisonIDs,

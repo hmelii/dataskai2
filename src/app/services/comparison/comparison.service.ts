@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { LocalStorage } from '../../storage/interfaces/local-storage.interface';
-import {
-  TaskInfoInterface,
-  TaskSubmitsInterface,
-} from '../../interfaces/task/task.interface';
+
 import { HttpClient, HttpParams } from '@angular/common/http';
 import config from '../../config/config';
 import { catchError, delay } from 'rxjs/operators';

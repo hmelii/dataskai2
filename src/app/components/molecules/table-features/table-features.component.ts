@@ -14,9 +14,7 @@ export class TableFeaturesComponent implements OnInit {
 
   constructor(private featuresInfoService: FeaturesInfoService) {}
 
-  ngOnInit(): void {
-    console.log('this.comparison', this.comparison);
-  }
+  ngOnInit(): void {}
 
   handleClick() {
     this.featuresInfoService.updateFeaturesInfoIDMessage({

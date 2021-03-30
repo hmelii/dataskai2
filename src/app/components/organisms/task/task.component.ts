@@ -62,6 +62,17 @@ export class TaskComponent implements OnInit {
     });
   }
 
+  compare(a, b) {
+    // вынести в pipe
+    if (a.index < b.index) {
+      return -1;
+    }
+    if (a.index > b.index) {
+      return 1;
+    }
+    return 0;
+  }
+
   subscribeTaskConfigUpdates() {
     this.taskService.currentTaskConfigStageMessage.subscribe(
       (taskConfig: TaskConfigInterface) => {
@@ -73,7 +84,7 @@ export class TaskComponent implements OnInit {
 
         if (loaded && !loading) {
           if (data) {
-            this.taskConfigColumns = taskConfig.data.columns;
+            this.taskConfigColumns = taskConfig.data.columns.sort(this.compare);
             this.rows = taskConfig.data.rows_per_page_values;
             this.rowsDefault = taskConfig.data.rows_per_page_default;
             this.updateStartIndex();

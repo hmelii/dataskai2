@@ -1,10 +1,6 @@
-import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  HostListener,
-} from '@angular/core';
-import { log } from 'util';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { TaskService } from '../../services/task/task.service';
+import { ProjectService } from '../../services/project/project.service';
 
 @Directive({
   selector: '[appTableDragNDrop]',
@@ -16,13 +12,41 @@ export class TableDragNDropDirective {
   draggingEle;
   placeholder;
   draggingColumnIndex;
-  observer;
   isMouseDown = false;
+  taskConfig = null;
+  projectConfig = null;
+
+  @Input() component;
 
   x = 0;
   y = 0;
 
-  constructor(private el: ElementRef) {}
+  constructor(
+    private el: ElementRef,
+    private taskService: TaskService,
+    private projectService: ProjectService
+  ) {
+    this.subscribeTaskConfigUpdate();
+    this.subscribeProjectConfigUpdate();
+  }
+
+  subscribeTaskConfigUpdate() {
+    this.taskService.currentTaskConfigStageMessage.subscribe((taskConfig) => {
+      if (taskConfig && taskConfig.data) {
+        this.taskConfig = taskConfig;
+      }
+    });
+  }
+
+  subscribeProjectConfigUpdate() {
+    this.projectService.currentProjectConfigStageMessage.subscribe(
+      (projectConfig) => {
+        if (projectConfig && projectConfig.data) {
+          this.projectConfig = projectConfig;
+        }
+      }
+    );
+  }
 
   // Swap two nodes
   swap(nodeA, nodeB) {
@@ -46,10 +70,6 @@ export class TableDragNDropDirective {
   }
 
   mouseDownHandler(e) {
-    /*console.log(e);
-    if (e.target.tagName.toLowerCase() !== 'th') {
-      return;
-    }*/
     this.draggingColumnIndex = [].slice
       .call(this.table.querySelectorAll('th'))
       .indexOf(e.target);
@@ -68,7 +88,6 @@ export class TableDragNDropDirective {
 
   cloneTable() {
     const rect = this.table.getBoundingClientRect();
-    console.log(rect);
 
     this.list = document.createElement('div');
     this.list.classList.add('clone-list');
@@ -77,8 +96,6 @@ export class TableDragNDropDirective {
     this.list.style.top = `${rect.top}px`;
 
     this.table.parentNode.insertBefore(this.list, this.table);
-
-    console.log(this.table.parentNode);
 
     // Hide the original table
     this.table.style.visibility = 'hidden';
@@ -129,7 +146,6 @@ export class TableDragNDropDirective {
     if (!this.isMouseDown) {
       return;
     }
-    console.log('move', e.target);
 
     if (!this.isDraggingStarted) {
       this.isDraggingStarted = true;
@@ -154,7 +170,6 @@ export class TableDragNDropDirective {
 
     // Set position for dragging element
     this.draggingEle.style.position = 'absolute';
-    console.log(this.draggingEle.offsetTop, e.clientY, this.y);
     this.draggingEle.style.top = `${
       /*this.draggingEle.offsetTop +*/ e.clientY - this.y
     }px`;
@@ -204,7 +219,6 @@ export class TableDragNDropDirective {
     }
 
     this.isMouseDown = false;
-    console.log('up');
 
     // // Remove the placeholder
     this.placeholder &&
@@ -219,6 +233,8 @@ export class TableDragNDropDirective {
     const endColumnIndex = [].slice
       .call(this.list.children)
       .indexOf(this.draggingEle);
+
+    this.updateTaskConfig(endColumnIndex);
 
     this.isDraggingStarted = false;
 
@@ -241,34 +257,10 @@ export class TableDragNDropDirective {
 
     // Bring back the table
     this.table.style.removeProperty('visibility');
-
-    // Remove the handlers of `mousemove` and `mouseup`
-    console.log(this);
-    const mouseMoveHandler = this.mouseMoveHandler.bind(this);
-    const mouseUpHandler = this.mouseUpHandler.bind(this);
-
-    // document.removeEventListener('mousemove', mouseMoveHandler);
-    // document.removeEventListener('mouseup', mouseUpHandler);
   }
 
   ngOnInit() {
     this.table = this.el.nativeElement;
-
-    setTimeout(() => {
-      /*this.el.nativeElement.querySelectorAll('th').forEach((headerCell) => {
-        headerCell.classList.add('draggable');
-        // headerCell.style.width = headerCell.offsetWidth + 'px';
-        headerCell.addEventListener(
-          'mousedown',
-          this.mouseDownHandler.bind(this)
-        );
-      });*/
-      // Attach the listeners to `document`
-      /*const mouseMoveHandler = this.mouseMoveHandler.bind(this);
-      const mouseUpHandler = this.mouseUpHandler.bind(this);
-      document.addEventListener('mousemove', mouseMoveHandler);
-      document.addEventListener('mouseup', mouseUpHandler);*/
-    }, 2000);
   }
 
   @HostListener('document:mousemove', ['$event']) onMouseMove(e) {
@@ -281,8 +273,51 @@ export class TableDragNDropDirective {
 
   @HostListener('mousedown', ['$event']) onMouseDown(e) {
     if (e.target.classList.contains('drag-n-drop')) {
-      console.log('lf');
       this.mouseDownHandler(e);
+    }
+  }
+
+  private updateTaskConfig(endColumnIndex: any) {
+    if (this.component === 'task') {
+      const newTaskConfig = {
+        ...this.taskConfig,
+        data: {
+          ...this.taskConfig.data,
+          columns: this.taskConfig.data.columns.map((column, index) => {
+            if (index === this.draggingColumnIndex - 1) {
+              return {
+                ...column,
+                index: endColumnIndex - 1,
+              };
+            }
+
+            return column;
+          }),
+        },
+      };
+
+      console.log('oldTaskConfig', newTaskConfig);
+
+      this.taskService.updateTaskConfigMessage(newTaskConfig);
+    } else if (this.component === 'project') {
+      const newProjectConfig = {
+        ...this.projectConfig,
+        data: {
+          ...this.projectConfig.data,
+          columns: this.projectConfig.data.columns.map((column, index) => {
+            if (index === this.draggingColumnIndex - 1) {
+              return {
+                ...column,
+                index: endColumnIndex - 1,
+              };
+            }
+
+            return column;
+          }),
+        },
+      };
+
+      this.projectService.updateProjectConfigMessage(newProjectConfig);
     }
   }
 }

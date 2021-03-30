@@ -69,6 +69,17 @@ export class ProjectComponent implements OnInit {
     );
   }
 
+  compare(a, b) {
+    // вынести в pipe
+    if (a.index < b.index) {
+      return -1;
+    }
+    if (a.index > b.index) {
+      return 1;
+    }
+    return 0;
+  }
+
   subscribeProjectConfigUpdates() {
     this.projectService.currentProjectConfigStageMessage.subscribe(
       ({ loaded, loading, data }) => {
@@ -78,7 +89,7 @@ export class ProjectComponent implements OnInit {
 
         if (loaded && !loading) {
           if (data) {
-            this.projectConfigColumns = data.columns;
+            this.projectConfigColumns = data.columns.sort(this.compare);
             this.rowsDefault = data.rows_per_page_default;
             this.rows = data.rows_per_page_values;
             this.updateStartIndex();

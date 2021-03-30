@@ -22,7 +22,6 @@ export class ComparisonTableRemoveFormComparisonComponent implements OnInit {
   ngOnInit(): void {}
 
   handleClick() {
-    console.log(this.taskID, this.submitID);
     this.comparisonService.updateComparisonIDSMessage({
       taskID: this.taskID,
       submitID: this.submitID,

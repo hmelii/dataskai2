@@ -8,11 +8,14 @@ import {
   ProjectInfoInterface,
   ProjectTasksInterface,
 } from '../../interfaces/project/project.interface';
+import { LocalStorage } from '../../storage/interfaces/local-storage.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectService {
+  private localStorageValues = null;
+
   private projectInfoStageMessage = new BehaviorSubject({
     loaded: false,
     loading: false,
@@ -31,7 +34,24 @@ export class ProjectService {
   } as ProjectConfigInterface);
   currentProjectConfigStageMessage = this.projectConfigStageMessage.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private localStorage: LocalStorage) {
+    this.checkLocalStorage();
+  }
+
+  checkLocalStorage() {
+    const localStorageValue = this.localStorage.getItem('ProjectColumnsConfig');
+
+    if (!localStorageValue) {
+      return;
+    }
+
+    const localStorageValues = JSON.parse(localStorageValue);
+
+    if (!localStorageValues) {
+      return;
+    }
+    this.localStorageValues = localStorageValues;
+  }
 
   updateProjectInfoMessage(message: ProjectInfoInterface) {
     this.projectInfoStageMessage.next({
@@ -52,6 +72,10 @@ export class ProjectService {
       ...this.projectConfigStageMessage.getValue(),
       ...message,
     });
+
+    if (message.data) {
+      this.updateLocalStorage();
+    }
   }
 
   fetchProjectInfo(projectInfoParams): Observable<ProjectInfoInterface> {
@@ -142,8 +166,40 @@ export class ProjectService {
 
     this.fetchProjectConfig(params).subscribe(
       (projectConfig: ProjectConfigInterface) => {
+        let modifiedProjectConfig;
+        if (
+          this.localStorageValues &&
+          this.localStorageValues[projectConfig.data.project_name]
+        ) {
+          // если у нас уже есть данные в локалсторадже берём оттуда
+          const currentProject = this.localStorageValues[
+            projectConfig.data.project_name
+          ];
+          modifiedProjectConfig = {
+            ...projectConfig,
+            data: {
+              ...projectConfig.data,
+              columns: projectConfig.data.columns.map((column, index) => ({
+                ...column,
+                index: currentProject[column.id].index,
+              })),
+            },
+          };
+        } else {
+          modifiedProjectConfig = {
+            ...projectConfig,
+            data: {
+              ...projectConfig.data,
+              columns: projectConfig.data.columns.map((column, index) => ({
+                ...column,
+                index: index + 1, // прибавляет 1, потому что у нас ещё есть колонка с номерами
+              })),
+            },
+          };
+        }
+
         this.updateProjectConfigMessage({
-          ...projectConfig,
+          ...modifiedProjectConfig,
           loaded: true,
         });
       },
@@ -155,6 +211,24 @@ export class ProjectService {
           loading: false,
         });
       }
+    );
+  }
+
+  updateLocalStorage() {
+    const projectConfig = this.projectConfigStageMessage.getValue();
+
+    const projectColumnsConfig = {};
+
+    projectColumnsConfig[
+      projectConfig.data.project_name
+    ] = projectConfig.data.columns.reduce(function (acc, cur, i) {
+      acc[cur.id] = cur;
+      return acc;
+    }, {});
+
+    this.localStorage.setItem(
+      'ProjectColumnsConfig',
+      JSON.stringify(projectColumnsConfig)
     );
   }
 

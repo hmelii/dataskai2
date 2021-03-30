@@ -17,6 +17,8 @@ export class TableComponent implements OnInit {
   @Input() sortCol: string;
   @Input() sortOrder: string;
   @Input() searchMatches;
+  @Input() component;
+
   @Output() onSortChange: EventEmitter<
     TableColSortingInterface
   > = new EventEmitter<TableColSortingInterface>();

@@ -8,11 +8,14 @@ import {
   TaskInfoInterface,
   TaskSubmitsInterface,
 } from '../../interfaces/task/task.interface';
+import { LocalStorage } from '../../storage/interfaces/local-storage.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
+  private localStorageValues = null;
+
   private taskSubmitsStageMessage = new BehaviorSubject({
     loaded: false,
     loading: false,
@@ -31,7 +34,9 @@ export class TaskService {
   } as TaskConfigInterface);
   currentTaskConfigStageMessage = this.taskConfigStageMessage.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private localStorage: LocalStorage) {
+    this.checkLocalStorage();
+  }
 
   updateTaskInfoMessage(message) {
     this.taskInfoStageMessage.next({
@@ -85,6 +90,43 @@ export class TaskService {
       ...this.taskConfigStageMessage.getValue(),
       ...message,
     });
+
+    if (message.data) {
+      this.updateLocalStorage();
+    }
+  }
+
+  checkLocalStorage() {
+    const localStorageValue = this.localStorage.getItem('TaskColumnsConfig');
+
+    if (!localStorageValue) {
+      return;
+    }
+
+    const localStorageValues = JSON.parse(localStorageValue);
+
+    if (!localStorageValues) {
+      return;
+    }
+    this.localStorageValues = localStorageValues;
+  }
+
+  updateLocalStorage() {
+    const taskConfig = this.taskConfigStageMessage.getValue();
+
+    const taskColumnsConfig = {};
+
+    taskColumnsConfig[
+      taskConfig.data.task_name
+    ] = taskConfig.data.columns.reduce(function (acc, cur, i) {
+      acc[cur.id] = cur;
+      return acc;
+    }, {});
+
+    this.localStorage.setItem(
+      'TaskColumnsConfig',
+      JSON.stringify(taskColumnsConfig)
+    );
   }
 
   updateTaskSubmitsMessage(message) {
@@ -151,8 +193,40 @@ export class TaskService {
 
     this.fetchTaskConfig(params).subscribe(
       (taskConfig: TaskConfigInterface) => {
+        let modifiedTaskConfig;
+        if (
+          this.localStorageValues &&
+          this.localStorageValues[taskConfig.data.task_name]
+        ) {
+          // если у нас уже есть данные в локалсторадже берём оттуда
+          const currentTask = this.localStorageValues[
+            taskConfig.data.task_name
+          ];
+          modifiedTaskConfig = {
+            ...taskConfig,
+            data: {
+              ...taskConfig.data,
+              columns: taskConfig.data.columns.map((column, index) => ({
+                ...column,
+                index: currentTask[column.id].index,
+              })),
+            },
+          };
+        } else {
+          modifiedTaskConfig = {
+            ...taskConfig,
+            data: {
+              ...taskConfig.data,
+              columns: taskConfig.data.columns.map((column, index) => ({
+                ...column,
+                index: index + 1, // прибавляет 1, потому что у нас ещё есть колонка с номерами
+              })),
+            },
+          };
+        }
+
         this.updateTaskConfigMessage({
-          ...taskConfig,
+          ...modifiedTaskConfig,
           loaded: true,
         });
       },
