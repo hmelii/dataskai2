@@ -1,5 +1,5 @@
 <!--<div style="overflow: hidden; overflow-x: auto; position: relative">-->
-<table class="comparison-table" appTableDragNDrop>
+<table class="comparison-table" appTableDragNDrop appTableResize>
   <tbody class="comparison-table-body">
     <tr *ngFor="let row of rows; let i = index" class="comparison-table-tr">
       <ng-container
@@ -40,6 +40,7 @@
           }"
         >
           <div class="table-drag-n-drop"></div>
+          <div class="resize"></div>
 
           <div *ngIf="i === 0">
             <app-comparison-table-select-baseline

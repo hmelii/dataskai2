@@ -52,7 +52,7 @@ export class TableResizeDirective {
     document.documentElement.classList.add('resizing');
     this.resizingElem = e.target.closest('th');
 
-    this.width = this.resizingElem.offsetWidth;
+    this.width = this.resizingElem.getBoundingClientRect().width /*this.resizingElem.offsetWidth*/;
 
     this.resizingColumnIndex = [].slice
       .call(this.table.querySelectorAll('th'))
@@ -132,16 +132,5 @@ export class TableResizeDirective {
 
   ngOnInit(): void {
     this.table = this.el.nativeElement;
-  }
-
-  ngAfterViewInit(): void {
-    const THs = this.table.querySelectorAll('th');
-    this.tableWidth = Array.prototype.reduce.call(
-      THs,
-      (acc, th) => acc + th.offsetWidth,
-      0
-    );
-    this.table.style.width = this.tableWidth + 'px';
-    console.log(this.tableWidth);
   }
 }

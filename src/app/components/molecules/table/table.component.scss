@@ -1,6 +1,6 @@
 .table {
   border: 0;
-  //width: 100%;
+  width: 100%;
   border-collapse: separate;
   border-spacing: 1px;
   table-layout: fixed;
@@ -15,6 +15,7 @@
   //width: 168px;
   top: 80px;
   z-index: 11;
+  user-select: none;
 
   &:before {
     content: "";
@@ -37,8 +38,9 @@
   width: 4px;
   position: absolute;
   top: 0;
-  right: -2px;
+  right: 0;
   bottom: 0;
+  z-index: 2;
   cursor: ew-resize;
 }
 
@@ -52,13 +54,13 @@
 
 .table-tbody-th,
 .table-tbody-td {
-  background: var(--table-background-secondary);
-  height: 63px;
+  background-color: var(--table-background-secondary);
+  height: 74px;
   padding: 8px;
   position: relative;
   vertical-align: top;
   text-align: left;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .table-tbody-tr {
@@ -128,7 +130,6 @@
 .table-tbody-td-heading {
   color: var(--text-color-default);
   font-size: 1.3rem;
-  max-width: 180px;
   overflow: hidden;
   position: relative;
   display: -webkit-box;

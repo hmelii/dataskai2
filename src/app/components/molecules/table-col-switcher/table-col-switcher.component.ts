@@ -28,7 +28,6 @@ export class TableColSwitcherComponent implements OnInit {
       (config: TaskConfigInterface) => {
         this.config = config;
         if (config.data) {
-          console.log(config.data.columns);
           this.columns = config.data.columns.map((column) => ({
             value: column.id,
             label: column.name,
@@ -87,16 +86,6 @@ export class TableColSwitcherComponent implements OnInit {
       this.all.checked = this.selectedColumns.length === 0;
     }
 
-    console.log({
-      ...this.config,
-      data: {
-        ...this.config.data,
-        columns: this.config.data.columns.map((column) => ({
-          ...column,
-          shown: !this.selectedColumns.includes(column.id),
-        })),
-      },
-    });
     this.taskService.updateTaskConfigMessage({
       ...this.config,
       data: {

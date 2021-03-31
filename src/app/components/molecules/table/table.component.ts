@@ -85,12 +85,10 @@ export class TableComponent implements OnInit {
 
   generateTableHead() {
     this.cols = this.colsItems;
-    console.log('this.cols', this.cols);
   }
 
   generateTableBody() {
     this.rows = this.rowsItems;
-    console.log('this.rows', this.rows);
   }
 
   handleSortChange($event: TableColSortingInterface) {

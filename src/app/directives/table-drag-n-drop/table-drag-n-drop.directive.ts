@@ -1,6 +1,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { TaskService } from '../../services/task/task.service';
 import { ProjectService } from '../../services/project/project.service';
+import { log } from 'util';
 
 @Directive({
   selector: '[appTableDragNDrop]',
@@ -19,7 +20,7 @@ export class TableDragNDropDirective {
   @Input() component;
 
   x = 0;
-  y = 0;
+  // y = 0;
 
   constructor(
     private el: ElementRef,
@@ -65,7 +66,6 @@ export class TableDragNDropDirective {
     // Get the bounding rectangle of nodes
     const rectA = nodeA.getBoundingClientRect();
     const rectB = nodeB.getBoundingClientRect();
-
     return rectA.left + rectA.width / 2 < rectB.left + rectB.width / 2;
   }
 
@@ -76,7 +76,7 @@ export class TableDragNDropDirective {
 
     // Determine the mouse position
     this.x = e.clientX - e.target.offsetLeft;
-    this.y = e.clientY - e.target.offsetTop;
+    // this.y = e.clientY - e.target.offsetTop;
     this.isMouseDown = true;
 
     // Attach the listeners to `document`
@@ -93,7 +93,7 @@ export class TableDragNDropDirective {
     this.list.classList.add('clone-list');
     this.list.style.position = 'absolute';
     this.list.style.left = `${rect.left}px`;
-    this.list.style.top = `${rect.top}px`;
+    // this.list.style.top = `${rect.top}px`;
 
     this.table.parentNode.insertBefore(this.list, this.table);
 
@@ -170,16 +170,16 @@ export class TableDragNDropDirective {
 
     // Set position for dragging element
     this.draggingEle.style.position = 'absolute';
-    this.draggingEle.style.top = `${
-      /*this.draggingEle.offsetTop +*/ e.clientY - this.y
-    }px`;
+    /*this.draggingEle.style.top = `${
+      /!*this.draggingEle.offsetTop +*!/ e.clientY - this.y
+    }px`;*/
     this.draggingEle.style.left = `${
       this.draggingEle.offsetLeft + e.clientX - this.x
     }px`;
 
     // Reassign the position of mouse
     this.x = e.clientX;
-    this.y = e.clientY;
+    // this.y = e.clientY;
 
     // The current order
     // prevEle
@@ -225,7 +225,7 @@ export class TableDragNDropDirective {
       this.placeholder.parentNode.removeChild(this.placeholder);
 
     this.draggingEle.classList.remove('dragging');
-    this.draggingEle.style.removeProperty('top');
+    // this.draggingEle.style.removeProperty('top');
     this.draggingEle.style.removeProperty('left');
     this.draggingEle.style.removeProperty('position');
 
@@ -233,6 +233,8 @@ export class TableDragNDropDirective {
     const endColumnIndex = [].slice
       .call(this.list.children)
       .indexOf(this.draggingEle);
+
+    console.log(endColumnIndex);
 
     this.updateTaskConfig(endColumnIndex);
 
@@ -277,40 +279,79 @@ export class TableDragNDropDirective {
     }
   }
 
-  private updateTaskConfig(endColumnIndex: any) {
+  compare(a, b) {
+    // вынести в pipe
+    if (a.index < b.index) {
+      return -1;
+    }
+    if (a.index > b.index) {
+      return 1;
+    }
+    return 0;
+  }
+
+  changeItemPos(arr, from, to) {
+    if (to >= arr.length) {
+      var k = to - arr.length + 1;
+      while (k--) {
+        arr.push(undefined);
+      }
+    }
+    arr.splice(to, 0, arr.splice(from, 1)[0]);
+    return arr; // for testing
+  }
+
+  private updateTaskConfig(endColumnIndex: number) {
+    console.log(endColumnIndex);
+
     if (this.component === 'task') {
+      const currentColumnsOrder = this.taskConfig.data.columns.sort(
+        this.compare
+      );
+
+      const newColumnsOrder = [
+        ...this.changeItemPos(
+          currentColumnsOrder,
+          this.draggingColumnIndex - 1,
+          endColumnIndex - 1
+        ),
+      ];
+
       const newTaskConfig = {
         ...this.taskConfig,
         data: {
           ...this.taskConfig.data,
-          columns: this.taskConfig.data.columns.map((column, index) => {
-            if (index === this.draggingColumnIndex - 1) {
-              return {
-                ...column,
-                index: endColumnIndex - 1,
-              };
-            }
-
-            return column;
+          columns: newColumnsOrder.map((column, index) => {
+            return {
+              ...column,
+              index,
+            };
           }),
         },
       };
 
       this.taskService.updateTaskConfigMessage(newTaskConfig);
     } else if (this.component === 'project') {
+      const currentColumnsOrder = this.projectConfig.data.columns.sort(
+        this.compare
+      );
+
+      const newColumnsOrder = [
+        ...this.changeItemPos(
+          currentColumnsOrder,
+          this.draggingColumnIndex - 1,
+          endColumnIndex - 1
+        ),
+      ];
       const newProjectConfig = {
         ...this.projectConfig,
         data: {
           ...this.projectConfig.data,
-          columns: this.projectConfig.data.columns.map((column, index) => {
-            if (index === this.draggingColumnIndex - 1) {
-              return {
-                ...column,
-                index: endColumnIndex - 1,
-              };
-            }
-
-            return column;
+          columns: newColumnsOrder.map((column, index) => {
+            return {
+              ...column,
+              index,
+            };
           }),
         },
       };

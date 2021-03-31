@@ -183,6 +183,7 @@ export class ProjectService {
                 ...column,
                 index: currentProject[column.id].index,
                 shown: true,
+                width: currentProject[column.id].width,
               })),
             },
           };
@@ -195,6 +196,7 @@ export class ProjectService {
                 ...column,
                 index: index + 1, // прибавляет 1, потому что у нас ещё есть колонка с номерами
                 shown: true,
+                width: 168,
               })),
             },
           };

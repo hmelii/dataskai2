@@ -1,9 +1,18 @@
 .comparison-table {
   border: 0;
-  margin-bottom: 100px;
   table-layout: fixed;
   border-spacing: 1px;
   border-collapse: separate;
+}
+
+.resize {
+  width: 4px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  cursor: ew-resize;
 }
 
 .comparison-table-th {
@@ -36,14 +45,14 @@
 }
 
 .comparison-table-td {
-  background: var(--table-background-secondary);
+  background-color: var(--table-background-secondary);
   width: 252px;
   height: 74px;
   padding: 8px;
   position: relative;
   vertical-align: top;
   text-align: left;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .comparison-table-th--align-right,
@@ -142,7 +151,7 @@
   overflow: hidden;
   position: relative;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
@@ -157,7 +166,7 @@
   line-height: 1;
   position: relative;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 
   * + & {

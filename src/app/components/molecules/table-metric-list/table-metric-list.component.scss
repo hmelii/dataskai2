@@ -4,9 +4,9 @@
   max-width: 180px;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  line-clamp: 4;
+  line-clamp: 3;
   box-orient: vertical;
   z-index: 1;
 }
