@@ -9,7 +9,7 @@ import { ProjectService } from '../../../../services/project/project.service';
   styleUrls: ['../authors-filter.component.scss'],
 })
 export class ProjectAuthorsFilterComponent implements OnInit {
-  isShow: boolean;
+  isShow = false;
   authors: CheckboxInterface[];
   all: CheckboxInterface = {
     value: 'all',
@@ -23,7 +23,6 @@ export class ProjectAuthorsFilterComponent implements OnInit {
     private taskService: TaskService,
     private projectService: ProjectService
   ) {
-    this.isShow = false;
     this.subscribeProjectInfoUpdates();
   }
 
@@ -93,5 +92,9 @@ export class ProjectAuthorsFilterComponent implements OnInit {
         this.all.checked = true;
       }
     }
+
+    this.projectService.updateProjectMetaMessage({
+      authors: this.selectedAuthors.join(','),
+    });
   }
 }

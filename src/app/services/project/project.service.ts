@@ -3,18 +3,23 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, delay } from 'rxjs/operators';
 import config from '../../config/config';
+import { environment } from '../../../environments/environment';
 import {
   ProjectConfigInterface,
   ProjectInfoInterface,
   ProjectTasksInterface,
 } from '../../interfaces/project/project.interface';
 import { LocalStorage } from '../../storage/interfaces/local-storage.interface';
+import { ProjectMetaInterface } from '../../interfaces/project/meta.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectService {
   private localStorageValues = null;
+
+  private projectMetaStageMessage = new BehaviorSubject({});
+  currentProjectMetaStageMessage = this.projectMetaStageMessage.asObservable();
 
   private projectInfoStageMessage = new BehaviorSubject({
     loaded: false,
@@ -36,6 +41,7 @@ export class ProjectService {
 
   constructor(private http: HttpClient, private localStorage: LocalStorage) {
     this.checkLocalStorage();
+    this.subscribeProjectMetaUpdates();
   }
 
   checkLocalStorage() {
@@ -51,6 +57,13 @@ export class ProjectService {
       return;
     }
     this.localStorageValues = localStorageValues;
+  }
+
+  updateProjectMetaMessage(message) {
+    this.projectMetaStageMessage.next({
+      ...this.projectMetaStageMessage.getValue(),
+      ...message,
+    });
   }
 
   updateProjectInfoMessage(message: ProjectInfoInterface) {
@@ -84,9 +97,15 @@ export class ProjectService {
     });
 
     return this.http
-      .get<ProjectInfoInterface>(config.BASE_URL + '/assets/projectInfo.json', {
-        params,
-      })
+      .get<ProjectInfoInterface>(
+        environment.baseUrl +
+          config.API_URL +
+          config.API_VERSION +
+          config.PROJECT_INFO_URL,
+        {
+          params,
+        }
+      )
       .pipe(
         delay(500), // исскуственная задержка
         catchError((error) => {
@@ -103,7 +122,10 @@ export class ProjectService {
 
     return this.http
       .get<ProjectConfigInterface>(
-        config.BASE_URL + '/assets/projectConfig.json',
+        environment.baseUrl +
+          config.API_URL +
+          config.API_VERSION +
+          config.PROJECT_CONFIG_URL,
         {
           params,
         }
@@ -118,14 +140,25 @@ export class ProjectService {
       );
   }
 
-  fetchProjectTasks(projectTasksParams): Observable<ProjectTasksInterface> {
+  subscribeProjectMetaUpdates() {
+    this.currentProjectMetaStageMessage.subscribe((projectMeta) => {
+      this.getProjectTasks();
+    });
+  }
+
+  fetchProjectTasks(): Observable<ProjectTasksInterface> {
+    const projectMeta = this.projectMetaStageMessage.getValue();
+    console.log('projectMeta', projectMeta);
     const params = new HttpParams({
-      fromObject: projectTasksParams,
+      fromObject: projectMeta,
     });
 
     return this.http
       .get<ProjectTasksInterface>(
-        config.BASE_URL + '/assets/projectTasks.json',
+        environment.baseUrl +
+          config.API_URL +
+          config.API_VERSION +
+          config.PROJECT_TASKS_URL,
         {
           params,
         }
@@ -236,10 +269,10 @@ export class ProjectService {
     );
   }
 
-  getProjectTasks(params = {}) {
+  getProjectTasks() {
     this.updateProjectTasksMessage({ loading: true });
 
-    this.fetchProjectTasks(params).subscribe(
+    this.fetchProjectTasks().subscribe(
       (projectTasks: ProjectTasksInterface) => {
         this.updateProjectTasksMessage({
           ...projectTasks,
