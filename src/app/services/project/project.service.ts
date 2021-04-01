@@ -161,6 +161,8 @@ export class ProjectService {
     const {
       authors,
       per_page = null,
+      sort_column,
+      sort_order,
     } = this.projectMetaStageMessage.getValue();
     const filters: ProjectMetaInterface = {};
 
@@ -170,6 +172,14 @@ export class ProjectService {
 
     if (per_page) {
       filters.per_page = per_page;
+    }
+
+    if (sort_column) {
+      filters.sort_column = sort_column;
+    }
+
+    if (sort_order) {
+      filters.sort_order = sort_order;
     }
 
     const params = new HttpParams({

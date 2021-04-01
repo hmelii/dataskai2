@@ -169,8 +169,19 @@ export class ProjectComponent implements OnInit {
     this.projectService.currentProjectMetaStageMessage.subscribe(
       (projectMeta) => {
         const { authors: prevAuthors = '' } = this.oldProjectMeta;
-        const { authors = '', per_page = null } = projectMeta;
-        if (authors !== prevAuthors || per_page != null) {
+        const {
+          authors = '',
+          per_page = null,
+          sort_order = this.sortOrder,
+          sort_column = this.sortColumn,
+        } = projectMeta;
+
+        if (
+          authors !== prevAuthors ||
+          per_page != null ||
+          sort_order !== this.sortOrder ||
+          sort_column !== this.sortColumn
+        ) {
           this.currentPage = 1;
           this.getProjectTasks();
         }
@@ -191,9 +202,13 @@ export class ProjectComponent implements OnInit {
   }
 
   handleSortChange({ sortOrder, colID }: TableColSortingInterface) {
-    this.taskService.getTaskSubmits();
-    this.sortOrder = sortOrder;
-    this.sortColumn = colID;
+    console.log('sortOrder', sortOrder);
+    console.log('colID', colID);
+
+    this.projectService.updateProjectMetaMessage({
+      sort_order: sortOrder,
+      sort_column: colID,
+    });
   }
 
   handleRowsChanged($event: number) {
