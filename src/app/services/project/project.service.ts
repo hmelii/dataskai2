@@ -158,11 +158,18 @@ export class ProjectService {
   }
 
   fetchProjectTasks({ start_page = 1 }): Observable<ProjectTasksInterface> {
-    const { authors } = this.projectMetaStageMessage.getValue();
+    const {
+      authors,
+      per_page = null,
+    } = this.projectMetaStageMessage.getValue();
     const filters: ProjectMetaInterface = {};
 
     if (authors && authors.length) {
       filters.authors = authors;
+    }
+
+    if (per_page) {
+      filters.per_page = per_page;
     }
 
     const params = new HttpParams({

@@ -98,7 +98,7 @@ export class ProjectComponent implements OnInit {
         if (loaded && !loading) {
           if (data) {
             this.projectConfigColumns = data.columns.sort(this.compare);
-            this.rowsDefault = data.rows_per_page_default;
+            // this.rowsDefault = data.rows_per_page_default;
             this.rows = data.rows_per_page_values;
             this.updateStartIndex();
           }
@@ -125,12 +125,14 @@ export class ProjectComponent implements OnInit {
               total_pages = 1,
               current_page = 1,
               search_matches = null,
+              per_page,
             } = meta;
             this.sortColumn = sort_column;
             this.sortOrder = sort_order;
             this.totalPages = total_pages;
             this.currentPage = current_page;
             this.searchMatches = search_matches;
+            this.rowsDefault = per_page;
             this.updateStartIndex();
           }
         }
@@ -158,9 +160,7 @@ export class ProjectComponent implements OnInit {
   subscribeProjectMetaOldUpdates() {
     this.projectService.currentProjectMetaPrevStageMessage.subscribe(
       (projectMeta) => {
-        console.log('this.oldProjectMeta', projectMeta);
         this.oldProjectMeta = projectMeta;
-        //this.getProjectTasks();
       }
     );
   }
@@ -169,18 +169,16 @@ export class ProjectComponent implements OnInit {
     this.projectService.currentProjectMetaStageMessage.subscribe(
       (projectMeta) => {
         const { authors: prevAuthors = '' } = this.oldProjectMeta;
-        const { authors = '' } = projectMeta;
-        if (authors !== prevAuthors) {
+        const { authors = '', per_page = null } = projectMeta;
+        if (authors !== prevAuthors || per_page != null) {
           this.currentPage = 1;
           this.getProjectTasks();
         }
-        console.log('projectMeta', prevAuthors, authors);
-        //
       }
     );
   }
 
-  pageChanged(currentPage) {
+  handlePageChange(currentPage) {
     if (this.currentPage !== currentPage) {
       this.currentPage = currentPage;
       this.changeProjectTasksRoute();
@@ -196,5 +194,9 @@ export class ProjectComponent implements OnInit {
     this.taskService.getTaskSubmits();
     this.sortOrder = sortOrder;
     this.sortColumn = colID;
+  }
+
+  handleRowsChanged($event: number) {
+    this.projectService.updateProjectMetaMessage({ per_page: $event });
   }
 }

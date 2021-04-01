@@ -1,5 +1,8 @@
 <div class="row-per-page" *ngIf="rows && options">
   <div class="row-per-page-label">Rows per page</div>
-  <app-select class="row-per-page-select" [options]="options"></app-select>
-
+  <app-select
+    class="row-per-page-select"
+    [options]="options"
+    (onHandleChange)="handleChange($event)"
+  ></app-select>
 </div>

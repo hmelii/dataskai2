@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { OptionInterface } from '../../../interfaces/select/select.interface';
 
 @Component({
@@ -9,6 +16,7 @@ import { OptionInterface } from '../../../interfaces/select/select.interface';
 export class RowPerPageComponent implements OnInit, OnChanges {
   @Input() rows: number[];
   @Input() rowsDefault: number;
+  @Output() onRowsChange: EventEmitter<number> = new EventEmitter<number>();
   options: OptionInterface[] = null;
 
   constructor() {}
@@ -23,5 +31,10 @@ export class RowPerPageComponent implements OnInit, OnChanges {
         selected: this.rowsDefault === item,
       }));
     }
+  }
+
+  handleChange($event: OptionInterface) {
+    const { value } = $event;
+    this.onRowsChange.emit(+value);
   }
 }

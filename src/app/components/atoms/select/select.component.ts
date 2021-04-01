@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { OptionInterface } from '../../../interfaces/select/select.interface';
 
 @Component({
@@ -11,6 +18,9 @@ export class SelectComponent implements OnInit, OnChanges {
   selectedOption: OptionInterface = null;
 
   @Input() options: OptionInterface[] = null;
+  @Output() onHandleChange: EventEmitter<OptionInterface> = new EventEmitter<
+    OptionInterface
+  >();
 
   constructor() {
     this.isShow = false;
@@ -35,6 +45,7 @@ export class SelectComponent implements OnInit, OnChanges {
 
   handleChange(option: OptionInterface): void {
     this.selectedOption = option;
+    this.onHandleChange.emit(option);
   }
 
   onClickedOutside($event: Event) {

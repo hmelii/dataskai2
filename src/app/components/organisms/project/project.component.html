@@ -16,12 +16,13 @@
       class="meta-panel-pagination"
       [currentPage]="currentPage"
       [totalPages]="totalPages"
-      (onPageChange)="pageChanged($event)"
+      (onPageChange)="handlePageChange($event)"
     ></app-pagination>
 
     <app-row-per-page
       [rows]="rows"
       [rowsDefault]="rowsDefault"
+      (onRowsChange)="handleRowsChanged($event)"
       *ngIf="rows"
     ></app-row-per-page>
   </app-meta-panel>
