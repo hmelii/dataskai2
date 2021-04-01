@@ -1,3 +1,3 @@
 export interface ProjectMetaInterface {
-  authors: [];
+  authors?: string;
 }

@@ -10,7 +10,6 @@ import { TaskEnum } from '../../../enums/routes/task.enum';
 import { TasksEnum } from '../../../enums/routes/tasks.enum';
 import { TableColSortingInterface } from '../../../interfaces/table-col-sorting/table-col-sorting.interface';
 import { ProjectConfigDataColumnInterface } from '../../../interfaces/project/project.interface';
-
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -32,6 +31,7 @@ export class ProjectComponent implements OnInit {
   sortOrder = null;
   searchMatches = null;
   startIndex = 1;
+  oldProjectMeta = null;
 
   routeSubmits = TaskEnum.Submits;
   routeTasks = TasksEnum.Tasks;
@@ -43,15 +43,23 @@ export class ProjectComponent implements OnInit {
     private projectService: ProjectService,
     private taskService: TaskService,
     private router: Router,
-    private activateRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {
+    this.subscribeRouteUpdates();
     this.subscribeProjectInfoUpdates();
     this.subscribeProjectConfigUpdates();
     this.subscribeProjectTasksUpdates();
-    this.subscribeRouteUpdate();
+    this.subscribeProjectMetaOldUpdates();
+    this.subscribeProjectMetaUpdates();
   }
 
   ngOnInit(): void {}
+
+  subscribeRouteUpdates() {
+    this.activatedRoute.queryParams.subscribe(({ page = 1 }) => {
+      this.currentPage = page;
+    });
+  }
 
   subscribeProjectInfoUpdates() {
     this.projectService.currentProjectInfoStageMessage.subscribe(
@@ -103,7 +111,7 @@ export class ProjectComponent implements OnInit {
     this.projectService.currentProjectTasksStageMessage.subscribe(
       ({ loaded, loading, data, meta }) => {
         if (!loaded && !loading) {
-          this.projectService.getProjectTasks();
+          this.getProjectTasks();
         }
 
         if (loaded && !loading) {
@@ -130,32 +138,44 @@ export class ProjectComponent implements OnInit {
     );
   }
 
-  subscribeRouteUpdate() {
-    this.activateRoute.params.subscribe((params) => {
-      this.routeTaskID = params['taskID'];
-      this.routeSubmitID = params['submitID'];
-    });
-  }
-
   updateStartIndex() {
     if (this.currentPage && this.rowsDefault) {
       this.startIndex = (this.currentPage - 1) * this.rowsDefault + 1;
     }
   }
 
-  changeSubmitsRoute() {
+  changeProjectTasksRoute() {
     const routeMain = MainEnum.Self;
     const routeProject = ProjectEnum.Project;
     const routeTasks = TasksEnum.Tasks;
-    const routeSubmits = TaskEnum.Submits;
 
-    this.router.navigate(
-      [
-        `${routeMain}${routeProject}/${routeTasks}/${this.routeTaskID}/${routeSubmits}`,
-      ],
-      {
-        queryParams: { page: this.currentPage },
-        queryParamsHandling: 'merge',
+    this.router.navigate([`${routeMain}${routeProject}/${routeTasks}`], {
+      queryParams: { page: this.currentPage },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  subscribeProjectMetaOldUpdates() {
+    this.projectService.currentProjectMetaPrevStageMessage.subscribe(
+      (projectMeta) => {
+        console.log('this.oldProjectMeta', projectMeta);
+        this.oldProjectMeta = projectMeta;
+        //this.getProjectTasks();
+      }
+    );
+  }
+
+  subscribeProjectMetaUpdates() {
+    this.projectService.currentProjectMetaStageMessage.subscribe(
+      (projectMeta) => {
+        const { authors: prevAuthors = '' } = this.oldProjectMeta;
+        const { authors = '' } = projectMeta;
+        if (authors !== prevAuthors) {
+          this.currentPage = 1;
+          this.getProjectTasks();
+        }
+        console.log('projectMeta', prevAuthors, authors);
+        //
       }
     );
   }
@@ -163,8 +183,13 @@ export class ProjectComponent implements OnInit {
   pageChanged(currentPage) {
     if (this.currentPage !== currentPage) {
       this.currentPage = currentPage;
-      this.changeSubmitsRoute();
+      this.changeProjectTasksRoute();
+      this.getProjectTasks();
     }
+  }
+
+  getProjectTasks() {
+    this.projectService.getProjectTasks({ start_page: this.currentPage });
   }
 
   handleSortChange({ sortOrder, colID }: TableColSortingInterface) {

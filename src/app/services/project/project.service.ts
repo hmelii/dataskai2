@@ -18,7 +18,14 @@ import { ProjectMetaInterface } from '../../interfaces/project/meta.interface';
 export class ProjectService {
   private localStorageValues = null;
 
-  private projectMetaStageMessage = new BehaviorSubject({});
+  private projectMetaPrevStageMessage = new BehaviorSubject(
+    {} as ProjectMetaInterface
+  );
+  currentProjectMetaPrevStageMessage = this.projectMetaPrevStageMessage.asObservable();
+
+  private projectMetaStageMessage = new BehaviorSubject(
+    {} as ProjectMetaInterface
+  );
   currentProjectMetaStageMessage = this.projectMetaStageMessage.asObservable();
 
   private projectInfoStageMessage = new BehaviorSubject({
@@ -41,7 +48,6 @@ export class ProjectService {
 
   constructor(private http: HttpClient, private localStorage: LocalStorage) {
     this.checkLocalStorage();
-    this.subscribeProjectMetaUpdates();
   }
 
   checkLocalStorage() {
@@ -59,9 +65,20 @@ export class ProjectService {
     this.localStorageValues = localStorageValues;
   }
 
+  updateProjectMetaPrevMessage(message) {
+    this.projectMetaPrevStageMessage.next({
+      ...this.projectMetaPrevStageMessage.getValue(),
+      ...message,
+    });
+  }
+
   updateProjectMetaMessage(message) {
+    const prevValues = this.projectMetaStageMessage.getValue();
+
+    this.updateProjectMetaPrevMessage(prevValues);
+
     this.projectMetaStageMessage.next({
-      ...this.projectMetaStageMessage.getValue(),
+      ...prevValues,
       ...message,
     });
   }
@@ -140,17 +157,16 @@ export class ProjectService {
       );
   }
 
-  subscribeProjectMetaUpdates() {
-    this.currentProjectMetaStageMessage.subscribe((projectMeta) => {
-      this.getProjectTasks();
-    });
-  }
+  fetchProjectTasks({ start_page = 1 }): Observable<ProjectTasksInterface> {
+    const { authors } = this.projectMetaStageMessage.getValue();
+    const filters: ProjectMetaInterface = {};
 
-  fetchProjectTasks(): Observable<ProjectTasksInterface> {
-    const projectMeta = this.projectMetaStageMessage.getValue();
-    console.log('projectMeta', projectMeta);
+    if (authors && authors.length) {
+      filters.authors = authors;
+    }
+
     const params = new HttpParams({
-      fromObject: projectMeta,
+      fromObject: { ...filters, start_page: start_page + '' },
     });
 
     return this.http
@@ -269,10 +285,10 @@ export class ProjectService {
     );
   }
 
-  getProjectTasks() {
+  getProjectTasks({ start_page = 1 }) {
     this.updateProjectTasksMessage({ loading: true });
 
-    this.fetchProjectTasks().subscribe(
+    this.fetchProjectTasks({ start_page }).subscribe(
       (projectTasks: ProjectTasksInterface) => {
         this.updateProjectTasksMessage({
           ...projectTasks,
