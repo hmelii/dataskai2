@@ -124,7 +124,7 @@ export class ProjectService {
         }
       )
       .pipe(
-        delay(500), // исскуственная задержка
+        delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
           // отлавливаем ошибку
           return throwError(error);
@@ -148,7 +148,7 @@ export class ProjectService {
         }
       )
       .pipe(
-        delay(500), // исскуственная задержка
+        delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
           // отлавливаем ошибку
           console.log('Error: ', error.message);
@@ -197,7 +197,7 @@ export class ProjectService {
         }
       )
       .pipe(
-        delay(500), // исскуственная задержка
+        delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
           // отлавливаем ошибку
           console.log('Error: ', error.message);

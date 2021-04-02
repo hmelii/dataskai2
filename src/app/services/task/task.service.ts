@@ -9,12 +9,31 @@ import {
   TaskSubmitsInterface,
 } from '../../interfaces/task/task.interface';
 import { LocalStorage } from '../../storage/interfaces/local-storage.interface';
+import { environment } from '../../../environments/environment';
+// import { ProjectMetaInterface } from '../../interfaces/project/meta.interface';
+// import { ProjectInfoInterface } from '../../interfaces/project/project.interface';
+import { TaskMetaInterface } from '../../interfaces/task/meta.interface';
+import { ProjectMetaInterface } from '../../interfaces/project/meta.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
   private localStorageValues = null;
+
+  private taskMetaPrevStageMessage = new BehaviorSubject(
+    {} as TaskMetaInterface
+  );
+
+  currentTaskMetaPrevStageMessage = this.taskMetaPrevStageMessage.asObservable();
+  private taskMetaStageMessage = new BehaviorSubject({} as TaskMetaInterface);
+  currentTaskMetaStageMessage = this.taskMetaStageMessage.asObservable();
+
+  /*private projectInfoStageMessage = new BehaviorSubject({
+    loaded: false,
+    loading: false,
+  } as ProjectInfoInterface);
+  currentProjectInfoStageMessage = this.projectInfoStageMessage.asObservable();*/
 
   private taskSubmitsStageMessage = new BehaviorSubject({
     loaded: false,
@@ -38,6 +57,24 @@ export class TaskService {
     this.checkLocalStorage();
   }
 
+  updateTaskMetaPrevMessage(message) {
+    this.taskMetaPrevStageMessage.next({
+      ...this.taskMetaPrevStageMessage.getValue(),
+      ...message,
+    });
+  }
+
+  updateTaskMetaMessage(message) {
+    const prevValues = this.taskMetaStageMessage.getValue();
+
+    this.updateTaskMetaPrevMessage(prevValues);
+
+    this.taskMetaStageMessage.next({
+      ...prevValues,
+      ...message,
+    });
+  }
+
   updateTaskInfoMessage(message) {
     this.taskInfoStageMessage.next({
       ...this.taskInfoStageMessage.getValue(),
@@ -46,14 +83,22 @@ export class TaskService {
   }
 
   fetchTaskInfo(taskInfoParams): Observable<TaskInfoInterface> {
+    const { task_name = null } = this.taskMetaStageMessage.getValue();
+
     const params = new HttpParams({
       fromObject: taskInfoParams,
     });
 
     return this.http
-      .get<TaskInfoInterface>(config.BASE_URL + config.TASK_INFO_URL, {
-        params,
-      })
+      .get<TaskInfoInterface>(
+        environment.baseUrl +
+          config.API_URL +
+          config.API_VERSION +
+          config.TASK_INFO_URL.replace('{task_name}', task_name),
+        {
+          params,
+        }
+      )
       .pipe(
         delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
@@ -65,6 +110,7 @@ export class TaskService {
   }
 
   fetchTaskConfig(taskParams): Observable<TaskConfigInterface> {
+    const { task_name = null } = this.taskMetaStageMessage.getValue();
     const params = new HttpParams({
       fromObject: {
         ...taskParams,
@@ -72,9 +118,15 @@ export class TaskService {
     });
 
     return this.http
-      .get<TaskConfigInterface>(config.BASE_URL + config.TASK_CONFIG_URL, {
-        params,
-      })
+      .get<TaskConfigInterface>(
+        environment.baseUrl +
+          config.API_URL +
+          config.API_VERSION +
+          config.TASK_CONFIG_URL.replace('{task_name}', task_name),
+        {
+          params,
+        }
+      )
       .pipe(
         delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
@@ -148,15 +200,46 @@ export class TaskService {
     this.taskSubmitsStageMessage.next(newStage);
   }
 
-  fetchTaskSubmits(taskParams: {} = {}): Observable<TaskSubmitsInterface> {
+  fetchTaskSubmits({ start_page = 1 }): Observable<TaskSubmitsInterface> {
+    const {
+      authors,
+      per_page = null,
+      sort_column,
+      sort_order,
+      task_name = null,
+    } = this.taskMetaStageMessage.getValue();
+    const filters: ProjectMetaInterface = {};
+
+    if (authors && authors.length) {
+      filters.authors = authors;
+    }
+
+    if (per_page) {
+      filters.per_page = per_page;
+    }
+
+    if (sort_column) {
+      filters.sort_column = sort_column;
+    }
+
+    if (sort_order) {
+      filters.sort_order = sort_order;
+    }
+
     const params = new HttpParams({
-      fromObject: { ...taskParams },
+      fromObject: { ...filters, start_page: start_page + '' },
     });
 
     return this.http
-      .get<TaskSubmitsInterface>(config.BASE_URL + config.TASK_SUBMITS_URL, {
-        params,
-      })
+      .get<TaskSubmitsInterface>(
+        environment.baseUrl +
+          config.API_URL +
+          config.API_VERSION +
+          config.TASK_SUBMITS_URL.replace('{task_name}', task_name),
+        {
+          params,
+        }
+      )
       .pipe(
         delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
@@ -167,10 +250,10 @@ export class TaskService {
       );
   }
 
-  getTaskSubmits(params = {}) {
+  getTaskSubmits({ start_page = 1 }) {
     this.updateTaskSubmitsMessage({ loading: true });
 
-    this.fetchTaskSubmits(params).subscribe(
+    this.fetchTaskSubmits({ start_page }).subscribe(
       (taskSubmits: TaskSubmitsInterface) => {
         this.updateTaskSubmitsMessage({
           ...taskSubmits,
@@ -246,6 +329,12 @@ export class TaskService {
   }
 
   getTaskInfo(params = {}) {
+    const { task_name = null } = this.taskMetaStageMessage.getValue();
+
+    if (!task_name) {
+      return;
+    }
+
     this.updateTaskInfoMessage({ loading: true });
 
     this.fetchTaskInfo(params).subscribe(

@@ -35,30 +35,42 @@ export class TaskComponent implements OnInit {
   sortOrder = null;
   searchMatches = null;
   startIndex = 1;
+  oldTaskMeta = null;
 
   constructor(
     private authorsService: AuthorsService,
     private projectService: ProjectService,
     private taskService: TaskService,
     private router: Router,
-    private activateRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {
+    this.subscribeRouteUpdates();
     this.subscribeSubmitsUpdates();
     this.subscribeTaskConfigUpdates();
-    this.subscribeRouteUpdate();
+
     this.subscribeProjectInfoUpdates();
     this.subscribeTaskInfoUpdates();
+    this.subscribeTaskMetaOldUpdates();
+    this.subscribeTaskMetaUpdates();
   }
 
   ngOnInit(): void {}
 
-  subscribeRouteUpdate() {
-    this.activateRoute.params.subscribe((params) => {
+  subscribeRouteUpdates() {
+    this.activatedRoute.queryParams.subscribe(({ page = 1 }) => {
+      this.currentPage = page;
+    });
+
+    this.activatedRoute.params.subscribe((params) => {
       this.routeTaskID = params['taskID'];
       this.routeSubmitID = params['submitID']; // используется для перехода по ссылке Например: http://localhost/project/tasks/aero__fw_clf_v1__ENG_1_FUEL_FILTER_CLOG__21/submits/6017b6b376a8c74ef40b1247d6
 
-      this.getTaskInfo();
-      this.getTaskSubmits();
+      this.taskService.updateTaskMetaMessage({
+        task_name: this.routeTaskID,
+      });
+
+      //this.getTaskInfo();
+      //this.getTaskSubmits();
     });
   }
 
@@ -79,7 +91,7 @@ export class TaskComponent implements OnInit {
         const { loaded, loading, data } = taskConfig;
 
         if (!loaded && !loading) {
-          this.taskService.getTaskConfig();
+          this.getTaskConfig();
         }
 
         if (loaded && !loading) {
@@ -98,7 +110,7 @@ export class TaskComponent implements OnInit {
     this.taskService.currentTaskSubmitsStageMessage.subscribe(
       ({ loaded, loading, data, meta }) => {
         if (!loaded && !loading) {
-          this.taskService.getTaskSubmits();
+          this.getTaskSubmits();
         }
 
         if (loaded && !loading) {
@@ -190,10 +202,7 @@ export class TaskComponent implements OnInit {
   }
 
   getTaskSubmits() {
-    this.taskService.getTaskSubmits({
-      start: this.currentPage * this.rowsDefault,
-      sort: `${this.sortOrder === 'asc' ? '-' : '+'}${this.sortColumn}`,
-    });
+    this.taskService.getTaskSubmits({ start_page: this.currentPage });
   }
 
   getProjectInfo() {
@@ -205,9 +214,54 @@ export class TaskComponent implements OnInit {
   }
 
   handleSortChange({ sortOrder, colID }: TableColSortingInterface) {
-    this.taskService.getTaskSubmits();
-    this.sortOrder = sortOrder;
-    this.sortColumn = colID;
-    this.getTaskSubmits();
+    this.taskService.updateTaskMetaMessage({
+      sort_order: sortOrder,
+      sort_column: colID,
+    });
+  }
+
+  subscribeTaskMetaOldUpdates() {
+    this.taskService.currentTaskMetaPrevStageMessage.subscribe((taskMeta) => {
+      this.oldTaskMeta = taskMeta;
+    });
+  }
+
+  subscribeTaskMetaUpdates() {
+    this.taskService.currentTaskMetaStageMessage.subscribe((taskMeta) => {
+      const {
+        authors: prevAuthors = '',
+        task_name: prevTaskName = null,
+      } = this.oldTaskMeta;
+      const {
+        authors = '',
+        per_page = null,
+        sort_order = this.sortOrder,
+        sort_column = this.sortColumn,
+        task_name = null,
+      } = taskMeta;
+
+      if (
+        authors !== prevAuthors ||
+        per_page != null ||
+        sort_order !== this.sortOrder ||
+        sort_column !== this.sortColumn
+      ) {
+        this.currentPage = 1;
+        this.getTaskSubmits();
+      }
+
+      if (task_name && task_name !== prevTaskName) {
+        this.getTaskInfo();
+        this.getTaskConfig();
+      }
+    });
+  }
+
+  getTaskConfig() {
+    this.taskService.getTaskConfig();
+  }
+
+  handleRowsChanged($event: number) {
+    this.taskService.updateTaskMetaMessage({ per_page: $event });
   }
 }

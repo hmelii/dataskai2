@@ -94,5 +94,8 @@ export class TaskAuthorsFilterComponent implements OnInit {
         this.all.checked = true;
       }
     }
+    this.taskService.updateTaskMetaMessage({
+      authors: this.selectedAuthors.join(','),
+    });
   }
 }

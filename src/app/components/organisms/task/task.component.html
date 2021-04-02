@@ -22,6 +22,7 @@
     <app-row-per-page
       [rows]="rows"
       [rowsDefault]="rowsDefault"
+      (onRowsChange)="handleRowsChanged($event)"
       *ngIf="rows"
     ></app-row-per-page>
   </app-meta-panel>

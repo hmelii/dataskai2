@@ -3,9 +3,9 @@ export default {
   BASE_URL: '',
   API_URL: '/api',
   API_VERSION: '/v1',
-  TASK_INFO_URL: '/assets/taskInfo.json',
-  TASK_CONFIG_URL: '/assets/taskConfig.json',
-  TASK_SUBMITS_URL: '/assets/taskSubmits.json',
+  TASK_INFO_URL: '/tasks/{task_name}/info',
+  TASK_CONFIG_URL: '/tasks/{task_name}/frontend_config',
+  TASK_SUBMITS_URL: '/tasks/{task_name}/submits',
   COMPARISON_SUBMITS_URL: '/assets/comparisonSubmits.json',
   TASK_FEATURES_INFO_URL: '/assets/taskFeaturesInfo.json',
   TASK_FEATURES_INFO_WITH_COMPARISON_URL:

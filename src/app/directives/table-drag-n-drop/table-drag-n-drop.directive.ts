@@ -302,8 +302,6 @@ export class TableDragNDropDirective {
   }
 
   private updateTaskConfig(endColumnIndex: number) {
-    console.log(endColumnIndex);
-
     if (this.component === 'task') {
       const currentColumnsOrder = this.taskConfig.data.columns.sort(
         this.compare

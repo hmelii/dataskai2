@@ -202,9 +202,6 @@ export class ProjectComponent implements OnInit {
   }
 
   handleSortChange({ sortOrder, colID }: TableColSortingInterface) {
-    console.log('sortOrder', sortOrder);
-    console.log('colID', colID);
-
     this.projectService.updateProjectMetaMessage({
       sort_order: sortOrder,
       sort_column: colID,
