@@ -13,6 +13,7 @@
           type="search"
           [autofocus]="isShown"
           [(ngModel)]="search"
+          (keyup.enter)="handleEnter()"
         />
       </form>
     </div>

@@ -227,20 +227,24 @@ export class TaskComponent implements OnInit {
       const {
         authors: prevAuthors = '',
         task_name: prevTaskName = null,
+        search: prevSearch = null,
       } = this.oldTaskMeta;
+
       const {
         authors = '',
         per_page = null,
         sort_order = this.sortOrder,
         sort_column = this.sortColumn,
         task_name = null,
+        search = null,
       } = taskMeta;
 
       if (
         authors !== prevAuthors ||
         per_page != null ||
         sort_order !== this.sortOrder ||
-        sort_column !== this.sortColumn
+        sort_column !== this.sortColumn ||
+        (search && search !== prevSearch)
       ) {
         this.currentPage = 1;
         this.getTaskSubmits();

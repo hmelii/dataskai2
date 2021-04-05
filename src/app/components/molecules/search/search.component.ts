@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TaskService } from '../../../services/task/task.service';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +11,7 @@ export class SearchComponent implements OnInit {
   isShown = false;
   isQuestionBubbleShown = false;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {}
 
@@ -34,5 +35,11 @@ export class SearchComponent implements OnInit {
 
   handleToggleQuestion() {
     this.isQuestionBubbleShown = !this.isQuestionBubbleShown;
+  }
+
+  handleEnter() {
+    this.taskService.updateTaskMetaMessage({
+      search: this.search,
+    });
   }
 }

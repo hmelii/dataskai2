@@ -207,8 +207,10 @@ export class TaskService {
       sort_column,
       sort_order,
       task_name = null,
+      search = null,
     } = this.taskMetaStageMessage.getValue();
-    const filters: ProjectMetaInterface = {};
+
+    const filters: TaskMetaInterface = {};
 
     if (authors && authors.length) {
       filters.authors = authors;
@@ -224,6 +226,10 @@ export class TaskService {
 
     if (sort_order) {
       filters.sort_order = sort_order;
+    }
+
+    if (search) {
+      filters.search = search;
     }
 
     const params = new HttpParams({
