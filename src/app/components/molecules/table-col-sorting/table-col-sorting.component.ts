@@ -38,6 +38,8 @@ export class TableColSortingComponent implements OnInit, OnChanges {
       this.sort = 'desc';
     } else if (this.sort === 'desc') {
       this.sort = 'asc';
+    } else {
+      this.sort = 'desc';
     }
     this.onSortChange.emit({ colID: this.colID, sortOrder: this.sort });
   }
