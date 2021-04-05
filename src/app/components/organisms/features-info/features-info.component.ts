@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FeaturesInfoService } from './features-info.service';
+import { FeaturesService } from '../../../services/features/features.service';
 export interface FeaturesInfo {
   data: [];
 }
@@ -13,19 +13,19 @@ export class FeaturesInfoComponent implements OnInit {
   featuresInfo: FeaturesInfo;
   featuresNames: [] = [];
 
-  constructor(private featuresInfoService: FeaturesInfoService) {
+  constructor(private featuresService: FeaturesService) {
     this.subscribeFeaturesInfoIDUpdates();
     this.subscribeFeaturesInfoUpdates();
   }
 
   subscribeFeaturesInfoIDUpdates() {
-    this.featuresInfoService.currentFeatureInfoIDStageMessage.subscribe(
+    this.featuresService.currentFeatureInfoIDStageMessage.subscribe(
       (featureInfo) => {
         if (featureInfo && featureInfo.id) {
           setTimeout(() => {
             this.isShown = true;
           }, 100);
-          this.featuresInfoService.getFeaturesInfo();
+          this.featuresService.getFeaturesInfo();
         } else {
           this.isShown = false;
         }
@@ -34,7 +34,7 @@ export class FeaturesInfoComponent implements OnInit {
   }
 
   subscribeFeaturesInfoUpdates() {
-    this.featuresInfoService.currentFeatureInfoStageMessage.subscribe(
+    this.featuresService.currentFeatureInfoStageMessage.subscribe(
       ({ loaded, loading, data }) => {
         if (loaded && !loading) {
           if (data) {
@@ -46,8 +46,9 @@ export class FeaturesInfoComponent implements OnInit {
   }
 
   handleClose() {
-    this.featuresInfoService.updateFeaturesInfoIDMessage({ id: null });
-    this.featuresInfoService.updateFeaturesInfoMessage({ loaded: false });
+    this.featuresService.updateFeaturesInfoIDMessage({ id: null });
+    this.featuresService.updateFeaturesInfoMessage({ loaded: false });
+    this.featuresService.deleteFeaturesInfoMessage();
   }
 
   handleClickedOutside($event: Event) {

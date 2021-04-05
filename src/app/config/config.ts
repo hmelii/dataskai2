@@ -13,5 +13,7 @@ export default {
   PROJECT_TASKS_URL: '/project/tasks',
   PROJECT_CONFIG_URL: '/project/frontend_config',
   PROJECT_INFO_URL: '/project/info',
+  TASK_FEATURES: '/tasks/{task_name}/features_info',
+  SUBMIT_FEATURES: '/submits/{submit_id}/features_info',
   FETCH_DELAY: 500,
 };

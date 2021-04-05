@@ -91,6 +91,7 @@
               <app-table-features
                 [id]="row.id || row.task_name"
                 [text]="row[col.id]"
+                [type]="component"
               ></app-table-features>
             </ng-template>
             <ng-template ngSwitchDefault>

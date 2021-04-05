@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FeaturesInfoService } from '../../organisms/features-info/features-info.service';
+import { FeaturesService } from '../../../services/features/features.service';
 
 @Component({
   selector: 'app-table-features',
@@ -11,15 +11,19 @@ export class TableFeaturesComponent implements OnInit {
   @Input() text: string;
   @Input() comparison;
   @Input() comparisonBaselineID;
+  @Input() type;
 
-  constructor(private featuresInfoService: FeaturesInfoService) {}
+  constructor(private featuresService: FeaturesService) {}
 
   ngOnInit(): void {}
 
   handleClick() {
-    this.featuresInfoService.updateFeaturesInfoIDMessage({
+    this.featuresService.deleteFeaturesInfoMessage();
+
+    this.featuresService.updateFeaturesInfoIDMessage({
       id: this.id,
       comparisonBaselineID: this.comparisonBaselineID,
+      type: this.type,
     });
   }
 }

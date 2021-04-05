@@ -11,7 +11,9 @@
 
   <div class="feature-info-head">
     <div class="feature-info-heading">Features</div>
-    <div class="feature-info-used">285 321 features used</div>
+    <div class="feature-info-used">
+      {{ featuresNames.length }} features used
+    </div>
   </div>
   <div class="feature-info-body" *ngIf="!featuresNames.added_features">
     <ul class="feature-list">
