@@ -32,7 +32,7 @@ export class TaskAuthorsFilterComponent implements OnInit {
     this.taskService.currentTaskInfoStageMessage.subscribe(
       ({ loaded, loading, data }) => {
         if (loaded && !loading) {
-          if (data) {
+          if (data && data.authors) {
             this.authors = data.authors.map((author) => ({
               value: author,
               checked: false,

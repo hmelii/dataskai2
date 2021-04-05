@@ -83,8 +83,8 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
         }
 
         if (loaded && !loading) {
-          if (data) {
-            this.rows = taskConfig.data.columns;
+          if (data && data.columns) {
+            this.rows = data.columns;
           }
         }
       }

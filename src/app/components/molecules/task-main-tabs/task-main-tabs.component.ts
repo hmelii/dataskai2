@@ -43,7 +43,7 @@ export class TaskMainTabsComponent implements OnInit {
           this.taskService.getTaskInfo();
         }
         if (loaded && !loading) {
-          if (data) {
+          if (data && data.submits) {
             this.submitsLength = data.submits;
           }
         }

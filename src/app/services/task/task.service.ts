@@ -251,6 +251,12 @@ export class TaskService {
   }
 
   getTaskSubmits({ start_page = 1 }) {
+    const currentTaskSubmitsStatus = this.taskSubmitsStageMessage.getValue();
+
+    if (currentTaskSubmitsStatus.loading) {
+      return;
+    }
+
     this.updateTaskSubmitsMessage({ loading: true });
 
     this.fetchTaskSubmits({ start_page }).subscribe(
@@ -272,6 +278,11 @@ export class TaskService {
   }
 
   getTaskConfig(params = {}) {
+    const currentTaskConfigStatus = this.taskConfigStageMessage.getValue();
+    if (currentTaskConfigStatus.loading) {
+      return;
+    }
+
     this.updateTaskConfigMessage({ loading: true });
 
     this.fetchTaskConfig(params).subscribe(
@@ -298,11 +309,13 @@ export class TaskService {
             },
           };
         } else {
+          const { columns = [] } = taskConfig.data;
+
           modifiedTaskConfig = {
             ...taskConfig,
             data: {
               ...taskConfig.data,
-              columns: taskConfig.data.columns.map((column, index) => ({
+              columns: columns.map((column, index) => ({
                 ...column,
                 index: index + 1, // прибавляет 1, потому что у нас ещё есть колонка с номерами
                 shown: true,
@@ -332,6 +345,12 @@ export class TaskService {
     const { task_name = null } = this.taskMetaStageMessage.getValue();
 
     if (!task_name) {
+      return;
+    }
+
+    const currentTaskInfoStatus = this.taskInfoStageMessage.getValue();
+
+    if (currentTaskInfoStatus.loading) {
       return;
     }
 

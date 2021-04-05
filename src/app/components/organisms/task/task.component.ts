@@ -47,7 +47,6 @@ export class TaskComponent implements OnInit {
     this.subscribeRouteUpdates();
     this.subscribeSubmitsUpdates();
     this.subscribeTaskConfigUpdates();
-
     this.subscribeProjectInfoUpdates();
     this.subscribeTaskInfoUpdates();
     this.subscribeTaskMetaOldUpdates();
@@ -68,9 +67,6 @@ export class TaskComponent implements OnInit {
       this.taskService.updateTaskMetaMessage({
         task_name: this.routeTaskID,
       });
-
-      //this.getTaskInfo();
-      //this.getTaskSubmits();
     });
   }
 
@@ -95,10 +91,10 @@ export class TaskComponent implements OnInit {
         }
 
         if (loaded && !loading) {
-          if (data) {
-            this.taskConfigColumns = taskConfig.data.columns.sort(this.compare);
-            this.rows = taskConfig.data.rows_per_page_values;
-            this.rowsDefault = taskConfig.data.rows_per_page_default;
+          if (data && data.columns) {
+            this.taskConfigColumns = data.columns.sort(this.compare);
+            this.rows = data.rows_per_page_values;
+            this.rowsDefault = data.rows_per_page_default;
             this.updateStartIndex();
           }
         }
@@ -251,8 +247,10 @@ export class TaskComponent implements OnInit {
       }
 
       if (task_name && task_name !== prevTaskName) {
+        this.currentPage = 1;
         this.getTaskInfo();
         this.getTaskConfig();
+        this.getTaskSubmits();
       }
     });
   }

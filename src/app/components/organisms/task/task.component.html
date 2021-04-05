@@ -1,4 +1,4 @@
-<div class="submits" *ngIf="taskSubmits">
+<div *ngIf="taskSubmits && taskSubmits.length > 0">
   <app-table
     [colsItems]="taskConfigColumns"
     [rowsItems]="taskSubmits"
@@ -29,4 +29,21 @@
   <app-table-modal></app-table-modal>
   <app-features-info class="submits-features"></app-features-info>
   <app-events-bubble></app-events-bubble>
+</div>
+<div
+  class="compared-submits-empty"
+  *ngIf="taskSubmits && taskSubmits.length === 0"
+>
+  <div class="compared-submits-empty-content">
+    <div class="compared-submits-empty-content-ico">
+      <app-icon type="big-search"></app-icon>
+    </div>
+    <div class="compared-submits-empty-content-heading">No submits</div>
+    <div class="compared-submits-empty-content-summary">
+      Read
+      <a class="compared-submits-empty-content-summary-link" href="#"
+        >how to push submits to leaderboard</a
+      >
+    </div>
+  </div>
 </div>

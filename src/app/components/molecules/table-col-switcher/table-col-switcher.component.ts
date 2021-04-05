@@ -27,7 +27,7 @@ export class TableColSwitcherComponent implements OnInit {
     this.taskService.currentTaskConfigStageMessage.subscribe(
       (config: TaskConfigInterface) => {
         this.config = config;
-        if (config.data) {
+        if (config.data && config.data.columns) {
           this.columns = config.data.columns.map((column) => ({
             value: column.id,
             label: column.name,

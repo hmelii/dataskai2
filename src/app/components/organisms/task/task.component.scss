@@ -1,3 +1,33 @@
-.submits-features {
+.compared-submits-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 160px);
+}
 
+.compared-submits-empty-content-ico {
+  width: 162px;
+  height: 162px;
+  margin: 0 auto 83px;
+  font-size: 0;
+  color: var(--foreground-quaternary);
+}
+
+.compared-submits-empty-content-heading {
+  margin: 0 0 16px;
+  font-size: 4.5rem;
+  color: var(--text-color-tertiary);
+  line-height: (40 / 45);
+  text-align: center;
+}
+
+.compared-submits-empty-content-summary {
+  color: var(--text-color-tertiary);
+  font-size: 2.9rem;
+  line-height: (34 / 29);
+  text-align: center;
+}
+
+.compared-submits-empty-content-summary-link {
+  color: inherit;
 }
