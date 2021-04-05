@@ -1,3 +1,18 @@
+.table-metric {
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &:hover {
+    .table-metric-list-bubble {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
 .table-metric-list {
   position: relative;
   font-size: 1.3rem;
@@ -13,4 +28,20 @@
 
 .table-metric-list-item {
   text-transform: uppercase;
+}
+
+.table-metric-list-bubble {
+  background: var(--background-secondary);
+  border-radius: 4px;
+
+  width: 200px;
+  padding: 9px 8px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(0, 2px);
+  transition: all 0.3s ease;
 }

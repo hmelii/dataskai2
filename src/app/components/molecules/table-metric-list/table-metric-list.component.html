@@ -1,5 +1,13 @@
-<div class="table-metric-list">
-  <span class="table-metric-list-item" *ngFor="let metric of metrics">
-    {{ metric }}<br />
-  </span>
+<div class="table-metric">
+  <div class="table-metric-list">
+    <span class="table-metric-list-item" *ngFor="let metric of metrics">
+      {{ metric }}<br />
+    </span>
+  </div>
+
+  <div class="table-metric-list-bubble">
+    <span class="table-metric-list-item" *ngFor="let metric of metrics">
+      {{ metric }}<br />
+    </span>
+  </div>
 </div>
