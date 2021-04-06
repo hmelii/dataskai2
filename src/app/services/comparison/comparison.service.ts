@@ -6,6 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import config from '../../config/config';
 import { catchError, delay } from 'rxjs/operators';
 import { ComparisonSubmitsInterface } from '../../interfaces/comparison-submits/comparison-submits.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -72,7 +73,11 @@ export class ComparisonService {
   fetchComparisonSubmits(
     comparisonSubmitsParams
   ): Observable<ComparisonSubmitsInterface> {
-    const { ids, baseline_submit = '', taskID } = comparisonSubmitsParams;
+    let { ids, baseline_submit = null, taskID } = comparisonSubmitsParams;
+
+    if (!baseline_submit) {
+      baseline_submit = ids[0];
+    }
 
     const params = new HttpParams({
       fromObject: {
@@ -83,7 +88,10 @@ export class ComparisonService {
 
     return this.http
       .get<ComparisonSubmitsInterface>(
-        config.BASE_URL + config.COMPARISON_SUBMITS_URL,
+        environment.baseUrl +
+          config.API_URL +
+          config.API_VERSION +
+          config.COMPARISON_SUBMITS_URL,
         {
           params,
         }

@@ -111,4 +111,8 @@
   display: block;
   padding: 8px;
   color: inherit;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

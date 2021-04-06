@@ -37,6 +37,11 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
   subscribeRouteUpdates() {
     this.activateRoute.params.subscribe((params) => {
       this.routeTaskID = params['taskID'];
+
+      this.taskService.updateTaskMetaMessage({
+        task_name: this.routeTaskID,
+      });
+
       if (this.comparisonIDs) {
         this.getComparedSubmits();
       }
@@ -84,6 +89,7 @@ export class ComparedSubmitsComponent implements OnInit, OnDestroy {
 
         if (loaded && !loading) {
           if (data && data.columns) {
+            console.log('data.columns', data.columns);
             this.rows = data.columns;
           }
         }

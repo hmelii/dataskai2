@@ -6,7 +6,7 @@ export default {
   TASK_INFO_URL: '/tasks/{task_name}/info',
   TASK_CONFIG_URL: '/tasks/{task_name}/frontend_config',
   TASK_SUBMITS_URL: '/tasks/{task_name}/submits',
-  COMPARISON_SUBMITS_URL: '/assets/comparisonSubmits.json',
+  COMPARISON_SUBMITS_URL: '/submits/comparison',
   TASK_FEATURES_INFO_URL: '/assets/taskFeaturesInfo.json',
   TASK_FEATURES_INFO_WITH_COMPARISON_URL:
     '/assets/taskFeaturesInfoWithComparison.json',
