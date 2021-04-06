@@ -49,6 +49,7 @@ export class FeaturesInfoComponent implements OnInit {
     this.featuresService.updateFeaturesInfoIDMessage({ id: null });
     this.featuresService.updateFeaturesInfoMessage({ loaded: false });
     this.featuresService.deleteFeaturesInfoMessage();
+    this.featuresNames = [];
   }
 
   handleClickedOutside($event: Event) {

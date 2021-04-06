@@ -57,6 +57,11 @@ export class FeaturesService {
       ...this.featuresInfoStageMessage.getValue(),
       data: [],
     });
+
+    console.log(
+      'this.featuresInfoStageMessage.getValue()',
+      this.featuresInfoStageMessage.getValue()
+    );
   }
 
   fetchFeaturesInfo() {
@@ -66,6 +71,10 @@ export class FeaturesService {
       type,
     } = this.featuresInfoIDStageMessage.getValue();
 
+    console.log('type', type);
+    console.log('id', id);
+    console.log('comparisonBaselineID', comparisonBaselineID);
+
     const baseline_submit: { [key: string]: string } = {};
 
     if (comparisonBaselineID) {
@@ -74,28 +83,34 @@ export class FeaturesService {
 
     const params = new HttpParams({
       fromObject: {
-        id,
         ...baseline_submit,
       },
     });
 
     let url = environment.baseUrl + config.API_URL + config.API_VERSION;
 
-    console.log('type', type);
-
     if (type === 'project') {
       url += config.TASK_FEATURES.replace('{task_name}', this.routeTaskID);
-    } else if (type === 'task') {
+    } else if (
+      type === 'task' ||
+      (type === 'comparison' && !comparisonBaselineID)
+    ) {
       url += config.SUBMIT_FEATURES.replace('{submit_id}', id);
+    } else if (type === 'comparison' && comparisonBaselineID) {
+      url += config.COMPARISON_SUBMIT_FEATURES.replace('{submit_id}', id);
+    } else {
+      return;
     }
 
-    return this.http.get<FeaturesInfo>(url).pipe(
-      delay(500), // исскуственная задержка
-      catchError((error) => {
-        // отлавливаем ошибку
-        return throwError(error);
-      })
-    );
+    return this.http
+      .get<FeaturesInfo>(url, { params })
+      .pipe(
+        delay(500), // исскуственная задержка
+        catchError((error) => {
+          // отлавливаем ошибку
+          return throwError(error);
+        })
+      );
   }
 
   getFeaturesInfo() {

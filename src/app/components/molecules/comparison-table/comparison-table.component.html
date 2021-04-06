@@ -133,6 +133,7 @@
                 [text]="col[row.id]"
                 [comparison]="col.comparison ? col.comparison[row.id] : null"
                 [comparisonBaselineID]="col.comparison ? baselineID : null"
+                [type]="'comparison'"
               ></app-table-features>
             </ng-template>
             <ng-template ngSwitchCase="metric">

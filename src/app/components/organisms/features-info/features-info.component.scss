@@ -133,3 +133,12 @@
 .feature-info-subheading-warning {
   color: var(--accent-text-color-negative);
 }
+
+.feature-info-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 470px;
+  bottom: 0;
+  z-index: 100;
+}
