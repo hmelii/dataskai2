@@ -4,11 +4,11 @@
       {{ text | formatNumber }}
     </div>
     <div *ngIf="comparison">
-      <div class="table-features-added" *ngIf="comparison.added">
-        {{ comparison.added }}
+      <div class="table-features-added" *ngIf="comparison.added_features">
+        {{ comparison.added_features }}
       </div>
-      <div class="table-features-deleted" *ngIf="comparison.deleted">
-        {{ comparison.deleted }}
+      <div class="table-features-deleted" *ngIf="comparison.deleted_features">
+        {{ comparison.deleted_features }}
       </div>
     </div>
   </a>
