@@ -66,6 +66,7 @@ export class TaskComponent implements OnInit {
 
       this.taskService.updateTaskMetaMessage({
         task_name: this.routeTaskID,
+        submit_id: this.routeSubmitID,
       });
     });
   }

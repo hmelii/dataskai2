@@ -200,7 +200,7 @@ export class TaskService {
     this.taskSubmitsStageMessage.next(newStage);
   }
 
-  fetchTaskSubmits({ start_page = 1 }): Observable<TaskSubmitsInterface> {
+  fetchTaskSubmits({ start_page = null }): Observable<TaskSubmitsInterface> {
     const {
       authors,
       per_page = null,
@@ -208,6 +208,7 @@ export class TaskService {
       sort_order,
       task_name = null,
       search = null,
+      submit_id = null,
     } = this.taskMetaStageMessage.getValue();
 
     const filters: TaskMetaInterface = {};
@@ -232,20 +233,30 @@ export class TaskService {
       filters.search = search;
     }
 
+    if (start_page && !submit_id) {
+      filters.start_page = start_page;
+    }
+
     const params = new HttpParams({
-      fromObject: { ...filters, start_page: start_page + '' },
+      fromObject: { ...filters },
     });
 
+    let url = environment.baseUrl + config.API_URL + config.API_VERSION;
+
+    if (submit_id) {
+      url += config.TASK_SUBMITS_WITH_SUBMIT_ID_URL.replace(
+        '{task_name}',
+        task_name
+      ).replace('{submit_id}', submit_id);
+      this.updateTaskMetaMessage({ submit_id: null });
+    } else {
+      url += config.TASK_SUBMITS_URL.replace('{task_name}', task_name);
+    }
+
     return this.http
-      .get<TaskSubmitsInterface>(
-        environment.baseUrl +
-          config.API_URL +
-          config.API_VERSION +
-          config.TASK_SUBMITS_URL.replace('{task_name}', task_name),
-        {
-          params,
-        }
-      )
+      .get<TaskSubmitsInterface>(url, {
+        params,
+      })
       .pipe(
         delay(config.FETCH_DELAY), // исскуственная задержка
         catchError((error) => {
@@ -256,7 +267,7 @@ export class TaskService {
       );
   }
 
-  getTaskSubmits({ start_page = 1 }) {
+  getTaskSubmits({ start_page }) {
     const currentTaskSubmitsStatus = this.taskSubmitsStageMessage.getValue();
 
     if (currentTaskSubmitsStatus.loading) {

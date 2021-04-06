@@ -5,4 +5,6 @@ export interface TaskMetaInterface {
   sort_column?: string;
   task_name?: string;
   search?: string;
+  submit_id?: string;
+  start_page?: string;
 }
