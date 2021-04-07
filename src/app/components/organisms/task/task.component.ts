@@ -29,8 +29,8 @@ export class TaskComponent implements OnInit {
   totalPages = null;
   rows: number[] = null;
   rowsDefault: number;
-  routeTaskID = null;
-  routeSubmitID = null;
+  taskID = null;
+  submitID = null;
   sortColumn = null;
   sortOrder = null;
   searchMatches = null;
@@ -60,13 +60,14 @@ export class TaskComponent implements OnInit {
       this.currentPage = page;
     });
 
-    this.activatedRoute.params.subscribe((params) => {
-      this.routeTaskID = params['taskID'];
-      this.routeSubmitID = params['submitID']; // используется для перехода по ссылке Например: http://localhost/project/tasks/aero__fw_clf_v1__ENG_1_FUEL_FILTER_CLOG__21/submits/6017b6b376a8c74ef40b1247d6
+    this.activatedRoute.params.subscribe(({ taskID, submitID }) => {
+      this.taskID = taskID;
+      this.submitID = submitID; // используется для перехода по ссылке Например: http://localhost/project/tasks/aero__fw_clf_v1__ENG_1_FUEL_FILTER_CLOG__21/submits/6017b6b376a8c74ef40b1247d6
 
       this.taskService.updateTaskMetaMessage({
-        task_name: this.routeTaskID,
-        submit_id: this.routeSubmitID,
+        task_name: this.taskID,
+        submit_id: this.submitID,
+        search: null,
       });
     });
   }
@@ -181,7 +182,7 @@ export class TaskComponent implements OnInit {
 
     this.router.navigate(
       [
-        `${routeMain}${routeProject}/${routeTasks}/${this.routeTaskID}/${routeSubmits}`,
+        `${routeMain}${routeProject}/${routeTasks}/${this.taskID}/${routeSubmits}`,
       ],
       {
         queryParams: { page: this.currentPage },
