@@ -33,6 +33,15 @@ export class TableColSwitcherComponent implements OnInit {
             label: column.name,
             checked: column.shown,
           }));
+
+          this.all.checked =
+            this.columns.filter((column) => !column.checked).length === 0;
+
+          const checkedColumns = this.columns.filter(
+            (column: CheckboxInterface) => column.checked
+          );
+
+          this.selectedColumns = checkedColumns.map((column) => column.value);
         }
       }
     );
@@ -52,11 +61,11 @@ export class TableColSwitcherComponent implements OnInit {
 
   handleChange($event: boolean, currentColumn?: CheckboxInterface) {
     if (!currentColumn) {
-      if ($event === false) {
-        this.all.checked = false;
+      if ($event === true) {
+        this.all.checked = true;
         this.columns = this.columns.map((author) => ({
           ...author,
-          checked: false,
+          checked: true,
         }));
         this.selectedColumns = this.columns.map(
           (author: CheckboxInterface) => author.value
@@ -73,7 +82,8 @@ export class TableColSwitcherComponent implements OnInit {
       const findedSelectedAuthorIndex = this.selectedColumns.findIndex(
         (author) => author === currentColumn.value
       );
-      if ($event === false) {
+
+      if ($event === true) {
         if (findedSelectedAuthorIndex < 0) {
           this.selectedColumns.push(currentColumn.value);
         }
@@ -83,7 +93,8 @@ export class TableColSwitcherComponent implements OnInit {
         this.selectedColumns.splice(findedSelectedAuthorIndex, 1);
         currentColumn.checked = false;
       }
-      this.all.checked = this.selectedColumns.length === 0;
+      this.all.checked =
+        this.selectedColumns.length === this.config.data.columns.length;
     }
 
     this.taskService.updateTaskConfigMessage({
@@ -92,7 +103,7 @@ export class TableColSwitcherComponent implements OnInit {
         ...this.config.data,
         columns: this.config.data.columns.map((column) => ({
           ...column,
-          shown: !this.selectedColumns.includes(column.id),
+          shown: this.selectedColumns.includes(column.id),
         })),
       },
     });

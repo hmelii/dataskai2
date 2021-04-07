@@ -1,7 +1,6 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { TaskService } from '../../services/task/task.service';
 import { ProjectService } from '../../services/project/project.service';
-import { log } from 'util';
 
 @Directive({
   selector: '[appTableResize]',
@@ -113,6 +112,9 @@ export class TableResizeDirective {
       return;
     }
     this.newWidth = this.width + e.clientX - this.x;
+    if (this.newWidth < 48) {
+      this.newWidth = 48;
+    }
     this.resizingElem.style.width = this.newWidth + 'px';
   }
 
