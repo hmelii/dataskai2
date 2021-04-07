@@ -227,7 +227,7 @@ export class TaskComponent implements OnInit {
   subscribeTaskMetaUpdates() {
     this.taskService.currentTaskMetaStageMessage.subscribe((taskMeta) => {
       const {
-        authors: prevAuthors = '',
+        authors: prevAuthors = null,
         task_name: prevTaskName = null,
         search: prevSearch = null,
       } = this.oldTaskMeta;
@@ -248,6 +248,8 @@ export class TaskComponent implements OnInit {
         sort_column !== this.sortColumn ||
         search !== prevSearch
       ) {
+        console.log('authors', authors !== prevAuthors);
+
         this.currentPage = 1;
         this.getTaskSubmits();
       }

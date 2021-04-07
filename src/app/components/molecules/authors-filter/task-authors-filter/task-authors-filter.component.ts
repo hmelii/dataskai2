@@ -14,7 +14,7 @@ export class TaskAuthorsFilterComponent implements OnInit {
   authors: CheckboxInterface[];
   all: CheckboxInterface = {
     value: 'all',
-    checked: false,
+    checked: true,
     label: 'all',
   };
 
@@ -35,9 +35,13 @@ export class TaskAuthorsFilterComponent implements OnInit {
           if (data && data.authors) {
             this.authors = data.authors.map((author) => ({
               value: author,
-              checked: false,
+              checked: true,
               label: author,
             }));
+
+            this.selectedAuthors = this.authors.map(
+              (author: CheckboxInterface) => author.value
+            );
           }
         }
       }
