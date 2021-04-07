@@ -1,177 +1,88 @@
 <!--<div style="overflow: hidden; overflow-x: auto; position: relative">-->
 <table class="comparison-table" appTableDragNDrop appTableResize>
   <tbody class="comparison-table-body">
+    <tr>
+      <th class="comparison-table-th drag-n-drop"></th>
+      <th *ngFor="let col of cols" class="comparison-table-th drag-n-drop">
+        <app-comparison-table-select-baseline
+          [baselineID]="baselineID"
+          [submitID]="col.id"
+          (onHandleChangeBaselineID)="handleChangeBaselineID($event)"
+        >
+        </app-comparison-table-select-baseline>
+
+        <app-comparison-table-remove-form-comparison
+          [submitID]="col.id"
+        ></app-comparison-table-remove-form-comparison>
+        <div class="table-drag-n-drop"></div>
+        <div class="resize"></div>
+      </th>
+    </tr>
     <tr *ngFor="let row of rows; let i = index" class="comparison-table-tr">
-      <ng-container
-        *ngIf="i === 0; then numberTH; else numberTD"
-      ></ng-container>
-      <ng-template #numberTH>
-        <th
-          class="comparison-table-th"
-          [ngClass]="{
-            'comparison-table-th--align-right': row.type === 'metric'
-          }"
-        >
-          <div class="comparison-table-th-text">{{ row.name }}</div>
-        </th>
-      </ng-template>
+      <td
+        class="comparison-table-th"
+        [ngClass]="{
+          'comparison-table-th--align-right': row.type === 'metric'
+        }"
+      >
+        <div class="comparison-table-th-text">{{ row.name }}</div>
+      </td>
+      <td
+        *ngFor="let col of cols"
+        class="comparison-table-td"
+        [ngClass]="{
+          'comparison-table-td--baseline': baselineID === col.id,
+          'comparison-table-td--align-right':
+            row.type === 'metric' ||
+            row.type === 'features' ||
+            row.id === 'model_version'
+        }"
+      >
+        <div [ngSwitch]="row.type">
+          <ng-template ngSwitchCase="features">
+            <app-table-features
+              [id]="col.id || col.task_name"
+              [text]="col[row.id]"
+              [comparison]="col.comparison ? col.comparison[row.id] : null"
+              [comparisonBaselineID]="col.comparison ? baselineID : null"
+              [type]="'comparison'"
+            ></app-table-features>
+          </ng-template>
+          <ng-template ngSwitchCase="metric">
+            <app-comparison-table-metric
+              [metric]="col.metrics[row.id]"
+              [comparison]="col.comparison ? col.comparison[row.id] : null"
+            ></app-comparison-table-metric>
+          </ng-template>
+          <ng-template ngSwitchCase="date">
+            <div class="table-tbody-td-sub-sub-heading">
+              {{ col[row.id] | date: "hh:mm" }}
+            </div>
+            <div class="table-tbody-td-sub-sub-heading">
+              {{ col[row.id] | date: "dd:MM:YYYY" }}
+            </div>
+          </ng-template>
+          <ng-template ngSwitchCase="files">
+            <app-table-attachments
+              [attachments]="col[row.id]"
+            ></app-table-attachments>
+          </ng-template>
 
-      <ng-template #numberTD>
-        <td
-          class="comparison-table-th"
-          [ngClass]="{
-            'comparison-table-th--align-right': row.type === 'metric'
-          }"
-        >
-          <div class="comparison-table-th-text">{{ row.name }}</div>
-        </td>
-      </ng-template>
-      <ng-container *ngIf="i === 0; then dataTH; else dataTD"></ng-container>
-      <ng-template #dataTH>
-        <th
-          *ngFor="let col of cols"
-          class="comparison-table-td drag-n-drop"
-          [ngClass]="{
-            'comparison-table-td--baseline': baselineID === col.id,
-            'comparison-table-td--align-right':
-              row.type === 'metric' ||
-              row.type === 'features' ||
-              row.id === 'model_version'
-          }"
-        >
-          <div class="table-drag-n-drop"></div>
-          <div class="resize"></div>
-
-          <div *ngIf="i === 0">
-            <app-comparison-table-select-baseline
-              [baselineID]="baselineID"
-              [submitID]="col.id"
-              (onHandleChangeBaselineID)="handleChangeBaselineID($event)"
-            >
-            </app-comparison-table-select-baseline>
-
-            <app-comparison-table-remove-form-comparison
-              [submitID]="col.id"
-            ></app-comparison-table-remove-form-comparison>
-          </div>
-
-          <div [ngSwitch]="row.type">
-            <ng-template ngSwitchCase="features">
-              <app-table-features
-                [id]="col.id || col.task_name"
-                [text]="col[row.id]"
-                [comparison]="col.comparison ? col.comparison[row.id] : null"
-                [comparisonBaselineID]="col.comparison ? baselineID : null"
-                [type]="'comparison'"
-              ></app-table-features>
-            </ng-template>
-            <ng-template ngSwitchCase="metric">
-              <app-comparison-table-metric
-                [metric]="col.metrics[row.id]"
-                [comparison]="col.comparison ? col.comparison[row.id] : null"
-              ></app-comparison-table-metric>
-            </ng-template>
-            <ng-template ngSwitchCase="date">
-              <div class="table-tbody-td-sub-sub-heading">
-                {{ col[row.id] | date: "hh:mm" }}
-              </div>
-              <div class="table-tbody-td-sub-sub-heading">
-                {{ col[row.id] | date: "dd:MM:YYYY" }}
-              </div>
-            </ng-template>
-            <ng-template ngSwitchCase="files">
-              <app-table-attachments
-                [attachments]="col[row.id]"
-              ></app-table-attachments>
-            </ng-template>
-
-            <ng-template ngSwitchDefault>
-              <div [ngSwitch]="row.id">
-                <ng-template ngSwitchCase="actions">
-                  <app-table-actions [id]="col.id"></app-table-actions>
-                </ng-template>
-                <ng-template ngSwitchCase="tags">
-                  <app-tags [text]="col[row.id]"></app-tags>
-                </ng-template>
-                <ng-template ngSwitchDefault>
-                  {{ col[row.id] }}
-                </ng-template>
-              </div>
-            </ng-template>
-          </div>
-        </th>
-      </ng-template>
-      <ng-template #dataTD>
-        <td
-          *ngFor="let col of cols"
-          class="comparison-table-td"
-          [ngClass]="{
-            'comparison-table-td--baseline': baselineID === col.id,
-            'comparison-table-td--align-right':
-              row.type === 'metric' ||
-              row.type === 'features' ||
-              row.id === 'model_version'
-          }"
-        >
-          <div *ngIf="i === 0">
-            <app-comparison-table-select-baseline
-              [baselineID]="baselineID"
-              [submitID]="col.id"
-              (onHandleChangeBaselineID)="handleChangeBaselineID($event)"
-            >
-            </app-comparison-table-select-baseline>
-
-            <app-comparison-table-remove-form-comparison
-              [submitID]="col.id"
-            ></app-comparison-table-remove-form-comparison>
-          </div>
-
-          <div [ngSwitch]="row.type">
-            <ng-template ngSwitchCase="features">
-              <app-table-features
-                [id]="col.id || col.task_name"
-                [text]="col[row.id]"
-                [comparison]="col.comparison ? col.comparison[row.id] : null"
-                [comparisonBaselineID]="col.comparison ? baselineID : null"
-                [type]="'comparison'"
-              ></app-table-features>
-            </ng-template>
-            <ng-template ngSwitchCase="metric">
-              <app-comparison-table-metric
-                [metric]="col.metrics[row.id]"
-                [comparison]="col.comparison ? col.comparison[row.id] : null"
-              ></app-comparison-table-metric>
-            </ng-template>
-            <ng-template ngSwitchCase="date">
-              <div class="table-tbody-td-sub-sub-heading">
-                {{ col[row.id] | date: "hh:mm" }}
-              </div>
-              <div class="table-tbody-td-sub-sub-heading">
-                {{ col[row.id] | date: "dd:MM:YYYY" }}
-              </div>
-            </ng-template>
-            <ng-template ngSwitchCase="files">
-              <app-table-attachments
-                [attachments]="col[row.id]"
-              ></app-table-attachments>
-            </ng-template>
-
-            <ng-template ngSwitchDefault>
-              <div [ngSwitch]="row.id">
-                <ng-template ngSwitchCase="actions">
-                  <app-table-actions [id]="col.id"></app-table-actions>
-                </ng-template>
-                <ng-template ngSwitchCase="tags">
-                  <app-tags [text]="col[row.id]"></app-tags>
-                </ng-template>
-                <ng-template ngSwitchDefault>
-                  {{ col[row.id] }}
-                </ng-template>
-              </div>
-            </ng-template>
-          </div>
-        </td>
-      </ng-template>
+          <ng-template ngSwitchDefault>
+            <div [ngSwitch]="row.id">
+              <ng-template ngSwitchCase="actions">
+                <app-table-actions [id]="col.id"></app-table-actions>
+              </ng-template>
+              <ng-template ngSwitchCase="tags">
+                <app-tags [text]="col[row.id]"></app-tags>
+              </ng-template>
+              <ng-template ngSwitchDefault>
+                {{ col[row.id] }}
+              </ng-template>
+            </div>
+          </ng-template>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>
