@@ -168,19 +168,26 @@ export class ProjectComponent implements OnInit {
   subscribeProjectMetaUpdates() {
     this.projectService.currentProjectMetaStageMessage.subscribe(
       (projectMeta) => {
-        const { authors: prevAuthors = '' } = this.oldProjectMeta;
         const {
+          authors: prevAuthors = '',
+          search: prevSearch = null,
+        } = this.oldProjectMeta;
+        const {
+          search = null,
           authors = '',
           per_page = null,
           sort_order = this.sortOrder,
           sort_column = this.sortColumn,
         } = projectMeta;
 
+        console.log(search && search !== prevSearch);
+
         if (
           authors !== prevAuthors ||
           per_page != null ||
           sort_order !== this.sortOrder ||
-          sort_column !== this.sortColumn
+          sort_column !== this.sortColumn ||
+          search !== prevSearch
         ) {
           this.currentPage = 1;
           this.getProjectTasks();

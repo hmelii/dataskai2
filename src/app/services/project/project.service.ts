@@ -163,6 +163,7 @@ export class ProjectService {
       per_page = null,
       sort_column,
       sort_order,
+      search = null,
     } = this.projectMetaStageMessage.getValue();
     const filters: ProjectMetaInterface = {};
 
@@ -180,6 +181,10 @@ export class ProjectService {
 
     if (sort_order) {
       filters.sort_order = sort_order;
+    }
+
+    if (search) {
+      filters.search = search;
     }
 
     const params = new HttpParams({

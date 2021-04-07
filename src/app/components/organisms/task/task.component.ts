@@ -245,7 +245,7 @@ export class TaskComponent implements OnInit {
         per_page != null ||
         sort_order !== this.sortOrder ||
         sort_column !== this.sortColumn ||
-        (search && search !== prevSearch)
+        search !== prevSearch
       ) {
         this.currentPage = 1;
         this.getTaskSubmits();

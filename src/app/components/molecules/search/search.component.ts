@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TaskService } from '../../../services/task/task.service';
+import { ProjectService } from '../../../services/project/project.service';
 
 @Component({
   selector: 'app-search',
@@ -7,11 +8,15 @@ import { TaskService } from '../../../services/task/task.service';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
+  @Input() component;
   search = '';
   isShown = false;
   isQuestionBubbleShown = false;
 
-  constructor(private taskService: TaskService) {}
+  constructor(
+    private taskService: TaskService,
+    private projectService: ProjectService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -38,8 +43,14 @@ export class SearchComponent implements OnInit {
   }
 
   handleEnter() {
-    this.taskService.updateTaskMetaMessage({
-      search: this.search,
-    });
+    if (this.component === 'task') {
+      this.taskService.updateTaskMetaMessage({
+        search: this.search,
+      });
+    } else if (this.component === 'project') {
+      this.projectService.updateProjectMetaMessage({
+        search: this.search,
+      });
+    }
   }
 }
