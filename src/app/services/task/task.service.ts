@@ -212,6 +212,7 @@ export class TaskService {
     } = this.taskMetaStageMessage.getValue();
 
     const filters: TaskMetaInterface = {};
+
     if (authors && authors.length) {
       filters.authors = authors;
     } else if (authors !== undefined && authors.length === 0) {

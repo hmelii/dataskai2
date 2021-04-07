@@ -169,7 +169,7 @@ export class ProjectComponent implements OnInit {
     this.projectService.currentProjectMetaStageMessage.subscribe(
       (projectMeta) => {
         const {
-          authors: prevAuthors = '',
+          authors: prevAuthors = null,
           search: prevSearch = null,
         } = this.oldProjectMeta;
         const {

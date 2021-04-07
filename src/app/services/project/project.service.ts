@@ -169,6 +169,8 @@ export class ProjectService {
 
     if (authors && authors.length) {
       filters.authors = authors;
+    } else if (authors !== undefined && authors.length === 0) {
+      filters.authors = 'null';
     }
 
     if (per_page) {

@@ -13,7 +13,7 @@ export class ProjectAuthorsFilterComponent implements OnInit {
   authors: CheckboxInterface[];
   all: CheckboxInterface = {
     value: 'all',
-    checked: false,
+    checked: true,
     label: 'all',
   };
 
@@ -30,13 +30,17 @@ export class ProjectAuthorsFilterComponent implements OnInit {
     this.projectService.currentProjectInfoStageMessage.subscribe(
       ({ loaded, loading, data }) => {
         if (loaded && !loading) {
-          if (data) {
+          if (data && data.authors) {
             this.authors = data.authors.map((author) => ({
               value: author,
-              checked: false,
+              checked: true,
               label: author,
             }));
           }
+
+          this.selectedAuthors = this.authors.map(
+            (author: CheckboxInterface) => author.value
+          );
         }
       }
     );
