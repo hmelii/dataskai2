@@ -27,17 +27,16 @@ export class TableCopyUrlComponent implements OnInit {
   ngOnInit(): void {}
 
   copyUrl() {
-    const { protocol, hostname, pathname } = location;
+    const { protocol, hostname, pathname, port = null } = location;
 
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value = `${protocol}//${hostname}${pathname.replace(
-      `/${this.submitID}`,
-      ''
-    )}/${this.id}`;
+    selBox.value = `${protocol}//${hostname}${
+      port ? ':' + port : ''
+    }${pathname.replace(`/${this.submitID}`, '')}/${this.id}`;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
